@@ -1,0 +1,410 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FoodExModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="FoodExEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AdminUsers" EntityType="FoodExModel.AdminUser" />
+    <EntitySet Name="Banners" EntityType="FoodExModel.Banner" />
+    <EntitySet Name="Customers" EntityType="FoodExModel.Customer" />
+    <EntitySet Name="DeliveryStaffs" EntityType="FoodExModel.DeliveryStaff" />
+    <EntitySet Name="FoodCategories" EntityType="FoodExModel.FoodCategory" />
+    <EntitySet Name="FoodItems" EntityType="FoodExModel.FoodItem" />
+    <EntitySet Name="Locations" EntityType="FoodExModel.Location" />
+    <EntitySet Name="Menus" EntityType="FoodExModel.Menu" />
+    <EntitySet Name="Orders" EntityType="FoodExModel.Order" />
+    <EntitySet Name="OrderDetails" EntityType="FoodExModel.OrderDetail" />
+    <EntitySet Name="Restaurants" EntityType="FoodExModel.Restaurant" />
+    <EntitySet Name="RestaurantFoodCategories" EntityType="FoodExModel.RestaurantFoodCategory" />
+    <EntitySet Name="Reviews" EntityType="FoodExModel.Review" />
+    <EntitySet Name="WebsiteProfiles" EntityType="FoodExModel.WebsiteProfile" />
+    <AssociationSet Name="FK_Order_Customer" Association="FoodExModel.FK_Order_Customer">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Order" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Review_Customer" Association="FoodExModel.FK_Review_Customer">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Review" EntitySet="Reviews" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_Order" Association="FoodExModel.FK_Order_Order">
+      <End Role="DeliveryStaff" EntitySet="DeliveryStaffs" />
+      <End Role="Order" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FoodCategory_Restaurant" Association="FoodExModel.FK_FoodCategory_Restaurant">
+      <End Role="Restaurant" EntitySet="Restaurants" />
+      <End Role="FoodCategory" EntitySet="FoodCategories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FoodItem_FoodCategory" Association="FoodExModel.FK_FoodItem_FoodCategory">
+      <End Role="FoodCategory" EntitySet="FoodCategories" />
+      <End Role="FoodItem" EntitySet="FoodItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FoodItem_Restaurant" Association="FoodExModel.FK_FoodItem_Restaurant">
+      <End Role="Restaurant" EntitySet="Restaurants" />
+      <End Role="FoodItem" EntitySet="FoodItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderDetail_FoodItem" Association="FoodExModel.FK_OrderDetail_FoodItem">
+      <End Role="FoodItem" EntitySet="FoodItems" />
+      <End Role="OrderDetail" EntitySet="OrderDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Restaurant_Location" Association="FoodExModel.FK_Restaurant_Location">
+      <End Role="Location" EntitySet="Locations" />
+      <End Role="Restaurant" EntitySet="Restaurants" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_Restaurant" Association="FoodExModel.FK_Order_Restaurant">
+      <End Role="Restaurant" EntitySet="Restaurants" />
+      <End Role="Order" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderDetail_Order" Association="FoodExModel.FK_OrderDetail_Order">
+      <End Role="Order" EntitySet="Orders" />
+      <End Role="OrderDetail" EntitySet="OrderDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Review_Restaurant" Association="FoodExModel.FK_Review_Restaurant">
+      <End Role="Restaurant" EntitySet="Restaurants" />
+      <End Role="Review" EntitySet="Reviews" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="AdminUser">
+    <Key>
+      <PropertyRef Name="AdminUserId" />
+    </Key>
+    <Property Name="AdminUserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AdminUsername" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="AdminPassword" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="AdminName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="AdminAddress" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="AdminPhone" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="AdminEmail" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Banner">
+    <Key>
+      <PropertyRef Name="BannerId" />
+    </Key>
+    <Property Name="BannerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BannerImage" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="isActive" Type="Boolean" />
+    <Property Name="SortBy" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="CustomerId" />
+    </Key>
+    <Property Name="CustomerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Address" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="ContactNumber" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Email" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="DateOfBirth" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+    <Property Name="Status" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Photo" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="Password" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="Orders" Relationship="FoodExModel.FK_Order_Customer" FromRole="Customer" ToRole="Order" />
+    <NavigationProperty Name="Reviews" Relationship="FoodExModel.FK_Review_Customer" FromRole="Customer" ToRole="Review" />
+  </EntityType>
+  <EntityType Name="DeliveryStaff">
+    <Key>
+      <PropertyRef Name="DeliveryStaffId" />
+    </Key>
+    <Property Name="DeliveryStaffId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DeliveryStaffName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="Orders" Relationship="FoodExModel.FK_Order_Order" FromRole="DeliveryStaff" ToRole="Order" />
+  </EntityType>
+  <EntityType Name="FoodCategory">
+    <Key>
+      <PropertyRef Name="FoodCategoryId" />
+    </Key>
+    <Property Name="FoodCategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FoodCategoryName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="FoodCategoryDescription" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="RestaurantId" Type="Int32" />
+    <NavigationProperty Name="Restaurant" Relationship="FoodExModel.FK_FoodCategory_Restaurant" FromRole="FoodCategory" ToRole="Restaurant" />
+    <NavigationProperty Name="FoodItems" Relationship="FoodExModel.FK_FoodItem_FoodCategory" FromRole="FoodCategory" ToRole="FoodItem" />
+  </EntityType>
+  <EntityType Name="FoodItem">
+    <Key>
+      <PropertyRef Name="FoodItemId" />
+    </Key>
+    <Property Name="FoodItemId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FoodItemName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="RestaurantId" Type="Int32" Nullable="false" />
+    <Property Name="FoodCategoryId" Type="Int32" Nullable="false" />
+    <Property Name="FoodDescription" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="FoodItemRate" Type="Double" />
+    <Property Name="FoodItemImage" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Rating" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="IsHotDeal" Type="Boolean" />
+    <Property Name="HotDealDescription" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="HotDealImage" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="FoodCategory" Relationship="FoodExModel.FK_FoodItem_FoodCategory" FromRole="FoodItem" ToRole="FoodCategory" />
+    <NavigationProperty Name="Restaurant" Relationship="FoodExModel.FK_FoodItem_Restaurant" FromRole="FoodItem" ToRole="Restaurant" />
+    <NavigationProperty Name="OrderDetails" Relationship="FoodExModel.FK_OrderDetail_FoodItem" FromRole="FoodItem" ToRole="OrderDetail" />
+  </EntityType>
+  <EntityType Name="Location">
+    <Key>
+      <PropertyRef Name="LocationId" />
+    </Key>
+    <Property Name="LocationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LocationName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="Restaurants" Relationship="FoodExModel.FK_Restaurant_Location" FromRole="Location" ToRole="Restaurant" />
+  </EntityType>
+  <EntityType Name="Menu">
+    <Key>
+      <PropertyRef Name="MenuId" />
+    </Key>
+    <Property Name="MenuId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MenuTitle" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="PageContent" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="hasBanner" Type="Boolean" />
+    <Property Name="hasRecentMemberListing" Type="Boolean" />
+    <Property Name="hasCarosol" Type="Boolean" />
+    <Property Name="isActive" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="OrderId" />
+    </Key>
+    <Property Name="OrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CustomerId" Type="Int32" Nullable="false" />
+    <Property Name="RestaurantId" Type="Int32" Nullable="false" />
+    <Property Name="Amount" Type="Double" />
+    <Property Name="DateTime" Type="DateTime" Precision="3" />
+    <Property Name="DeliveryStatus" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="IsOrderConfirmed" Type="Boolean" />
+    <Property Name="DeliveryBoyId" Type="Int32" />
+    <Property Name="VATPercent" Type="Int32" />
+    <Property Name="RestaurantServiceChargePercent" Type="Int32" />
+    <Property Name="ServiceChargePercent" Type="Int32" />
+    <Property Name="DeliveryCharge" Type="Double" />
+    <Property Name="FullName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="DeliveryAddress" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="NearestLocation" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="DeliveryMeOrSelfPickup" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="HouseNo" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+    <Property Name="SpecialInstruction" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="Phone" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="Take_awayDateTime" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="Customer" Relationship="FoodExModel.FK_Order_Customer" FromRole="Order" ToRole="Customer" />
+    <NavigationProperty Name="DeliveryStaff" Relationship="FoodExModel.FK_Order_Order" FromRole="Order" ToRole="DeliveryStaff" />
+    <NavigationProperty Name="Restaurant" Relationship="FoodExModel.FK_Order_Restaurant" FromRole="Order" ToRole="Restaurant" />
+    <NavigationProperty Name="OrderDetails" Relationship="FoodExModel.FK_OrderDetail_Order" FromRole="Order" ToRole="OrderDetail" />
+  </EntityType>
+  <EntityType Name="OrderDetail">
+    <Key>
+      <PropertyRef Name="OrderDetailId" />
+    </Key>
+    <Property Name="OrderDetailId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FoodItemId" Type="Int32" Nullable="false" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <Property Name="Rate" Type="Double" />
+    <Property Name="OrderId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="FoodItem" Relationship="FoodExModel.FK_OrderDetail_FoodItem" FromRole="OrderDetail" ToRole="FoodItem" />
+    <NavigationProperty Name="Order" Relationship="FoodExModel.FK_OrderDetail_Order" FromRole="OrderDetail" ToRole="Order" />
+  </EntityType>
+  <EntityType Name="Restaurant">
+    <Key>
+      <PropertyRef Name="RestaurantId" />
+    </Key>
+    <Property Name="RestaurantId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RestaurantName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="RestaurantLogo" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Address" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="RestaurantCaption" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="DetailInfo" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="IsServiceChargeApplicable" Type="Boolean" />
+    <Property Name="ServiceChargePercent" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="IsVatApplicable" Type="Boolean" />
+    <Property Name="VATPercent" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="CusineInfo" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="OpeningTime" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="MinOrderAmount" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="PANNumber" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="IsFeatured" Type="Boolean" />
+    <Property Name="RestaurantType" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Speciality" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="LocationId" Type="Int32" />
+    <Property Name="RestaurantImageInDetailPage" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="Username" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Password" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Email" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="AllowLogin" Type="Boolean" />
+    <Property Name="DeliveryCharge" Type="String" MaxLength="5" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="FoodCategories" Relationship="FoodExModel.FK_FoodCategory_Restaurant" FromRole="Restaurant" ToRole="FoodCategory" />
+    <NavigationProperty Name="FoodItems" Relationship="FoodExModel.FK_FoodItem_Restaurant" FromRole="Restaurant" ToRole="FoodItem" />
+    <NavigationProperty Name="Location" Relationship="FoodExModel.FK_Restaurant_Location" FromRole="Restaurant" ToRole="Location" />
+    <NavigationProperty Name="Orders" Relationship="FoodExModel.FK_Order_Restaurant" FromRole="Restaurant" ToRole="Order" />
+    <NavigationProperty Name="Reviews" Relationship="FoodExModel.FK_Review_Restaurant" FromRole="Restaurant" ToRole="Review" />
+  </EntityType>
+  <EntityType Name="RestaurantFoodCategory">
+    <Key>
+      <PropertyRef Name="RestaurantFoodCategoryId" />
+    </Key>
+    <Property Name="RestaurantFoodCategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FoodCategoryId" Type="Int32" Nullable="false" />
+    <Property Name="RestaurantId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Review">
+    <Key>
+      <PropertyRef Name="ReviewId" />
+    </Key>
+    <Property Name="ReviewId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CustomerId" Type="Int32" />
+    <Property Name="RestaurantId" Type="Int32" />
+    <Property Name="Ratings" Type="String" MaxLength="1" Unicode="false" FixedLength="false" />
+    <Property Name="Comments" Type="String" MaxLength="1000" Unicode="false" FixedLength="false" />
+    <Property Name="CommentDateTime" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Customer" Relationship="FoodExModel.FK_Review_Customer" FromRole="Review" ToRole="Customer" />
+    <NavigationProperty Name="Restaurant" Relationship="FoodExModel.FK_Review_Restaurant" FromRole="Review" ToRole="Restaurant" />
+  </EntityType>
+  <EntityType Name="WebsiteProfile">
+    <Key>
+      <PropertyRef Name="ProfileId" />
+    </Key>
+    <Property Name="ProfileId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Logo" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="ContactNumber" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="HomePageImage" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="FacebookLink" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="TwitterLink" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="WhyFoodExNepalCaption" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="WhyFoodExNepal" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="WelcometoFoodexNepal" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="WelcometoFoodexNepalCaption" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="GooglePlaystoreLink" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="ItunesLink" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="DeliveryCharge" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="DeliveryChargeOutsideRingRoad" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="ServiceHour" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_Order_Customer">
+    <End Role="Customer" Type="FoodExModel.Customer" Multiplicity="1" />
+    <End Role="Order" Type="FoodExModel.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerId" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Review_Customer">
+    <End Role="Customer" Type="FoodExModel.Customer" Multiplicity="0..1" />
+    <End Role="Review" Type="FoodExModel.Review" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerId" />
+      </Principal>
+      <Dependent Role="Review">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_Order">
+    <End Role="DeliveryStaff" Type="FoodExModel.DeliveryStaff" Multiplicity="0..1" />
+    <End Role="Order" Type="FoodExModel.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DeliveryStaff">
+        <PropertyRef Name="DeliveryStaffId" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="DeliveryBoyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FoodCategory_Restaurant">
+    <End Role="Restaurant" Type="FoodExModel.Restaurant" Multiplicity="0..1" />
+    <End Role="FoodCategory" Type="FoodExModel.FoodCategory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Restaurant">
+        <PropertyRef Name="RestaurantId" />
+      </Principal>
+      <Dependent Role="FoodCategory">
+        <PropertyRef Name="RestaurantId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FoodItem_FoodCategory">
+    <End Role="FoodCategory" Type="FoodExModel.FoodCategory" Multiplicity="1" />
+    <End Role="FoodItem" Type="FoodExModel.FoodItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FoodCategory">
+        <PropertyRef Name="FoodCategoryId" />
+      </Principal>
+      <Dependent Role="FoodItem">
+        <PropertyRef Name="FoodCategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FoodItem_Restaurant">
+    <End Role="Restaurant" Type="FoodExModel.Restaurant" Multiplicity="1" />
+    <End Role="FoodItem" Type="FoodExModel.FoodItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Restaurant">
+        <PropertyRef Name="RestaurantId" />
+      </Principal>
+      <Dependent Role="FoodItem">
+        <PropertyRef Name="RestaurantId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderDetail_FoodItem">
+    <End Role="FoodItem" Type="FoodExModel.FoodItem" Multiplicity="1" />
+    <End Role="OrderDetail" Type="FoodExModel.OrderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FoodItem">
+        <PropertyRef Name="FoodItemId" />
+      </Principal>
+      <Dependent Role="OrderDetail">
+        <PropertyRef Name="FoodItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Restaurant_Location">
+    <End Role="Location" Type="FoodExModel.Location" Multiplicity="0..1" />
+    <End Role="Restaurant" Type="FoodExModel.Restaurant" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Location">
+        <PropertyRef Name="LocationId" />
+      </Principal>
+      <Dependent Role="Restaurant">
+        <PropertyRef Name="LocationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_Restaurant">
+    <End Role="Restaurant" Type="FoodExModel.Restaurant" Multiplicity="1" />
+    <End Role="Order" Type="FoodExModel.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Restaurant">
+        <PropertyRef Name="RestaurantId" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="RestaurantId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderDetail_Order">
+    <End Role="Order" Type="FoodExModel.Order" Multiplicity="1" />
+    <End Role="OrderDetail" Type="FoodExModel.OrderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="OrderId" />
+      </Principal>
+      <Dependent Role="OrderDetail">
+        <PropertyRef Name="OrderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Review_Restaurant">
+    <End Role="Restaurant" Type="FoodExModel.Restaurant" Multiplicity="0..1" />
+    <End Role="Review" Type="FoodExModel.Review" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Restaurant">
+        <PropertyRef Name="RestaurantId" />
+      </Principal>
+      <Dependent Role="Review">
+        <PropertyRef Name="RestaurantId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
