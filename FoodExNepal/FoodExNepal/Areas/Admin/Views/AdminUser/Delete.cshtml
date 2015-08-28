@@ -1,0 +1,61 @@
+﻿@model FoodExNepal.Models.AdminUser
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Delete Administrator</h2>
+  <p></p>
+<h3>Are you sure you want to delete Administrator "@Html.DisplayFor(model => model.AdminUsername)"?</h3>
+@*<div id="add">
+  
+    <div class="display-label">
+        User Name
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AdminUsername)
+    </div>
+    <div style="clear:both"></div>
+    <div class="display-label">
+        User Password
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AdminPassword)
+    </div>
+    <div style="clear:both"></div>
+    <div class="display-label">
+       Admin Name
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AdminName)
+    </div>
+    <div style="clear:both"></div>
+    <div class="display-label">
+        Admin Address
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AdminAddress)
+    </div>
+    <div style="clear:both"></div>
+    <div class="display-label">
+        Admin Phone
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AdminPhone)
+    </div>
+    <div style="clear:both"></div>
+    <div class="display-label">
+        Admin Email
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AdminEmail)
+    </div>
+    <div style="clear:both"></div>
+</div>*@
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

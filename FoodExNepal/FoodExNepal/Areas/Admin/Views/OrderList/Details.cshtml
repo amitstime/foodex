@@ -1,0 +1,139 @@
+﻿@model FoodExNepal.Models.Order
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Details</h2>
+<br />
+<div id="add">
+    <div class="display-label">Order No.</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.OrderId)
+    </div>
+
+    <div style="clear:both"></div>
+
+    <div class="display-label">Customer</div>
+    <div class="display-field">
+        @Html.DisplayFor(model =>model.FullName)
+    </div>
+
+    <div style="clear:both"></div>
+
+    <div class="display-label">Delivery Address</div>
+    <div class="display-field">
+        @Html.DisplayFor(model =>model.DeliveryAddress)
+    </div>
+
+    <div style="clear:both"></div>
+
+    <div class="display-label">Phone</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Phone)
+    </div>
+
+    <div style="clear:both"></div>
+
+    <div class="display-label">Restaurant</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Restaurant.RestaurantName)
+    </div>
+
+    <div style="clear:both"></div>
+
+    <div class="display-label">Amount</div>
+    <div class="display-field">
+        @Html.DisplayFor(model =>model.Amount)
+    </div>
+
+    <div style="clear:both"></div>
+
+    <div class="display-label">Location</div>
+    <div class="display-field">
+        @Html.DisplayFor(model =>model.NearestLocation)
+    </div>
+
+    <div style="clear:both"></div>
+
+    <div class="display-label">Delivery/Pickup</div>
+    <div class="display-field">
+        @Html.DisplayFor(model=>model.DeliveryMeOrSelfPickup)
+    </div>
+
+    <div style="clear:both"></div>
+
+    <div class="display-label">Delivery Time</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DateTime)
+    </div>
+
+    <div style="clear:both"></div>
+    @using FoodExNepal.Models;
+    @{
+        
+        List<OrderDetail> item = (List<OrderDetail>)ViewBag.OrderDetailList;
+       if(item.Count()>0)
+       {
+         double nettot = 0; 
+    <div id="list">
+        <table>
+            <tr>
+                <th>Food Item</th>
+                <th>Quantity</th>
+                <th>Rate</th>
+                <th>Total</th>
+            </tr>
+            
+            @foreach(var food in item)
+            {
+                 <tr>
+                <td>@food.FoodItem.FoodItemName</td>
+                <td>@food.Quantity</td>
+                <td>@food.Rate</td>
+                     @{
+                var tot = food.Quantity * food.Rate;
+                nettot = nettot + (double)tot;
+                     }
+                <td>@tot</td>
+            </tr>
+                
+            }
+             <tr>
+                <td></td>
+                <td></td>
+                <td>Sub-Total</td>
+                     
+                <td>@nettot</td>
+            </tr>
+        </table>
+       
+
+    </div>
+    }
+ }
+     <div class="display-label">SC</div>
+    <div class="display-field">
+        @Html.DisplayFor(model =>model.RestaurantServiceChargePercent)%
+    </div>
+
+    <div style="clear:both"></div>
+     <div class="display-label">VAT</div>
+    <div class="display-field">
+        @Html.DisplayFor(model =>model.VATPercent)%
+    </div>
+
+    <div style="clear:both"></div>
+    <div class="display-label">Amount</div>
+    <div class="display-field">
+        @Html.DisplayFor(model =>model.Amount)
+    </div>
+
+    <div style="clear:both"></div>
+</div>
+<p>
+    @Html.ActionLink("Confirmed", "Confirmed", new { id=Model.OrderId}) |
+     @Html.ActionLink("Cancelled", "Cancelled", new { id=Model.OrderId}) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

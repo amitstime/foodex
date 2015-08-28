@@ -1,0 +1,44 @@
+﻿@model FoodExNepal.Models.Restaurant
+
+@{
+    ViewBag.Title = "FoodCategoryList";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";        
+}
+
+
+<h2> @Model.RestaurantName (@Model.RestaurantId)</h2>
+<p><h4 style="color:orange">Food Category</h4></p>
+
+<div class="create">
+<a href="~/admin/restaurant/FoodCategoryAdd/@Model.RestaurantId">Add Food Category</a>
+</div>
+
+<div id="list">
+<table >
+    <tr>
+        <th>Food Category</th>        
+        <th>Description</th>        
+        <th>Actions</th>
+        <th>Add Food Item</th>
+
+    </tr>
+
+    @foreach (var foodCategory in Model.FoodCategories.OrderBy(a => a.FoodCategoryName).ToList())
+    {
+        <tr>
+            <td> @foodCategory.FoodCategoryName </td>
+            <td> @Html.Raw(foodCategory.FoodCategoryDescription) </td>                        
+            <td>
+                @Html.ActionLink(" ", "FoodCategoryEdit", new { id = foodCategory.FoodCategoryId }, new {@class = "icon-edit icon_font" }) |
+                @Html.ActionLink(" ", "FoodCategoryDetails", new { id = foodCategory.FoodCategoryId }, new {@class = "icon-detail icon_font" }) |
+                @Html.ActionLink(" ", "FoodCategoryDelete", new { id = foodCategory.FoodCategoryId, restaurantId=Model.RestaurantId }, new {@class = "icon-delete icon_font" })
+            </td>
+            <td>
+                @Html.ActionLink("+ Add Food Item", "FoodItemList", new { id = foodCategory.FoodCategoryId})
+            </td>
+        </tr> 
+    }
+
+
+</table>
+    </div>

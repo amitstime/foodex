@@ -1,0 +1,20 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+
+namespace FoodExNepal.Controllers
+{
+    public class HowToOrderController : Controller
+    {
+        //
+        // GET: /HowToOrder/
+
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+    }
+}

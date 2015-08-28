@@ -1,0 +1,47 @@
+﻿@model FoodExNepal.Models.DeliveryStaff
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Edit Delivery Staff</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    
+    <div id="add">
+        @Html.HiddenFor(model => model.DeliveryStaffId)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DeliveryStaffName,"Name")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DeliveryStaffName)
+            @Html.ValidationMessageFor(model => model.DeliveryStaffName)
+        </div>
+        <div style="clear:both"></div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PhoneNumber,"Phone Number")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PhoneNumber)
+            @Html.ValidationMessageFor(model => model.PhoneNumber)
+        </div>
+        <div style="clear:both"></div>
+        <div class="editor-label"></div>
+        <div class="editor-field">
+            <input type="submit" value="Save" />
+        </div>
+        <div style="clear:both"></div>
+    </div>  
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

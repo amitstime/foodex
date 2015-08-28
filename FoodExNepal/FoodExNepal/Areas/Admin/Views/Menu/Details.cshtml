@@ -1,0 +1,58 @@
+﻿@model FoodExNepal.Models.Menu
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Menu Details</h2>
+
+<div id="add">
+    
+    <div class="display-label">
+        Title
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.MenuTitle)
+    </div>
+    <div style="clear:both"></div>
+   @* <div class="display-label">
+         Page Content
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PageContent)
+    </div>*@
+
+    <div class="display-label">
+         Has Banner
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.hasBanner)
+    </div>
+    <div style="clear:both"></div>
+    <div class="display-label">
+     Has Recent Member Listing
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.hasRecentMemberListing)
+    </div>
+    <div style="clear:both"></div>
+    <div class="display-label">
+         Has Carosol
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.hasCarosol)
+    </div>
+    <div style="clear:both"></div>
+    <div class="display-label">
+        Is Active
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.isActive)
+    </div>
+    <div style="clear:both"></div>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.MenuId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

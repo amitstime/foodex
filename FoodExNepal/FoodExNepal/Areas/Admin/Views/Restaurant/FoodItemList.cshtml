@@ -1,0 +1,52 @@
+﻿@model FoodExNepal.Models.FoodCategory
+@{
+    ViewBag.Title = "FoodItemList";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>@Model.Restaurant.RestaurantName > @Model.FoodCategoryName > Food Items</h2>
+
+
+<p class="create">
+    <a href="~/admin/restaurant/fooditemadd/@Model.FoodCategoryId">Add Food Item</a>
+</p>
+
+<div id="list">
+
+    <table>
+        <tr>
+            <th style="width:200px">Name</th>
+            <th style="width:300px">Description</th>
+            <th style="width:60px">Rate(Rs.)</th>
+            <th style="width:60px">Hot Deal</th>
+            <th style="width:100px">Action</th>
+           
+        </tr>
+
+        @foreach(var fooditem in Model.FoodItems.ToList()) { 
+        <tr>
+            <td>@fooditem.FoodItemName</td>
+            <td>@fooditem.FoodDescription</td>
+            <td>@fooditem.FoodItemRate</td>                    
+            <td style="text-align:center">
+                 @if(fooditem.IsHotDeal == true)
+                    {
+                        <img src="~/images/tick.png">
+                
+                    }
+                 else if (fooditem.IsHotDeal != true)
+                    {
+                        <img src="~/images/untick.png">
+                    }
+            </td>
+            
+            <td>
+                @Html.ActionLink(" ", "FoodItemEdit", new { id = fooditem.FoodItemId }, new {@class = "icon-edit icon_font" }) |
+                @Html.ActionLink(" ", "FoodItemDetails", new { id = fooditem.FoodItemId }, new {@class = "icon-detail icon_font" }) |
+                @Html.ActionLink(" ", "FoodItemDelete", new { id = fooditem.FoodItemId, restaurantId=Model.RestaurantId }, new {@class = "icon-delete icon_font" })
+            </td>
+        </tr>
+        }
+    </table>
+
+</div>

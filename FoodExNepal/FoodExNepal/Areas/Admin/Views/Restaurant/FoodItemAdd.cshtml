@@ -1,0 +1,86 @@
+﻿@model FoodExNepal.Models.FoodItem
+
+@{
+    ViewBag.Title = "FoodItemAdd";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    var foodCategory= ViewBag.FoodCategory;
+}
+
+<h2>@foodCategory.Restaurant.RestaurantName (@foodCategory.Restaurant.RestaurantId) > @foodCategory.FoodCategoryName > Add Food Item</h2>
+
+<form method="post" enctype ="multipart/form-data">
+<p></p>
+    <div id="add">
+        <input type="hidden" name="hddRestaurantId" value="@foodCategory.Restaurant.RestaurantId">
+        <input type="hidden" name="hddFoodCategoryId" value="@foodCategory.FoodCategoryId">
+        
+    <div style="clear:both"></div>
+        
+        <div class="editor-label">Name</div>
+        <div class="editor-field">          
+            <input type="text" name="txtFoodItemName" id="txtFoodItemName"  style="width:545px"/>
+        </div>
+        
+    <div style="clear:both"></div>
+        
+        <div class="editor-label">Description</div>
+        <div class="editor-field"><input type="text" name="txtFoodDescription" id="txtFoodDescription" style="width:545px"/></div>
+
+    <div style="clear:both"></div>
+        
+        <div class="editor-label">Rate (Rs.)</div>
+        <div class="editor-field"><input type="text" name="txtFoodItemRate" id="txtFoodItemRate"  style="width:545px"/></div>
+<div style="clear:both"></div>
+        
+        <div class="editor-label">Food Item Image</div>
+        <input type="file" name="fileFoodItemImage" id="fileFoodItemImage" value="choose file"  style="width:545px"/>
+    </div>
+
+       
+     <div style="clear:both"></div>
+        
+        <div class="editor-label" style="width:224px">Hot Deal</div>
+        <input type="checkbox" name="chkHotDeals" id="chkHotDeals" style="width:20px"/>
+
+    <div style="clear:both"></div>
+
+    <div id="hotDealSection" style="display:none">
+        <div class="editor-label">Hot Deal Description</div>
+        <div class="editor-field"><textarea name="txtHotDealDescription" id="txtHotDealDescription"></textarea></div>
+        
+        
+        <div style="clear:both"></div>
+        
+        <div class="editor-label">Hot Deal Image</div>
+        <input type="file" name="fileHotDealImage" id="fileHotDealImage" value="choose file"  style="width:545px"/>
+    </div>
+        
+    <div style="clear:both"></div>
+   
+        <div class="editor-label"></div>
+        <div class="editor-field"><input type="submit" value="Save" /></div>
+        
+    <div style="clear:both"></div>
+    </div>
+</form>
+
+<div>
+    @Html.ActionLink("Back to List", "FoodCategoryList")
+</div>
+
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+        
+            $('#chkHotDeals').change(function () {                
+                if ($(this).prop("checked")) {
+                    $('#hotDealSection').show();
+                } else {
+                    $('#hotDealSection').hide();
+                }
+            });
+
+        });
+    </script>
+}

@@ -1,0 +1,78 @@
+﻿@*@model IEnumerable<FoodExNepal.Models.Restaurant>*@
+@model PagedList.IPagedList<FoodExNepal.Models.Restaurant>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Restaurant</h2>
+
+@if (Session["RestaurantUser"] == null) { 
+ using (Html.BeginForm("Index","Restaurant"))
+    {
+        <div id="add">
+            <div class="editor-label" style="width:90px; padding-top:2px;">Restaurant</div>
+            <div class="editor-field"><input type="text" name="KeyWord" id="txtSearchRes" value="@ViewBag.Keyword" class="form-control"/></div>
+            <div class="editor-label" style="width:90px; padding-left:15px; padding-top:2px;">Location</div>
+            <div class="editor-field">
+                @Html.DropDownList("Location",null,string.Empty,  new { @class = "form-control" })
+            </div>
+            <div class="editor-field" style="padding-left: 23px; padding-top: 0px;"><input type="submit" class="form-control" name="submit" value="Search" /></div>
+    </div>
+    }
+}
+<div style="clear:both"></div>
+
+<p class="create">
+    @Html.ActionLink("Add New", "Create")
+</p>
+<div id="list">
+<table>
+    <tr>
+        <th>Logo</th>
+        <th>
+           Name
+        </th>
+       
+        <th>
+            Phone Number
+        </th>
+   
+        <th> Action</th>
+         <th>
+            Add Food Category
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            <img src="~/images/restaurant/@item.RestaurantLogo" height="80px" width="128px" />
+        </td>
+       <td>
+            @Html.DisplayFor(modelItem => item.RestaurantName)
+        </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.PhoneNumber)
+        </td>
+       
+        <td>
+            @Html.ActionLink(" ", "Edit", new { id=item.RestaurantId }, new {@class = "icon-edit icon_font"}) |
+            @Html.ActionLink(" ", "Foodmenu", new { id=item.RestaurantId }, new {@class = "icon-foodmenu icon_font" }) |
+            @Html.ActionLink(" ", "Details", new { id=item.RestaurantId }, new {@class = "icon-detail icon_font" }) |
+            @Html.ActionLink(" ", "Delete", new { id = item.RestaurantId }, new { @class = "icon-delete icon_font",onclick = "return confirm('Are you sure you wish to delete this item?');"  })      
+        </td>
+        <td>
+            @Html.ActionLink("+ Food Category ", "FoodCategoryList", new {id = item.RestaurantId}) 
+        </td>
+    </tr>
+}
+
+</table>
+      Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index", 
+    new { page}))
+</div>

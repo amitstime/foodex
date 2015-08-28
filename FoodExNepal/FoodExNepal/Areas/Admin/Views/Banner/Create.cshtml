@@ -1,0 +1,75 @@
+﻿@model FoodExNepal.Models.Banner
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Add Banner</h2>
+@using (Html.BeginForm("Create", "Banner", FormMethod.Post, new { enctype = "Multipart/Form-data" }))
+{
+    @Html.ValidationSummary(true)
+
+        <div id="add">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BannerImage,"Image")
+        </div>
+        <div class="editor-field">
+             <input type="file" id="fileArticle" name="fileArticle" value="choose file" onchange="checkfile(this);"/>
+            <input type="button" id="clear2" value="Remove" onclick="clearfile();"/>
+            @Html.ValidationMessageFor(model => model.BannerImage)
+        </div>
+            <div style="clear:both"></div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.isActive,"Is Active?")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.isActive)
+            @Html.ValidationMessageFor(model => model.isActive)
+        </div>
+        <div style="clear:both"></div>   
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SortBy,"Sort By")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.SortBy)
+            @Html.ValidationMessageFor(model => model.SortBy)
+        </div>
+        <div style="clear:both"></div>
+       <div class="editor-label"></div>
+         <div class="editor-field">
+            <input type="submit" value="Save" />
+        </div>
+        <div style="clear:both"></div>
+        </div>
+}
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+     <script type="text/javascript" language="javascript">
+         function checkfile(sender) {
+             var validExts = new Array(".JPG", ".JPEG", ".JIF", ".PNG", "GIF");
+             var fileExt = sender.value;
+             fileExt = fileExt.substring(fileExt.lastIndexOf('.'));
+             if (validExts.indexOf(fileExt.toUpperCase()) < 0) {
+                 alert("Invalid file selected, valid files are of " +
+                          validExts.toString() + " types.");
+                 // var _fileuploadcontrolId = document.getElementById("att3");
+                 // _fileuploadcontrolId.value = "";
+                 // _fileuploadcontrolId.focus();
+                 sender.value = "";
+                 sender.focus();
+                 return false;
+             }
+             else return true;
+         }
+         function clearfile() {
+             document.getElementById("fileArticle").value = '';
+         }
+</script>
+}
+  

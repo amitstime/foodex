@@ -1,0 +1,38 @@
+﻿@model FoodExNepal.Models.Location
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Add Location</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <p></p>
+    <div id="add">
+        <div style="clear:both"></div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.LocationName,"Location")
+        </div>        
+        <div class="editor-field">
+            @Html.EditorFor(model => model.LocationName)
+            @Html.ValidationMessageFor(model => model.LocationName)
+        </div>
+
+        <div style="clear:both"></div>
+        <div class="editor-label"></div>
+        <div class="editor-field">
+            <input type="submit" value="Save" />
+        </div>
+        <div style="clear:both"></div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,96 @@
+﻿@model IEnumerable<FoodExNepal.Models.WebsiteProfile>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Website Profile</h2>
+
+<p class="create">
+    @Html.ActionLink("Add New", "Create")
+</p>
+<div id="list">
+<table>
+    <tr>
+        @*<th>
+            @Html.DisplayNameFor(model => model.ProfileId)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.Logo)
+        </th>
+        <th>
+           Contact 
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.HomePageImage)
+        </th>*@
+        <th>
+           facebook
+        </th>
+        <th>
+            twitter 
+        </th>
+       @* <th>
+            @Html.DisplayNameFor(model => model.WhyFoodExNepalFooterContent)
+        </th>*@
+        <th>
+            Play Store
+        </th>
+        <th>
+            itunes
+        </th>
+        <th>
+            Delivery Charge
+        </th>
+        <th>
+            Delivery Charge<br />(Outside Ringroad)
+        </th>
+        <th>Action</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.ProfileId)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.Logo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContactNumber)
+        </td>
+      @*  <td>
+            @Html.DisplayFor(modelItem => item.HomePageImage)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.FacebookLink)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TwitterLink)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.WhyFoodExNepalFooterContent)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.GooglePlaystoreLink)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ItunesLink)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DeliveryCharge)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DeliveryCharge_OutsideRingRoad_)
+        </td>
+        <td>
+           @Html.ActionLink(" ", "Edit", new { id=item.ProfileId }, new {@class = "icon-edit icon_font" }) |
+            @Html.ActionLink(" ", "Details", new { id=item.ProfileId }, new {@class = "icon-detail icon_font" }) |
+            @Html.ActionLink(" ", "Delete", new { id=item.ProfileId }, new {@class = "icon-delete icon_font" })
+        </td>
+    </tr>
+}
+
+</table>
+</div>

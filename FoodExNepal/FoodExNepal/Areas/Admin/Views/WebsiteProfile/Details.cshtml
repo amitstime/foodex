@@ -1,0 +1,93 @@
+﻿@model FoodExNepal.Models.WebsiteProfile
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div id="add">
+    
+    @*<div class="display-label">
+         @Html.DisplayNameFor(model => model.ProfileId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ProfileId)
+    </div>
+     <div style="clear:both"></div>*@
+    <div class="display-label" style="width:240px">
+         @Html.DisplayNameFor(model => model.Logo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Logo)
+    </div>
+    <div style="clear:both"></div>
+    <div class="display-label" style="width:240px">
+         Contact
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ContactNumber)
+    </div>
+    <div style="clear:both"></div>
+    <div class="display-label" style="width:240px">
+        Home Page Image
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.HomePageImage)
+    </div>
+    <div style="clear:both"></div>
+    <div class="display-label" style="width:240px">
+         Facebook Link
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FacebookLink)
+    </div>
+    <div style="clear:both"></div>
+    <div class="display-label" style="width:240px">
+         Twitter Link
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TwitterLink)
+    </div>
+    <div style="clear:both"></div>
+    <div class="display-label" style="width:240px">
+         Why FoodEx Nepal Footer Content
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.WhyFoodExNepalFooterContent)
+    </div>
+    <div style="clear:both"></div>
+    <div class="display-label" style="width:240px">
+         Google PlayStore Link
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.GooglePlaystoreLink)
+    </div>
+    <div style="clear:both"></div>
+    <div class="display-label" style="width:240px">
+         Itunes Link
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ItunesLink)
+    </div>
+    <div style="clear:both"></div>
+    <div class="display-label" style="width:240px">
+         Delivery Charge
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DeliveryCharge)
+    </div>
+    <div style="clear:both"></div>
+    <div class="display-label" style="width:240px">
+         Delivery Charge (outside ringroad)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DeliveryCharge_OutsideRingRoad_)
+    </div>
+    <div style="clear:both"></div>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.ProfileId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

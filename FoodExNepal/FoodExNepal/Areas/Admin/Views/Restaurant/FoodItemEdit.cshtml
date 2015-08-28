@@ -1,0 +1,158 @@
+﻿@model FoodExNepal.Models.FoodItem
+
+@{
+    ViewBag.Title = "FoodItemEdit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>@Model.Restaurant.RestaurantName (@Model.Restaurant.RestaurantId) > @Model.FoodCategory.FoodCategoryName > Edit Food Item</h2>
+<br />
+
+<form method="post" enctype="multipart/form-data">
+    @Html.ValidationSummary(true)
+    <input Type="hidden" value="@Model.RestaurantId" name="hddRestaurantId"/>
+    <input type="hidden" value="@Model.FoodCategoryId" name ="hddFoodCategoryId" />
+    <input type="hidden" value="@Model.FoodItemId" name ="hddFoodItemId" />
+     
+    <div id="add">        
+        @Html.HiddenFor(model => model.FoodItemId)
+        @Html.HiddenFor(model => model.RestaurantId)
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FoodItemName,"Food Item Name")
+        </div>
+        <div class="editor-field">
+            <input type="text" name="txtFoodItemName" id="txtFoodItemName" value="@Model.FoodItemName" />
+        </div>
+
+        <div style="clear:both"></div>
+
+        <div class="editor-label">
+           Food Category
+        </div>
+        <div class="editor-field">
+            <select  style="width:250px;" name="ddlFoodCategory">
+                
+                <option>--Select One--</option>
+                @if (ViewData["FoodCatergory"] == null) { }
+                else
+                {
+                    foreach (var a in ViewData["FoodCatergory"] as List<FoodExNepal.Models.FoodCategory>)
+                    {
+                        <option value="@a.FoodCategoryId" @if(a.FoodCategoryId==Model.FoodCategoryId){ <text> Selected</text>}>@a.FoodCategoryName</option>
+                    }
+                }
+            </select>
+            @Html.ValidationMessageFor(model => model.FoodCategoryId)
+        </div>
+        <div style="clear:both"></div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FoodDescription,"Description")
+        </div>
+        <div class="editor-field">
+            <input type="text" name="txtFoodDescription" id="txtFoodDescription" value="@Model.FoodDescription"/> 
+        </div>
+        <div style="clear:both"></div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FoodItemRate,"Rate")
+        </div>
+        <div class="editor-field">
+            <input type="text" name="txtFoodItemRate" id="txtFoodItemRate" value="@Model.FoodItemRate"/>
+        </div>
+        <div style="clear:both"></div>
+        <div class="editor-label" >Food Item Image</div>
+        <div class="editor-field" style="width:400px">
+            <img src="~/images/Uploads/@Model.FoodItemImage" width="250px"/><br />
+            <input type="file" id="fileFoodItemImage" name="fileFoodItemImage" value="choose file" onchange="checkfile(this);"/>
+            <input type="button" id="clear3" value="Remove" onclick="clearfile1();"/>
+            @*@Html.ValidationMessageFor(model => model.HotDealImage)*@
+            
+        </div>   
+         <div style="clear:both"></div>
+        
+        <div class="editor-label" style="width:224px">Hot Deal</div>
+        <div class="editor-field">
+            <input type="checkbox" name="chkHotDeals" style="width:20px" id="chkHotDeals"
+                @{if (Model.IsHotDeal == true) { <% checked %/>   } else { <% %/>}} 
+        </div>
+        
+
+    <div style="clear:both"></div>    
+        <div id="hotDealSection" style=" @if (Model.IsHotDeal == false)  { <text>display:none</text> }" > 
+    
+        <br />
+        
+        <div class="editor-label" >Hot Deal Image</div>
+        <div class="editor-field" style="width:400px">
+            <img src="~/images/HotDeals/@Model.HotDealImage" width="250px"/><br />
+            <input type="file" id="fileHotDealImage" name="fileHotDealImage" value="choose file" onchange="checkfile(this);"/>
+            <input type="button" id="clear2" value="Remove" onclick="clearfile2();"/>
+            @Html.ValidationMessageFor(model => model.HotDealImage)
+            
+        </div>   
+             <div style="clear:both"></div>
+             <div class="editor-label">
+            Hot Deal Description
+        </div>
+        <div class="editor-field">
+            <textarea name="txtHotDealDescription" id="txtHotDealDescription">@Model.HotDealDescription</textarea>    
+        </div>                
+        <div style="clear:both"></div>    
+    </div>             
+
+       <div style="clear:both"></div>
+
+        <div class="editor-label"></div>       
+        <div class="editor-field">
+            <input type="submit" value="Save" />
+        </div>
+        <br />
+        <div style="clear:both"></div>
+    </div>
+</form>
+
+<div>
+    @Html.ActionLink("Back to List", "FoodItemList", new { id = Model.FoodCategoryId})
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript" language="javascript">
+        function checkfile(sender) {
+            var validExts = new Array(".JPG", ".JPEG", ".JIF", ".PNG", "GIF");
+            var fileExt = sender.value;
+            fileExt = fileExt.substring(fileExt.lastIndexOf('.'));
+            if (validExts.indexOf(fileExt.toUpperCase()) < 0) {
+                alert("Invalid file selected, valid files are of " +
+                         validExts.toString() + " types.");
+                // var _fileuploadcontrolId = document.getElementById("att3");
+                // _fileuploadcontrolId.value = "";
+                // _fileuploadcontrolId.focus();
+                sender.value = "";
+                sender.focus();
+                return false;
+            }
+            else return true;
+        }
+        function clearfile2() {
+            document.getElementById("fileHotDealImage").value = '';
+        }
+        function clearfile1() {
+            document.getElementById("fileFoodItemImage").value = '';
+        }
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $('#chkHotDeals').change(function () {
+                if ($(this).prop("checked")) {
+                    $('#hotDealSection').show();
+                } else {
+                    $('#hotDealSection').hide();
+                }
+            });
+
+        });
+    </script>
+}

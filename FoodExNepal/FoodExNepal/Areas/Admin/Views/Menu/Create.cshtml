@@ -1,0 +1,77 @@
+﻿@model FoodExNepal.Models.Menu
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Add Menu</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <div id="add">
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.MenuTitle,"Title")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.MenuTitle)
+            @Html.ValidationMessageFor(model => model.MenuTitle)
+        </div>
+        <div style="clear:both"></div>
+       @* <div class="editor-label">
+            @Html.LabelFor(model => model.PageContent,"Page Content")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PageContent)
+            @Html.ValidationMessageFor(model => model.PageContent)
+        </div>*@
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.hasBanner,"Has Banner")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.hasBanner)
+            @Html.ValidationMessageFor(model => model.hasBanner)
+        </div>
+        <div style="clear:both"></div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.hasRecentMemberListing,"Has Recent Member Listing")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.hasRecentMemberListing)
+            @Html.ValidationMessageFor(model => model.hasRecentMemberListing)
+        </div>
+        <div style="clear:both"></div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.hasCarosol,"Has Carosol")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.hasCarosol)
+            @Html.ValidationMessageFor(model => model.hasCarosol)
+        </div>
+        <div style="clear:both"></div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.isActive,"Is Active?")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.isActive)
+            @Html.ValidationMessageFor(model => model.isActive)
+        </div>
+        <div style="clear:both"></div>
+        <div class="editor-label"></div>
+        <div class="editor-field">
+            <input type="submit" value="Save" />
+        </div>
+        <div style="clear:both"></div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,30 @@
+﻿@model FoodExNepal.Models.DeliveryStaff
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Delivery Staff Details</h2>
+
+<div id="add">
+
+    <div class="display-label">
+        Name
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DeliveryStaffName)
+    </div>
+    <div style="clear:both"></div>
+    <div class="display-label">
+        Phone Number
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PhoneNumber)
+    </div>
+    <div style="clear:both"></div>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.DeliveryStaffId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

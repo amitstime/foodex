@@ -1,0 +1,111 @@
+﻿@model IEnumerable<FoodExNepal.Models.Order>
+
+@{
+    ViewBag.Title = "Cancelled Order List";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Cancelled Order List</h2>
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+
+<br />
+ 
+<div id="add">
+     @using (Html.BeginForm("Index","Orderlist"))
+  {
+    <div class="editor-label" style="width:100px;">Restaurant </div>
+    <div class="editor-field" style="width:270px;">
+        @Html.DropDownList("Restaurant",null,string.Empty,  new { @class = "form-control" })
+    </div>
+    <div class="editor-label" style="width:130px">Delivery/Pickup </div>
+    <div class="editor-field" style="width:145px">
+       <select name="type" style="width:130px;">
+           <option value=""></option>
+           <option value="deliver">Deliver it to me</option>
+           <option value="pick">I will Pick up</option>
+       </select>
+    </div>
+    <div class="editor-label" style="width:100px;">Order No. </div>
+    <div class="editor-field" style="width:50px"><input type="text" name="orderno" width:"50px"/></div>
+     <div class="editor-field" style="padding: 0px 0 0 110px;"><input type="submit" class="form-control" name="submit" value="Search" /></div>
+}
+    <div style="clear:both"></div>
+</div>
+<div id="list">
+<table>
+        <tr>
+            <th>Order No.</th>
+             <th>
+                Customer
+            </th>
+            <th>
+                Delivery Address
+            </th>
+            <th>
+                Phone
+            </th>
+            <th>
+                Restaurant
+            </th>
+            <th>
+                Amount
+            </th>                                                      
+            <th>
+                Location
+            </th>
+            <th>
+                Delivery/Pickup
+            </th>                
+           
+            <th>
+                Delivery Time
+            </th>
+            <th>
+                Details
+            </th>
+        </tr>
+@foreach (var item in Model) {
+    
+        <tr>    
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderId)
+            </td>    
+            <td>
+                @Html.DisplayFor(modelItem => item.FullName)
+            </td>
+             <td>
+                @Html.DisplayFor(modelItem => item.DeliveryAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Restaurant.RestaurantName)
+            </td>     
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>                                                     
+            <td>
+                @Html.DisplayFor(modelItem => item.NearestLocation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeliveryMeOrSelfPickup)
+            </td>               
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.Take_awayDateTime)
+            </td>
+            <td>
+               @* @Html.ActionLink("Edit", "Edit", new { id=item.OrderId }) |*@
+                @Html.ActionLink(" ", "Details", new { id=item.OrderId }, new {@class = "icon-detail icon_font" })
+               @* @Html.ActionLink("Confirmed", "Confirmed", new { id=item.OrderId }) |
+                @Html.ActionLink("Cancelled", "Cancelled", new { id=item.OrderId })*@
+            </td>
+        </tr>
+}
+</table>
+
+</div>

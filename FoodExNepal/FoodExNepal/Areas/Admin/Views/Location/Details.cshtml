@@ -1,0 +1,22 @@
+﻿@model FoodExNepal.Models.Location
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Location Details</h2>
+
+<div id="add">
+    <div class="display-label">
+        Location
+    </div>   
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LocationName)
+    </div>
+ <div style="clear:both"></div>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.LocationId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

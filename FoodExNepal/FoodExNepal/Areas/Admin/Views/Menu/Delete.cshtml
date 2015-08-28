@@ -1,0 +1,63 @@
+﻿@model FoodExNepal.Models.Menu
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Delete Menu</h2>
+
+<h3>Are you sure you want to delete "@Html.DisplayFor(model => model.MenuTitle)"?</h3>
+@*<div id="add">
+    
+    <div class="display-label">
+        Title
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.MenuTitle)
+    </div>
+    <div style="clear:both"></div>
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PageContent)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PageContent)
+    </div>
+    <div style="clear:both"></div>
+    <div class="display-label">
+       Has Banner
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.hasBanner)
+    </div>
+    <div style="clear:both"></div>
+    <div class="display-label">
+       Has Recent Member Listing
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.hasRecentMemberListing)
+    </div>
+    <div style="clear:both"></div>
+    <div class="display-label">
+        Has Carosol
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.hasCarosol)
+    </div>
+    <div style="clear:both"></div>
+    <div class="display-label">
+        Is Active
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.isActive)
+    </div>
+    <div style="clear:both"></div>
+</div>*@
+@using (Html.BeginForm())
+{
+    <p>
+        <input type="submit" value="Delete" />
+        |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

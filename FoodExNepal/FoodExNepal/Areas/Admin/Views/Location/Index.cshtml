@@ -1,0 +1,40 @@
+﻿@*model IEnumerable<FoodExNepal.Models.Location>*@
+@model PagedList.IPagedList<FoodExNepal.Models.Location>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Location</h2>
+
+<p class="create">
+    @Html.ActionLink("Add New", "Create")
+</p>
+<div id="list">
+<table>
+    <tr>
+        <th>
+            Location
+        </th>
+        <th>Action</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td width="200px">
+            @Html.DisplayFor(modelItem => item.LocationName)
+        </td>
+        <td>
+            @Html.ActionLink(" ", "Edit", new { id=item.LocationId }, new {@class = "icon-edit icon_font" }) |
+            @Html.ActionLink(" ", "Details", new { id=item.LocationId }, new {@class = "icon-detail icon_font" }) |
+            @Html.ActionLink(" ", "Delete", new { id=item.LocationId }, new {@class = "icon-delete icon_font" })
+        </td>
+    </tr>
+}
+
+</table>
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page}))
+
+</div>

@@ -1,0 +1,17 @@
+﻿@model FoodExNepal.Models.FoodItem
+
+@{
+    ViewBag.Title = "FoodItemDelete";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<h2></h2>
+<h2>@Model.Restaurant.RestaurantName > @Model.FoodCategory.FoodCategoryName > Delete Food Item</h2>
+<br />
+<h3>Are you sure you want to delete food Category "@Html.DisplayFor(model => model.FoodItemName)"?</h3>
+
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "FoodItemList")
+    </p>
+}

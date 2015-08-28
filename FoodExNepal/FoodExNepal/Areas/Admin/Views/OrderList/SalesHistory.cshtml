@@ -1,0 +1,132 @@
+﻿@model IEnumerable<FoodExNepal.Models.Order>
+
+@{
+    ViewBag.Title = "Sales History";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Sales History</h2>
+
+<br />
+ 
+<div id="add">
+     @using (Html.BeginForm("SalesHistory", "Orderlist"))
+    {
+        <div class="editor-label" style="width:100px; padding-top:3px;">Date: From</div>
+        <div class="editor-field" style="width:185px">
+            <input type="text" name="dateFrom" id="dateFrom" style="width:150px"/>
+          @*  @Html.Editor("dateFrom")*@
+        </div>
+        <div class="editor-label" style="width:40px; padding-top:3px;">To</div>
+        <div class="editor-field" style="width:185px">
+          <input type="text" name="dateTo" id="dateTo" style="width:150px"/>
+        </div>
+        <div class="editor-label" style="width:100px; padding-top:3px;">Restaurant </div>
+        <div class="editor-field" style="width:270px;">
+            @Html.DropDownList("Restaurant",null,string.Empty,  new { @class = "form-control" })
+        </div>
+        <div class="editor-field" style="padding: 0px 0 0 30px;"><input type="submit" class="form-control" name="submit" value="Search" /></div>
+    }
+    <div style="clear:both"></div>
+</div>
+<div id="list">
+<table>
+        <tr>
+            <th>Order No.</th>
+             <th>
+                Customer
+            </th>
+            <th>
+                Delivery Address
+            </th>
+            <th>
+                Phone
+            </th>
+            <th>
+                Restaurant
+            </th>
+            <th>
+                Amount
+            </th>                                                      
+            <th>
+                Location
+            </th>
+            <th>
+                Delivery/Pickup
+            </th>                
+           
+            <th>
+                Delivery Time
+            </th>
+            <th>
+                Details
+            </th>
+        </tr>
+@foreach (var item in Model) {
+    
+        <tr>    
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderId)
+            </td>    
+            <td>
+                @Html.DisplayFor(modelItem => item.FullName)
+            </td>
+             <td>
+                @Html.DisplayFor(modelItem => item.DeliveryAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Restaurant.RestaurantName)
+            </td>     
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>                                                     
+            <td>
+                @Html.DisplayFor(modelItem => item.NearestLocation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeliveryMeOrSelfPickup)
+            </td>               
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.Take_awayDateTime)
+            </td>
+            <td>
+               @* @Html.ActionLink("Edit", "Edit", new { id=item.OrderId }) |*@
+                @Html.ActionLink(" ", "Details", new { id=item.OrderId }, new {@class = "icon-detail icon_font" })
+               @* @Html.ActionLink("Confirmed", "Confirmed", new { id=item.OrderId }) |
+                @Html.ActionLink("Cancelled", "Cancelled", new { id=item.OrderId })*@
+            </td>
+        </tr>
+}
+</table>
+
+</div>
+@section scripts
+{
+    <script>
+        $(function () {
+
+            $("#dateFrom").datepicker({
+                minDate: "Now",
+                altField: "#alternate",
+                altFormat: "DD, d MM, yy",
+               
+            });
+
+            $("#dateTo").datepicker({
+                minDate: "Now",
+                altField: "#alternate",
+                altFormat: "DD, d MM, yy",
+
+            });
+           
+        });
+
+
+</script>
+  
+
+}

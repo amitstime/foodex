@@ -1,0 +1,51 @@
+﻿@model FoodExNepal.Models.FoodCategory
+
+@{
+    ViewBag.Title = "FoodCategoryEdit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2> @Model.Restaurant.RestaurantName (@Model.Restaurant.RestaurantId)</h2>
+<p><h3 style="color:orange">Edit Food Category</h3></p>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <div id="add">
+
+        @Html.HiddenFor(model => model.FoodCategoryId)
+        @Html.HiddenFor(model => model.RestaurantId)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FoodCategoryName,"Name")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FoodCategoryName)
+            @Html.ValidationMessageFor(model => model.FoodCategoryName)
+        </div>
+        <div style="clear:both"></div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FoodCategoryDescription,"Description")
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.FoodCategoryDescription,new {@cols = 45, @rows = 6 })
+            @Html.ValidationMessageFor(model => model.FoodCategoryDescription)
+        </div>
+        <div style="clear:both"></div>
+        <div style="clear:both"></div>
+        <div class="editor-label"></div>
+        <div class="editor-field">
+            <input type="submit" value="Save" />
+        </div>
+        <div style="clear:both"></div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "FoodCategoryList", new { id = Model.RestaurantId})
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

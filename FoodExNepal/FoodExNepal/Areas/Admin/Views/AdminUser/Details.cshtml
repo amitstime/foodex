@@ -1,0 +1,51 @@
+﻿@model FoodExNepal.Models.AdminUser
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Administrator Details</h2>
+
+<div id="add">
+
+    <div class="display-label">
+        User Name
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AdminUsername)
+    </div>
+    <div style="clear:both"></div>    
+    <div class="display-label">
+         Full Name
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AdminName)
+    </div>
+    <div style="clear:both"></div>
+    <div class="display-label">
+         Address
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AdminAddress)
+    </div>
+    <div style="clear:both"></div>
+    <div class="display-label">
+         Phone
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AdminPhone)
+    </div>
+    <div style="clear:both"></div>
+    <div class="display-label">
+         Email
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AdminEmail)
+    </div>
+    <div style="clear:both"></div>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.AdminUserId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

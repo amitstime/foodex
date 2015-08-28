@@ -1,0 +1,91 @@
+﻿@model FoodExNepal.Models.AdminUser
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Edit Administrator</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <div id="add">
+
+        @Html.HiddenFor(model => model.AdminUserId)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AdminName,"Full Name")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.AdminName)
+            @Html.ValidationMessageFor(model => model.AdminName)
+        </div>
+        <div style="clear:both"></div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AdminAddress,"Address")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.AdminAddress)
+            @Html.ValidationMessageFor(model => model.AdminAddress)
+        </div>
+        <div style="clear:both"></div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AdminPhone,"Admin Phone")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.AdminPhone)
+            @Html.ValidationMessageFor(model => model.AdminPhone)
+        </div>
+        <div style="clear:both"></div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AdminUsername,"User Name")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.AdminUsername)
+            @Html.ValidationMessageFor(model => model.AdminUsername)
+        </div>
+        <div style="clear:both"></div>
+          <div class="editor-label">
+            @Html.LabelFor(model => model.AdminEmail,"Admin Email")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.AdminEmail)
+            @Html.ValidationMessageFor(model => model.AdminEmail)
+        </div>
+        <div style="clear:both"></div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AdminPassword,"Password")
+        </div>
+        <div class="editor-field">
+            @Html.PasswordFor(model => model.AdminPassword, new { value = Model.AdminPassword })
+            @Html.ValidationMessageFor(model => model.AdminPassword)
+        </div>
+        <div style="clear:both"></div>
+      
+        <div class="editor-label">
+            Confirm Password
+        </div>
+        <div class="editor-field">
+            @Html.PasswordFor(model => model.AdminPassword, new { value = Model.AdminPassword })
+            @Html.ValidationMessageFor(model => model.AdminPassword)
+        </div>
+       <div style="clear:both"></div>
+        
+        
+        <div class="editor-label"></div>
+        <div class="editor-field">
+            <input type="submit" value="Save" />
+        </div>
+        <div style="clear:both"></div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

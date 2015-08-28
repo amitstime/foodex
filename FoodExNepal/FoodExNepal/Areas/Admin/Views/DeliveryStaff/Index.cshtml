@@ -1,0 +1,44 @@
+﻿@model IEnumerable<FoodExNepal.Models.DeliveryStaff>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="templatemo-service">
+            <div class="container">
+<h2>Delivery Staff</h2>
+
+<p class="create">
+    @Html.ActionLink("Add New", "Create")
+</p>
+<div id="list">
+<table>
+    <tr>
+        <th style="width:150px;">
+          Staff Name
+        </th>
+        <th style="width:150px;">
+           Phone Number
+        </th>
+        <th style="width:100px;">Action</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DeliveryStaffName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PhoneNumber)
+        </td>
+        <td>
+          @Html.ActionLink(" ", "Edit", new { id=item.DeliveryStaffId }, new {@class = "icon-edit icon_font" }) |
+            @Html.ActionLink(" ", "Details", new { id=item.DeliveryStaffId }, new {@class = "icon-detail icon_font" }) |
+            @Html.ActionLink(" ", "Delete", new { id=item.DeliveryStaffId }, new {@class = "icon-delete icon_font" })
+        </td>
+    </tr>
+}
+
+</table>
+</div>
+                </div></div>

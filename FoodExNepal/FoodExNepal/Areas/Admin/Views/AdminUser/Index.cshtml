@@ -1,0 +1,60 @@
+﻿@model IEnumerable<FoodExNepal.Models.AdminUser>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Administrator</h2>
+
+<p class="create">
+    @Html.ActionLink("Add New", "Create")
+</p>
+<div id="list">
+<table>
+    <tr>
+        <th style="width:150px;">
+           User Name
+        </th>        
+        <th style="width:150px;">
+           Full Name
+        </th>
+        <th style="width:150px;">
+           Address
+        </th>
+        <th style="width:150px;">
+          Phone
+        </th>
+        <th style="width:150px;">
+          Email
+        </th>
+        <th style="width:105px;">Action</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.AdminUsername)
+        </td>        
+        <td>
+            @Html.DisplayFor(modelItem => item.AdminName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AdminAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AdminPhone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AdminEmail)
+        </td>
+        <td>
+            @Html.ActionLink(" ", "Edit", new { id=item.AdminUserId }, new {@class = "icon-edit icon_font" }) |
+            @Html.ActionLink(" ", "Details", new { id=item.AdminUserId }, new {@class = "icon-detail icon_font" }) |
+            @Html.ActionLink(" ", "Delete", new { id=item.AdminUserId }, new {@class = "icon-delete icon_font" })
+        </td>
+    </tr>
+}
+
+</table>
+    </div>

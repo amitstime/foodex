@@ -1,0 +1,77 @@
+﻿@*@model IEnumerable<FoodExNepal.Models.User>*@
+@model PagedList.IPagedList<FoodExNepal.Models.Customer>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Customers</h2>
+<p class="create">
+ @Html.ActionLink("View Deleted Users", "ThrashedUsers")
+</p>
+<div id="list">
+<table>
+    <tr>
+        <th>
+            @Html.DisplayName("Name")
+        </th> 
+        <th>
+            @Html.DisplayName("Customer.Address")
+        </th> 
+        <th>
+            @Html.DisplayName("Customer.ContactNumber")
+        </th>       
+        <th>
+            @Html.DisplayName("Customer.Email")
+        </th>
+        @*<th>
+       
+            Is Active?
+        </th>*@
+        <th>Action</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContactNumber)
+        </td>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        
+      
+      @*  <td style="text-align:center">
+            @if(item.IsActive==true)
+            {
+                <a href="~/Admin/CustomerUser/ActiveInactive/@item.UserId"><img src="~/images/tick.png"></a>
+                
+            }
+            else if (item.IsActive == false)
+            {
+                <a href="~/Admin/CustomerUser/ActiveInactive/@item.UserId"><img src="~/images/untick.png"></a>
+            }
+            
+        </td>*@
+        <td>
+           
+            @Html.ActionLink(" ", "Details", new { id=item.CustomerId }, new {@class = "icon-detail icon_font" }) |
+            @Html.ActionLink(" ", "Thrash", new { id=item.CustomerId }, new {@class = "icon-delete icon_font" })
+        </td>
+    </tr>
+}
+
+</table>
+      Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index", 
+    new { page}))
+</div>

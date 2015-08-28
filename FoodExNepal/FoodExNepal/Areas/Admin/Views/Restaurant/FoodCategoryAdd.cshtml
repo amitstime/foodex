@@ -1,0 +1,43 @@
+﻿@model FoodExNepal.Models.FoodCategory
+
+@{
+    ViewBag.Title = "Restaurant > Add Food Category";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    var restaurant = ViewBag.Restaurant;
+}
+
+<h2> @restaurant.RestaurantName (@restaurant.RestaurantId)</h2>
+<p><h3 style="color:orange">Add Food Category</h3></p>
+<form method="post">
+<p></p>
+    <div id="add">
+        <input type="hidden" name="hddRestaurantId" value="@restaurant.RestaurantId">
+        
+    <div style="clear:both"></div>
+        
+        <div class="editor-label">Name</div>
+        <div class="editor-field">          
+            <input type="text" name="txtFoodCategory" id="txtFoodCategory" />
+        </div>
+        
+    <div style="clear:both"></div>
+        
+        <div class="editor-label">Description</div>
+        <div class="editor-field"><input type="text" name="txtDesc" id="txtDesc"/></div>
+        
+    <div style="clear:both"></div>
+   
+        <div class="editor-label"></div>
+        <div class="editor-field"><input type="submit" value="Save" /></div>
+        
+    <div style="clear:both"></div>
+    </div>
+</form>
+
+<div>
+    @Html.ActionLink("Back to List", "FoodCategoryList")
+</div>
+
+@*@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}*@

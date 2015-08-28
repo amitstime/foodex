@@ -1,0 +1,77 @@
+﻿@model FoodExNepal.Models.Customer
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Customer Details</h2>
+
+<div id="add">
+    
+    <div class="display-label">
+         User Name
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Email)
+    </div>
+    <div style="clear:both"></div>
+    
+    <div class="display-label">
+         Name
+    </div>
+    <div class="display-field">
+    @*    @Html.DisplayFor(model=>model.Customer.Salutation)*@
+        @Html.DisplayFor(model => model.Name)
+    </div>
+    <div style="clear:both"></div>
+    <div class="display-label">
+       Email
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Email )
+    </div>
+    <div style="clear:both"></div>
+    <div class="display-label">
+         Contact Number
+    </div>
+    <div style="clear:both"></div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ContactNumber)
+    <div class="display-label">
+      Address
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Address)
+    </div>
+        <div style="clear:both"></div>
+        <div class="display-label">
+         Date Of Birth
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DateOfBirth)
+    </div>
+        <div style="clear:both"></div>
+    </div>
+
+    <div style="clear:both"></div>
+    <div class="display-label">
+      Is Active?
+    </div>
+    <div class="display-field">
+        @if(Model.IsActive==true)
+            {
+               <a> <img src="~/images/tick.png"></a>
+                
+            }
+        else if (Model.IsActive == false)
+            {
+                <img src="~/images/untick.png">
+            }
+    </div>
+    <div style="clear:both"></div>
+</div>
+<p>
+   
+    @Html.ActionLink("Back to List", "Index")
+</p>

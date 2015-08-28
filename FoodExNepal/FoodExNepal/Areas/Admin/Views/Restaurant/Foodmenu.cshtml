@@ -1,0 +1,43 @@
+﻿@model FoodExNepal.Models.Restaurant
+
+
+@{
+    ViewBag.Title = "Foodmenu";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Foodmenu for @Model.RestaurantName</h2>
+<br />
+<div class="create">
+<a href="~/admin/restaurant/foodadd/@Model.RestaurantId">Add Food Item</a>
+</div>
+
+<div id="list">
+<table >
+    <tr>
+        <th>Food Name</th>
+        <th>Category</th>
+        <th>Image</th>
+        <th>Rate</th>
+        <th>Actions</th>
+
+    </tr>
+
+    @foreach (var fooditem in Model.FoodItems.OrderBy(a => a.FoodCategory.FoodCategoryName).ToList())
+    {
+        <tr>
+            <td>@fooditem.FoodItemName</td>
+            <td>@fooditem.FoodCategory.FoodCategoryName</td>
+            <td><img src="~/Uploads/@fooditem.FoodItemImage" width="100px" /></td>
+            <td>@fooditem.FoodItemRate</td>
+            <td>
+                @Html.ActionLink(" ", "FoodItemEdit", new { id=fooditem.FoodItemId }, new {@class = "icon-edit icon_font" }) |
+                @Html.ActionLink(" ", "FoodDetails", new { id=fooditem.FoodItemId }, new {@class = "icon-detail icon_font" }) |
+                @Html.ActionLink(" ", "FoodItemDelete", new { id=fooditem.FoodItemId, restaurantId=Model.RestaurantId }, new {@class = "icon-delete icon_font" })
+            </td>
+        </tr> 
+    }
+
+
+</table>
+    </div>

@@ -1,0 +1,75 @@
+﻿@model IEnumerable<FoodExNepal.Models.Menu>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Menu</h2>
+
+<p class="create">
+    @Html.ActionLink("Add New", "Create")
+</p>
+<div id="list">
+<table>
+    <tr>
+        <th style="width:150px;">
+           Title
+        </th>
+       @* <th style="width:150px; visibility:hidden;">
+            Page Content
+        </th>*@
+        <th style="width:100px;">
+            Has Banner
+        </th>
+        <th style="width:100px;" >
+            Has Recent Member Listing
+        </th>
+        <th style="width:100px;">
+           Has Carosol
+        </th>
+        <th style="width:100px;">
+           Is Active?
+        </th>
+        <th style="width:100px;">Action</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MenuTitle)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.PageContent)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.hasBanner)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.hasRecentMemberListing)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.hasCarosol)
+        </td>
+        <td style="text-align:center">
+            @if(item.isActive==true)
+            {
+                <a href="~/CustomerUser/ActiveInactive/@item.MenuId"><img src="~/images/tick.png"></a>
+                
+            }
+            else if (item.isActive == false)
+            {
+                <a href="~/CustomerUser/ActiveInactive/@item.MenuId"><img src="~/images/untick.png"></a>
+            }
+            
+        </td>
+        <td>
+           @Html.ActionLink(" ", "Edit", new { id=item.MenuId }, new {@class = "icon-edit icon_font" }) |
+            @Html.ActionLink(" ", "Details", new { id=item.MenuId }, new {@class = "icon-detail icon_font" }) |
+            @Html.ActionLink(" ", "Delete", new { id=item.MenuId }, new {@class = "icon-delete icon_font" })
+        </td>
+    </tr>
+}
+
+</table>
+</div>

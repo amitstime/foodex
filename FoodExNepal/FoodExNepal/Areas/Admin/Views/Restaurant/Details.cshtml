@@ -1,0 +1,166 @@
+﻿@model FoodExNepal.Models.Restaurant
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Restaurant Details</h2>
+
+<div id="add">
+   
+
+    <div class="display-label" style="width:220px">
+        Name
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.RestaurantName)
+    </div>
+
+    <div style="clear:both"></div>
+
+    <div class="display-label" style="width:220px">
+        @Html.LabelFor(model => model.RestaurantLogo,"Logo")
+    </div>
+    <div class="display-field">
+         <img src="~/images/restaurant/@Model.RestaurantLogo" height="80"/>
+    </div>
+
+    <div style="clear:both"></div>
+
+    <div class="display-label" style="width:220px">
+        @Html.LabelFor(model =>model.Address,"Address")
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Address)    
+    </div>
+
+    <div style="clear:both"></div>
+
+    @*
+    <div class="display-label" style="width:220px">
+            @Html.LabelFor(model => model.RestaurantImageInDetailPage,"Image")
+    </div>
+    <div class="display-field">
+        <img src="~/images/restaurant/@Model.RestaurantImageInDetailPage" width="340"/>
+    </div>
+
+    <div style="clear:both"></div>
+
+    <div class="display-label" style="width:220px">
+        @Html.LabelFor(model => model.LocationId,"Location")
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LocationId)      
+    </div>
+
+    <div style="clear:both"></div> *@
+
+    <div class="display-label" style="width:220px">
+        Phone Number
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PhoneNumber,"Phone")
+    </div>
+
+    <div style="clear:both"></div>
+
+    <div class="display-label" style="width:220px">
+        @Html.LabelFor(model => model.DetailInfo,"Details")
+    </div>
+    <div class="display-field">
+        @Html.Raw(Model.DetailInfo)<p></p>
+    </div>
+
+    <div style="clear:both"></div>
+
+    <div class="display-label" style="width:220px">
+        @Html.LabelFor(model => model.IsServiceChargeApplicable,"Service Charge Applicable ?")
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IsServiceChargeApplicable)
+    </div>
+    
+    <div style="clear:both"></div>
+
+    <div class="display-label" style="width:220px">
+        @Html.LabelFor(model => model.ServiceChargePercent,"Service Charge Percent")
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ServiceChargePercent)
+    </div>
+               
+    <div style="clear:both"></div>   
+
+    <div class="display-label" style="width:220px">
+        @Html.LabelFor(model => model.IsVatApplicable,"VAT Applicable ?")
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IsVatApplicable)
+    </div>
+               
+    <div style="clear:both"></div>
+
+    <div class="display-label" style="width:220px">
+        @Html.LabelFor(model => model.VATPercent,"VAT Percent")
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.VATPercent)
+    </div>
+               
+    <div style="clear:both"></div>
+
+    <div class="display-label" style="width:220px">
+        @Html.LabelFor(model => model.OpeningTime,"Opening Time")
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.OpeningTime)
+    </div>
+
+    <div style="clear:both"></div>
+
+    <div class="display-label" style="width:220px">
+        @Html.LabelFor(model => model.MinOrderAmount,"Min. Order Amount")
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.MinOrderAmount)
+    </div>
+
+    <div style="clear:both"></div>
+
+    <div class="display-label" style="width:220px">
+        @Html.LabelFor(model => model.CusineInfo,"Cusine")
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CusineInfo)
+    </div>
+               
+    <div style="clear:both"></div>
+
+    <div class="display-label" style="width:220px">
+        @Html.LabelFor(model => model.PANNumber,"PAN")
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PANNumber)
+    </div>
+
+    <div style="clear:both"></div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.DeliveryCharge,"Delivery Charge")
+    </div>
+    <div class="editor-field">
+        @Html.DisplayFor(model => model.DeliveryCharge)            
+    </div>
+    <div style="clear:both"></div>
+
+</div>
+
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.RestaurantId }) |
+    @if (Session["RestaurantUser"] == null) 
+    {
+        @Html.ActionLink("Back to List", "Index")
+    }
+</p>

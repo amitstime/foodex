@@ -1,0 +1,43 @@
+﻿@*@model IEnumerable<FoodExNepal.Models.FoodItem>*@
+@model PagedList.IPagedList<FoodExNepal.Models.FoodItem>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Food Item - Hot Deals";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Hot Deals</h2>
+<br />
+<div    id="list">
+    <table>
+        <tr>
+            <th style="width:150px">Restaurant</th>
+            <th style="width:150px">Name</th>
+            <th style="width:50px">Hot Deal Image</th>
+            <th style="width:200px">Hot Deal Description</th>
+            <th style="width:100px">Action</th>
+        </tr>
+        
+       @foreach(var fooditem in Model) { 
+        <tr>
+            @if ( @fooditem.IsHotDeal == true)
+            {
+                <td>@fooditem.Restaurant.RestaurantName</td>
+                <td>@fooditem.FoodItemName</td>
+                <td><img src="~/Images/HotDeals/@fooditem.HotDealImage" width="200px"/></td>
+                <td>@Html.Raw(fooditem.HotDealDescription)</td>
+                  <td>
+                    @Html.ActionLink(" ", "FoodItemEdit", new { id = fooditem.FoodItemId }, new {@class = "icon-edit icon_font" }) |
+                    @Html.ActionLink(" ", "FoodItemDetails", new { id = fooditem.FoodItemId }, new {@class = "icon-detail icon_font" }) |
+                    @Html.ActionLink(" ", "FoodItemDelete", new { id = fooditem.FoodItemId }, new {@class = "icon-delete icon_font" })
+                </td>
+            }
+
+        </tr>
+       }
+    </table>
+     Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("FoodItemHotDeals", new { page,Keyword=ViewBag.Keyword,Location=ViewBag.LocationSelectedId}))
+</div>

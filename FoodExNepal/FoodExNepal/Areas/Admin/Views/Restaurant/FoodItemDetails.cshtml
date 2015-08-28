@@ -1,0 +1,48 @@
+﻿@model FoodExNepal.Models.FoodItem
+
+@{
+    ViewBag.Title = "FoodItemDetails";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>@Model.Restaurant.RestaurantName > @Model.FoodCategory.FoodCategoryName > Food Item Detail</h2>
+<br />
+
+<div id="add">
+        <div class="display-label">Name</div>
+        <div class="display-field"> @Html.DisplayFor(model => model.FoodItemName)</div>
+
+    <div style="clear:both"></div>
+
+        <div class="display-label">Food Description</div>
+        <div class="display-field">  @Html.DisplayFor(model => model.FoodDescription)</div>
+
+    <div style="clear:both"></div>
+
+        <div class="display-label">Rate</div>
+        <div class="display-field"> @Html.DisplayFor(model => model.FoodItemRate)</div>
+
+    <div style="clear:both"></div>
+
+        <div class="display-label">Hot Deal</div>
+        <div class="display-field"> @Html.DisplayFor(model => model.IsHotDeal)</div>
+
+    
+    <div style="clear:both"></div>
+    <div id="hotDealSection" style=" @if (Model.IsHotDeal == false)  { <text>display:none</text> }" > 
+     <div class="display-label">Hot Image</div>
+        <div class="display-field"> <img src="~/images/HotDeals/@Model.HotDealImage" height="250"/></div>
+
+    <div style="clear:both"></div> 
+
+        <div class="display-label">Hot Description</div>
+        <div class="display-field"> @Html.Raw(Model.HotDealDescription)</div>
+        </div>
+    <div style="clear:both"></div>
+
+
+</div>
+<p>
+    @Html.ActionLink("Edit", "FoodItemEdit", new { id=Model.FoodItemId }) |
+    @Html.ActionLink("Back to List", "FoodItemList", new { id = Model.FoodCategoryId})
+</p>

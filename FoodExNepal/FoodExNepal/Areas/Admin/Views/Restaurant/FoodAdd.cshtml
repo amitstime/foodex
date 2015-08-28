@@ -1,0 +1,70 @@
+﻿@model FoodExNepal.Models.FoodItem
+
+@{
+    ViewBag.Title = "FoodAdd";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    @*int restaurantid = ViewBag.RestaurantId;*@
+    
+}
+<h2>Add Food Item</h2>
+
+<p class="create">
+    @Html.ActionLink("Add New Food Category", "Create")
+</p>
+<form method="post" enctype="multipart/form-data">
+<input type="hidden" name="hddRestaurantId" value="@ViewBag.RestaurantId">
+
+    <div id="add">
+        <div class="editor-label">Name</div>
+        <div class="editor-field"><input type="text" name="txtFoodItemName"></div>
+
+    <div style="clear:both"></div>
+
+        <div class="editor-label">Food Category</div>
+        <div class="editor-field">
+            <select name="ddlFoodCategory" style="width:250px;">
+                <option>--Select One--</option>
+                @if (ViewData["FoodCatergory"] == null) { }
+                else
+                {
+                    foreach (var a in ViewData["FoodCatergory"] as List<FoodExNepal.Models.FoodCategory>)
+                    {
+                        <option value="@a.FoodCategoryId">@a.FoodCategoryName</option>
+                    }
+                }
+            </select>
+        </div>
+
+       
+    <div style="clear:both"></div>
+
+        <div class="editor-label">Description</div>
+        <div class="editor-field"><textarea name="txtDesc"></textarea></div>
+
+
+    <div style="clear:both"></div>
+
+        <div class="editor-label">Rate</div>
+        <div class="editor-field"><input type="text" name="txtRate"></div>
+
+    <div style="clear:both"></div>
+        
+        <div class="editor-label">Food Image</div>
+        <div class="editor-field"><input type="file" name="fileFoodItem"></div>
+
+    <div style="clear:both"></div>
+        
+        <div class="editor-label"></div>
+        <div class="editor-field"><input type="submit" value="Save" name="btnSubmit"></div>
+    
+    <div style="clear:both"></div>
+            
+    </div>
+</form>
+<div>
+    @Html.ActionLink("Back to List", "index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

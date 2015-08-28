@@ -1,0 +1,38 @@
+﻿@model FoodExNepal.Models.Banner
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Banner Details</h2>
+
+<div id="add">
+    <div class="display-label">
+         Image
+    </div>
+    <div class="display-field">
+        @*Html.DisplayFor(model => model.BannerImage)*@
+        <img src="~/images/banner/@Model.BannerImage" height="80px"/>
+    </div>
+    <div style="clear:both"></div>
+    <div class="display-label">
+         Is Active?
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.isActive)
+    </div>
+    <div style="clear:both"></div>
+    <div class="display-label">
+         Sort By
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SortBy)
+    </div>
+    <div style="clear:both"></div>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.BannerId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+</div>

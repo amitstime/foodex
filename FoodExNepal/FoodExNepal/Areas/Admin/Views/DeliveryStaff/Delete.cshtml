@@ -1,0 +1,33 @@
+﻿@model FoodExNepal.Models.DeliveryStaff
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Delete Delivery Staff</h2>
+
+<h3>Are you sure you want to delete Delivery Staff "@Html.DisplayFor(model => model.DeliveryStaffName)"?</h3>
+    @*<div id="add"><p></p>
+    <div style="clear:both"></div>
+    <div class="display-label">
+       Name
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DeliveryStaffName)
+    </div>
+    <div style="clear:both"></div>
+    <div class="display-label">
+         Phone Number
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PhoneNumber)
+    </div>
+    <div style="clear:both"></div>
+</div>*@
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

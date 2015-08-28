@@ -1,0 +1,117 @@
+﻿@model FoodExNepal.Models.WebsiteProfile
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Add Website Profile</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <div id="add">
+        
+        @*<div class="editor-label">
+            @Html.LabelFor(model => model.ProfileId)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ProfileId)
+            @Html.ValidationMessageFor(model => model.ProfileId)
+        </div>*@
+
+        <div class="editor-label" style="width:240px">
+            @Html.LabelFor(model => model.Logo)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Logo)
+            @Html.ValidationMessageFor(model => model.Logo)
+        </div>
+        <div style="clear:both"></div>
+        <div class="editor-label" style="width:240px">
+            @Html.LabelFor(model => model.ContactNumber,"Contact")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ContactNumber)
+            @Html.ValidationMessageFor(model => model.ContactNumber)
+        </div>
+        <div style="clear:both"></div>
+        <div class="editor-label" style="width:240px">
+            @Html.LabelFor(model => model.HomePageImage,"Home Page Image")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.HomePageImage)
+            @Html.ValidationMessageFor(model => model.HomePageImage)
+        </div>
+        <div style="clear:both"></div>
+        <div class="editor-label" style="width:240px">
+            @Html.LabelFor(model => model.FacebookLink,"Facebook link")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FacebookLink)
+            @Html.ValidationMessageFor(model => model.FacebookLink)
+        </div>
+        <div style="clear:both"></div>
+        <div class="editor-label" style="width:240px">
+            @Html.LabelFor(model => model.TwitterLink,"Twitter link")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.TwitterLink)
+            @Html.ValidationMessageFor(model => model.TwitterLink)
+        </div>
+        <div style="clear:both"></div>
+        <div class="editor-label" style="width:240px">
+            @Html.LabelFor(model => model.WhyFoodExNepalFooterContent,"Why FoodEx Nepal Footer Content")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.WhyFoodExNepalFooterContent)
+            @Html.ValidationMessageFor(model => model.WhyFoodExNepalFooterContent)
+        </div>
+        <div style="clear:both"></div>
+        <div class="editor-label" style="width:240px">
+            @Html.LabelFor(model => model.GooglePlaystoreLink,"Google PlayStore link")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.GooglePlaystoreLink)
+            @Html.ValidationMessageFor(model => model.GooglePlaystoreLink)
+        </div>
+        <div style="clear:both"></div>
+        <div class="editor-label" style="width:240px">
+            @Html.LabelFor(model => model.ItunesLink,"itunes Link")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ItunesLink)
+            @Html.ValidationMessageFor(model => model.ItunesLink)
+        </div>
+        <div style="clear:both"></div>
+        <div class="editor-label" style="width:240px">
+            @Html.LabelFor(model => model.DeliveryCharge,"Delivery Charge")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DeliveryCharge)
+            @Html.ValidationMessageFor(model => model.DeliveryCharge)
+        </div>
+        <div style="clear:both"></div>
+        <div class="editor-label" style="width:240px">
+            @Html.LabelFor(model => model.DeliveryCharge_OutsideRingRoad_,"Delivery Charge(outside ringroad)")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DeliveryCharge_OutsideRingRoad_)
+            @Html.ValidationMessageFor(model => model.DeliveryCharge_OutsideRingRoad_)
+        </div>
+        <div style="clear:both"></div>
+        <div class="editor-label" style="width:240px"></div>
+        <div class="editor-field">
+            <input type="submit" value="Save" />
+        </div>
+        <div style="clear:both"></div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

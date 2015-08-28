@@ -1,0 +1,57 @@
+﻿@model IEnumerable<FoodExNepal.Models.Banner>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Banner</h2>
+
+<p class="create">
+    @Html.ActionLink("Add New", "Create")
+</p>
+<div id="list">
+<table>
+    <tr>
+        <th>
+            Image
+        </th>
+        <th>
+            Is Active?
+        </th>
+        <th>
+           Sort By
+        </th>
+        <th>Action</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            <img src="~/images/banner/@item.BannerImage" height="80"/>
+        </td>
+       <td style="text-align:center">
+            @if(item.isActive==true)
+            {
+                <a href="~/CustomerUser/ActiveInactive/@item.BannerId"><img src="~/images/tick.png"></a>
+                
+            }
+            else if (item.isActive == false)
+            {
+                <a href="~/CustomerUser/ActiveInactive/@item.BannerId"><img src="~/images/untick.png"></a>
+            }
+            
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SortBy)
+        </td>
+        <td>
+            @Html.ActionLink(" ", "Edit", new { id=item.BannerId }, new {@class = "icon-edit icon_font" }) |
+            @Html.ActionLink(" ", "Details", new { id=item.BannerId }, new {@class = "icon-detail icon_font" }) |
+            @Html.ActionLink(" ", "Delete", new { id=item.BannerId }, new {@class = "icon-delete icon_font" })
+        </td>
+    </tr>
+}
+
+</table>
+</div>
