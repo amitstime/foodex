@@ -1,0 +1,280 @@
+﻿
+    @using FoodExNepal.Models;
+  @{  
+      FoodExEntities db = new FoodExEntities();
+      WebsiteProfile websiteprofile = db.WebsiteProfiles.First();
+      
+      }
+
+<!DOCTYPE html>
+<html>
+<head>
+
+     <!-- Demo -->
+
+    <style>
+    #owl-demo .item{
+        margin: 3px;
+    }
+    #owl-demo .item img{
+        display: block;
+        width: auto;
+        margin:0 auto;
+        height: 120px;
+    }
+    #owl-demo12 {
+        margin-left:10px;
+        margin-top:-30px;
+        max-width:1140px;
+        }
+    #owl-demo12 .item{
+        margin: 3px;
+    }
+    #owl-demo12 .item img{
+        display: block;
+        width: auto;
+        margin:0 auto;
+        height: 120px;
+    }
+    </style>
+
+    
+
+    <!-- Owl Carousel Assets -->
+    <link href="~/Content/owl.carousel.css" rel="stylesheet">
+    <link href="~/Content/owl.theme.css" rel="stylesheet">
+
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title-Foodex Nepal</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+        <meta name="keywords" content="" />
+		<meta name="description" content="" />
+		
+		<script type="text/javascript">
+
+		    /***********************************************
+            * Floating Top Bar script- © Dynamic Drive (www.dynamicdrive.com)
+            * Sliding routine by Roy Whittle (http://www.javascript-fx.com/)
+            * This notice must stay intact for legal use.
+            * Visit http://www.dynamicdrive.com/ for full source code
+            ***********************************************/
+
+		    var persistclose = 0 //set to 0 or 1. 1 means once the bar is manually closed, it will remain closed for browser session
+		    var startX = 30 //set x offset of bar in pixels
+		    var startY = 5 //set y offset of bar in pixels
+		    var verticalpos = "fromtop" //enter "fromtop" or "frombottom"
+
+		    function iecompattest() {
+		        return (document.compatMode && document.compatMode != "BackCompat") ? document.documentElement : document.body
+		    }
+
+		    function get_cookie(Name) {
+		        var search = Name + "="
+		        var returnvalue = "";
+		        if (document.cookie.length > 0) {
+		            offset = document.cookie.indexOf(search)
+		            if (offset != -1) {
+		                offset += search.length
+		                end = document.cookie.indexOf(";", offset);
+		                if (end == -1) end = document.cookie.length;
+		                returnvalue = unescape(document.cookie.substring(offset, end))
+		            }
+		        }
+		        return returnvalue;
+		    }
+
+		    function closebar() {
+		        if (persistclose)
+		            document.cookie = "remainclosed=1"
+		        document.getElementById("topbar").style.visibility = "hidden"
+
+
+		    }
+
+
+
+		    function staticbar() {
+		        barheight = document.getElementById("topbar").offsetHeight
+
+
+		        var ns = (navigator.appName.indexOf("Netscape") != -1) || window.opera;
+		        var d = document;
+		        function ml(id) {
+		            var el = d.getElementById(id);
+		            if (!persistclose || persistclose && get_cookie("remainclosed") == "")
+		                el.style.visibility = "visible"
+		            if (d.layers) el.style = el;
+		            el.sP = function (x, y) { this.style.left = x + "px"; this.style.top = y + "px"; };
+		            el.x = startX;
+		            if (verticalpos == "fromtop")
+		                el.y = startY;
+		            else {
+		                el.y = ns ? pageYOffset + innerHeight : iecompattest().scrollTop + iecompattest().clientHeight;
+		                el.y -= startY;
+		            }
+		            return el;
+		        }
+		        window.stayTopLeft = function () {
+		            if (verticalpos == "fromtop") {
+		                var pY = ns ? pageYOffset : iecompattest().scrollTop;
+		                ftlObj.y += (pY + startY - ftlObj.y) / 8;
+		            }
+		            else {
+		                var pY = ns ? pageYOffset + innerHeight - barheight : iecompattest().scrollTop + iecompattest().clientHeight - barheight;
+		                ftlObj.y += (pY - startY - ftlObj.y) / 8;
+		            }
+		            ftlObj.sP(ftlObj.x, ftlObj.y);
+		            setTimeout("stayTopLeft()", 10);
+		        }
+		        ftlObj = ml("topbar");
+
+		        stayTopLeft();
+		    }
+
+		    if (window.addEventListener)
+		        window.addEventListener("load", staticbar, false)
+		    else if (window.attachEvent)
+		        window.attachEvent("onload", staticbar)
+		    else if (document.getElementById)
+		        window.onload = staticbar
+</script>
+<style>
+
+#topbar{
+position:absolute;
+padding: 0px;
+
+border: 10px solid rgba(0, 0, 0, 0.7);
+ border-radius:20px;
+margin:70px 0 0 225px;
+width: 820px;
+z-index:50;
+visibility: hidden;
+
+}
+
+    #notice {
+        position: absolute;
+        padding: 0px;
+        z-index: 500;
+        border: 10px solid rgba(0, 0, 0, 0.7);
+        border-radius: 20px;
+        margin: 100px 0 0 85px;
+        visibility: hidden;
+    }
+</style>
+<!-- 
+Urbanic Template 
+http://www.templatemo.com/preview/templatemo_395_urbanic 
+-->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!--<link rel="shortcut icon" href="PUT YOUR FAVICON HERE">-->
+        
+        <!-- Google Web Font Embed -->
+        
+        <!-- Bootstrap core CSS -->
+        <link href="~/Content/css/bootstrap.css" rel='stylesheet' type='text/css'>
+
+        <!-- Custom styles for this template -->
+        <link href="~/Scripts/js/colorbox/colorbox.css"  rel='stylesheet' type='text/css'>
+        <link href="~/Content/css/templatemo_style.css"  rel='stylesheet' type='text/css'>
+		
+		<link rel="stylesheet" href="~/Content/css/default.css" type="text/css" media="screen" />
+		<link rel="stylesheet" href="~/Content/css/nivo-slider.css" type="text/css" media="screen" />
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+          <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+   
+
+</head>
+<body>
+           @*  <center>   <div id="topbar">
+<a href="" onClick="closebar(); return false"><img src="~/images/close.png" height="30px" border="0" style="position:absolute; padding-left:793px; margin-top:-15px" ></a>
+<img src="~/images/picnew.jpg">
+</div> </center>*@
+
+     
+        <div class="">
+		  <div class="templatemo-top-bar " id="templatemo-top" >
+            <div class="container">
+                <div class="subheader">
+                    <div class="col-md-3">
+                        <a href="../home" class="navbar-brand">
+                            <img src="~/images/homepageimage/@websiteprofile.Logo" alt="Foodex Nepal" title="Foodex Nepal" width="230px" />
+                        </a>
+                            
+           @*01-6923958 / 9851116551 / 980111655*@
+                    </div>
+                    <div class="col-md-8 right">
+                        <div class="signin" style="text-decoration:none;">
+                           <!-- <img src="~/images/phone.png" alt="phone" width="20px"/>-->
+                           
+                            @*websiteprofile.ContactNumber   <b style="color:#E81F21">Service Hour: </b>@websiteprofile.ServiceHour *@
+                            @{
+                                if (Session["Customer"] != null)
+                                {
+                                    Customer cust = (Customer)Session["Customer"];
+                                    <text>&nbsp;&nbsp;&nbsp; Welcome @cust.Name  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| @Html.ActionLink("My Account", "MyAccount", "Customer") | @Html.ActionLink("Logout", "Logout", "Customer") </text>
+                                }
+                                else if (Session["Customer"] == null)
+                                {
+                                    <text> <a href="~/customer/login">Sign In</a> | <a href="~/customer/register">New User?</a></text>
+
+                                }
+                            }
+                            @if (Request.Browser.IsMobileDevice )
+                            {
+                                   @Html.Partial("_ViewSwitcher");
+                            }
+                           
+                        </div>
+                        @*<ul class="nav navbar-nav navbar-right" style="margin-top: 13px;">
+                            <li @if ((Request.Path).ToUpper().Contains("HOME")) { <text> class="active" </text> }><a href="~/Home">HOME</a></li>
+                            <li @if ((Request.Path).ToUpper().Contains("ABOUT")) { <text> class="active" </text> }><a href="~/About">ABOUT</a></li>
+                            <li @if ((Request.Path).ToUpper().Contains("RESTAURANTLIST")) { <text> class="active" </text> }><a href="~/RestaurantList">RESTAURANTS</a></li>
+                            <li @if ((Request.Path).ToUpper().Contains("HOWTOORDER")) { <text> class="active" </text> }><a href="~/HowToOrder">HOW TO ORDER</a></li>
+                            <li @if ((Request.Path).ToUpper().Contains("CONTACT")) { <text> class="active" </text> }><a href="~/Contact">CONTACT</a></li>
+                        </ul> *@
+                    </div>
+                </div>
+            </div>
+        </div>
+            
+                     
+						
+        </div>
+       
+       
+  
+             @RenderBody()
+        
+   
+        <div class="templatemo-tweets">
+            <div class="container">
+                <div style="width:100%; font-weight:bold; font-size:13px; text-align:right; padding:10px; color:lightcyan">
+                    &copy; copyright @{ <text> @DateTime.Now.Year  </text> } FOODEXNEPAL.COM - Express Food Delivery Service
+                </div>
+          
+                </div>
+            </div>
+            
+         
+
+
+
+  
+    
+
+   @* @Scripts.Render("~/bundles/jquery")*@
+    @RenderSection("scripts", required: false)
+    
+</body>
+</html>

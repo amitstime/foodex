@@ -1,0 +1,52 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_TwoColumnLayout.cshtml";
+}
+<style>
+    p {
+        padding-top: 11px;
+    }
+    .newcol-md-4 {
+        padding-left:0px !important;
+    }
+</style>
+
+
+<h3>Contact us</h3>
+<p style="line-height: 26px;">Food Ex Nepal<br />
+P.O.Box  1234<br />
+Gwarko,Lalitpur,Nepal<br />
+Ph No:984100000,5500000<br />
+E-Mail:<br />
+Website:<br />
+</p>
+<br />
+<p>
+Please fill out the form below and submit if you have any feedback or queries about our service.
+</p>
+
+<div class="col-md-4 newcol-md-4">
+  
+<p>Full Name</p>
+                          
+                        <input name="name" type="text" id="name" class="form-control">
+<span  style="color:Red;font-family:verdana;font-size:9pt;display:none;">*</span>
+
+
+                
+<p>E-Mail Address</p>
+                            
+                        <input name="email" type="text" id="email" class="form-control">
+<span style="color:Red;display:none;">*</span>
+<span  style="color:Red;display:none;">Wrong email format</span>
+
+<p>Enquiry</p>
+                           
+                        <textarea name="Enquiry" rows="2" cols="20" id="Enquiry" class="form-control"></textarea>
+                   
+                        <p></p>
+                        <input type="submit" value="Submit" />
+                   
+
+   </div> 
+     

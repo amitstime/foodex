@@ -1,0 +1,13 @@
+﻿@model IEnumerable<FoodExNepal.Models.OrderDetail>
+
+<table cellpadding="5px" border="1px" style="border-collapse:collapse">
+    <tr>
+        <th width="150px">Item Name</th><th width="100px">Rate</th><th width="100px">Quantity</th><th width="120px">Total</th>
+    </tr>
+    @foreach(var item in Model){
+        decimal total = (decimal)item.Rate * item.Quantity;
+    <tr>
+        <td>@item.FoodItem.FoodItemName</td><td>@item.Rate</td><td>@item.Quantity</td><td align="right">@total</td>
+    </tr>
+    }
+</table>

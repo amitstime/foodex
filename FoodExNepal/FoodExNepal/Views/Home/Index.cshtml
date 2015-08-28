@@ -1,0 +1,89 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@* @{
+        
+    Html.RenderAction("LoadPopup", "Home");
+    }*@
+
+@{
+    Html.RenderAction("LoadBanner", "Home");
+}
+
+		
+        <div id="templatemo-blog">
+           
+            <div class="container">
+                
+                        <div class="text-center" style="font-size:16px;margin-top:5px">
+                          <span class="templatemo-service-item-header">
+							Recently Added Members</span>
+                   
+                        </div>
+                   
+                    <br class="clearfix"/>
+               
+                
+                <div class="blog_box">
+                     @{
+                    Html.RenderAction("LoadRecent","Home");
+                    }
+                </div>
+
+                 <div class="text-center" style="font-size: 16px; margin-top: 5px; border-top:2px solid orange;">
+                          <div class="templatemo-service-item-header" style="padding:10px;">
+							Hot Deals 
+							</div>
+                   
+                        </div>
+                   
+                    <br class="clearfix"/>
+               
+                
+                <div class="blog_box">
+                    @{
+                        Html.RenderAction("LoadHotDeal", "Home");
+                    }
+                </div>
+
+            </div>
+        </div>
+
+
+     </div>
+
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('#SearchField').autocomplete(
+            {
+                source: function (request, response) {
+                    $.ajax(
+                    {
+                        url: "/RestaurantList/GetFoodItem", type: "GET", dataType: "json",
+                        data: { searchText: request.term, maxResults: 10 },
+                        contentType: "application/json; charset=utf-8",
+                        success: function (data) {
+                            response($.map(data, function (item) {
+                                return {
+                                    label: item.FoodItemName,
+                                    value: item.FoodItemId,
+                                    id: item.FoodItemId
+                                }
+                            })
+                            );
+                        },
+
+                    });
+                },
+                select: function (event, ui) {
+                    $('#FoodItemName').val(ui.item.id);
+                },
+                minLength: 1
+            });
+
+        });
+    </script>
+}

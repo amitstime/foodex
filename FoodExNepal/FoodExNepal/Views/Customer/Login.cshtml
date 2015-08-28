@@ -1,0 +1,83 @@
+﻿@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_TwoColumnLayout.cshtml";
+}
+
+
+<div style="width: 743px; border: 1px solid rgb(225, 225, 225); height:400px;">    
+    <h3 class="foodtitle" style="color:#F19300; font-size:18px; font-weight:bold; padding:15px">Sign In</h3>    
+
+    <div id="add">
+        <div class="col-md-6">
+
+            <div style="float:left;">
+                <img src="~/images/signin_login_icon_retina.png" height="40px" />
+            </div>
+            <div style="float:left; padding-top:10px; padding-left:10px;">
+                <h3> Sign In To Order</h3>
+            </div>
+            <div style="clear:both"></div>
+
+            @using (Html.BeginForm("Login","Customer",new { Returnurl=ViewBag.ReturnUrl}))
+            {
+                <span style="color:red">@Html.ValidationSummary(true)</span>
+                <div class="editor-label" style="max-width:90px; padding-top:7px;" >   
+                        Email
+                </div>   
+                <div class="editor-field">              
+                        <input type="email" name="Email" id="Email" required>
+                </div>
+            
+                <div style="clear:both;"></div>
+            
+                <div class="editor-label" style="max-width:90px; padding-top:7px;">
+                            Password      
+                </div>
+                <div class="editor-field">
+                    <input type="password" name="Password" required>
+                </div>
+            
+                <div style="clear:both;"></div>
+            
+                <div class="editor-label" style="max-width:90px; height:15px;"></div>
+                <div class="editor-field" style="width:240px;">
+                    <input type="submit" name="login" value="Login" />  &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;               
+                </div>
+      
+            }
+        </div>
+
+
+        <div class="col-md-6">
+            @* <div style="float:left;">
+                <img src="~/images/signin_newaccount_icon_retina.png" height="40px" />
+            </div>
+            <div style="float:left; padding-top:10px; padding-left:10px; ">
+                <h3> Create an Account </h3>
+            </div>
+            <div style="clear:both"></div>  *@
+
+                <div style="float:left;">
+                    <img src="~/images/signin_newaccount_icon_retina.png" height="40px" />
+                </div>
+                <div style="float:left; padding-top:10px; padding-left:10px; ">
+                    <h3> Create an Account </h3>
+                </div>
+                <div style="clear:both"></div> 
+                 <p>Although registration is not compulsory to use our service, 
+                        we recommend you to do so. By registering to our website, 
+                        you can keep track of the orders you have made and many 
+                        other benefits that we announce time-to-time. 
+                 </p>
+                    <div class="editor-label" style="max-width:90px;"></div>
+                    <div class="vmenu" style="padding:8px; height:38px; width:110px;">
+                        <a href="~/customer/register" style="text-decoration:none; ">Register</a>
+                    </div>
+
+            <div style="clear:both"></div>
+
+            <br />  
+        </div>      
+    </div>
+
+</div>

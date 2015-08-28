@@ -1,0 +1,167 @@
+﻿@model IEnumerable<FoodExNepal.Models.Restaurant>
+
+    <div id="demo">
+        <div class="container">
+          <div class="row">
+            <div class="span12">
+                <div id="owl-demo" class="owl-carousel" style="margin-left:-32px">
+@{
+   // int i=1;
+foreach(var item in Model)
+{ <div class="item" style="text-align:center; ">
+<a href="@Url.Action("RestaurantDetail", "RestaurantList", new { id=item.RestaurantId})">
+     
+               
+                   <img src="~/images/restaurant/@item.RestaurantLogo" alt="@item.RestaurantName" style="text-align:center">
+                    
+                    <h5 style="margin-bottom:5px">@item.RestaurantName</h5>
+                    <p style="text-align:center">@item.Address</p>
+               
+            
+             
+
+    @*<div class="col-sm-5 col-md-6 blog_post">
+        <ul class="list-inline">
+            <li class="col-md-4">
+                <img class="img-responsive" src="~/images/restaurant/@item.RestaurantLogo" alt="gallery 1" style="max-height:110px;" />
+            </li>
+            <li  class="col-md-8">
+                <div class="pull-left">
+                    <span class="blog_header">@item.RestaurantName</span><br />                    
+                </div>    
+                <div class="clearfix"> </div>
+                <p><div class="rest_Address">
+                    <i>@item.Address</i>
+
+                </div>
+                <div class="rest_order_detail">@item.CusineInfo</div>
+                </p>
+                                    
+            </li>
+
+        </ul>
+    </div>*@
+</a> </div>}
+    }
+    
+    @*
+         
+           if(i==2)
+           {
+               <div class="templatemo_clear"></div>
+           }
+          i++; 
+}
+}*@
+              </div>
+          </div>
+        </div>
+        </div>
+        </div>
+
+<script src="~/Content/owl.carousel.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#owl-demo").owlCarousel({
+                autoPlay: 3000,
+                items: 4,
+                itemsDesktop: [1199, 3]
+                
+            });
+
+        });
+    </script>
+@*<div class="col-sm-5 col-md-6 blog_post">
+                        <ul class="list-inline">
+                            <li class="col-md-4">
+                                <a href="#">
+                                    <img class="img-responsive" src="~/images/bajeko.jpg" alt="gallery 1" />
+                                </a>
+                            </li>
+                            <li  class="col-md-8">
+                                <div class="pull-left">
+                                    <span class="blog_header">Bajeko Sekuwa</span><br/>
+                                    
+                                </div>
+                                
+                                <div class="clearfix"> </div>
+                                <p class="blog_text">
+                                 It was started as a small shop with a few stools in the name of furniture and only one man 
+								 (BAJE DINANATH BHANDARI )to prepare all the items of meat surrounded by number of visitors 
+								 impatient to get a plate of sekuwa.
+                                </p>
+                            </li>
+                        </ul>
+                    </div> <!-- /.blog_post 1 -->
+                    
+                    <div class="col-sm-5 col-md-6 blog_post">
+                         <ul class="list-inline">
+                            <li class="col-md-4">
+                                <a href="#">
+                                    <img class="img-responsive" src="~/images/bajeko.jpg" alt="gallery 1" />
+                                </a>
+                            </li>
+                            <li  class="col-md-8">
+                                <div class="pull-left">
+                                    <span class="blog_header">Bajeko Sekuwa</span><br/>
+                                    
+                                </div>
+                                
+                                <div class="clearfix"> </div>
+                                <p class="blog_text">
+                                 It was started as a small shop with a few stools in the name of furniture and only one man 
+								 (BAJE DINANATH BHANDARI )to prepare all the items of meat surrounded by number of visitors 
+								 impatient to get a plate of sekuwa.
+                                </p>
+                            </li>
+                        </ul>
+                    </div><!-- /.blog_post 2 -->
+                    
+                    <div class="templatemo_clear"></div>
+                    
+                    <div class="col-sm-5 col-md-6 blog_post">
+                        <ul class="list-inline">
+                            <li class="col-md-4">
+                                <a href="#">
+                                    <img class="img-responsive" src="~/images/bajeko.jpg" alt="gallery 1" />
+                                </a>
+                            </li>
+                            <li  class="col-md-8">
+                                <div class="pull-left">
+                                    <span class="blog_header">Bajeko Sekuwa</span><br/>
+                                    
+                                </div>
+                                
+                                <div class="clearfix"> </div>
+                                <p class="blog_text">
+                                 It was started as a small shop with a few stools in the name of furniture and only one man 
+								 (BAJE DINANATH BHANDARI )to prepare all the items of meat surrounded by number of visitors 
+								 impatient to get a plate of sekuwa.
+                                </p>
+                            </li>
+                        </ul>
+                    </div><!-- /.blog_post 3 -->
+                    
+                    <div class="col-sm-5 col-md-6 blog_post">
+                         <ul class="list-inline">
+                            <li class="col-md-4">
+                                <a href="#">
+                                    <img class="img-responsive" src="~/images/bajeko.jpg" alt="gallery 1" />
+                                </a>
+                            </li>
+                            <li  class="col-md-8">
+                                <div class="pull-left">
+                                    <span class="blog_header">Bajeko Sekuwa</span><br/>
+                                    
+                                </div>
+                                
+                                <div class="clearfix"> </div>
+                                <p class="blog_text">
+                                 It was started as a small shop with a few stools in the name of furniture and only one man 
+								 (BAJE DINANATH BHANDARI )to prepare all the items of meat surrounded by number of visitors 
+								 impatient to get a plate of sekuwa.
+                                </p>
+                            </li>
+                        </ul>
+                    </div> <!-- /.blog_post 4 -->
+                    *@

@@ -1,0 +1,205 @@
+﻿@model FoodExNepal.Models.Restaurant
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_RestaurantLayout.cshtml";
+}
+
+<h2>Edit Restaurant</h2>
+
+@using (Html.BeginForm("EditRestaurant", "RestaurantUser", FormMethod.Post, new { enctype = "Multipart/Form-data" }))
+{
+    @Html.ValidationSummary(true)
+
+  
+       
+       <div id="add">
+           @Html.HiddenFor(model => model.RestaurantId)
+            <div class="editor-label">
+                @Html.LabelFor(model => model.RestaurantName,"Name")
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.RestaurantName)
+                @Html.ValidationMessageFor(model => model.RestaurantName)
+            </div>
+        <div style="clear:both"></div>
+       
+           <div class="editor-label">
+            @Html.LabelFor(model => model.RestaurantLogo,"Logo")
+                @Html.HiddenFor(model => model.RestaurantLogo)
+        </div>
+        <div class="editor-field">
+            <img src="~/images/restaurant/@Model.RestaurantLogo" height="80"/><br />
+            <input type="file" id="fileArticle" name="fileArticle" value="choose file" onchange="checkfile(this);"/>
+            <input type="button" id="clear2" value="Remove" onclick="clearfile();"/>
+            @Html.ValidationMessageFor(model => model.RestaurantLogo)
+        </div>
+           
+         <div style="clear:both"></div>
+         <div class="editor-label">
+            @Html.LabelFor(model => model.RestaurantImageInDetailPage,"Image")
+             @Html.HiddenFor(model => model.RestaurantImageInDetailPage)
+        </div>
+        <div class="editor-field">
+            <img src="~/images/restaurant/@Model.RestaurantImageInDetailPage" width="340"/><br />
+            <input type="file" id="RestaurantImage" name="RestaurantImage" value="choose file" onchange="checkfile(this);"/>
+            <input type="button" id="clear3" value="Remove" onclick="clearfile1();"/>
+            @Html.ValidationMessageFor(model => model.RestaurantImageInDetailPage)
+        </div>
+           
+         <div style="clear:both"></div>
+            <div class="editor-label">
+            @Html.LabelFor(model =>model.Address,"Address")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Address)
+            @Html.ValidationMessageFor(model => model.Address)
+        </div>
+<div style="clear:both"></div>
+            <div class="editor-label">
+            @Html.LabelFor(model => model.LocationId,"Location")
+        </div>
+        <div class="editor-field">
+          @Html.DropDownListFor(model => model.LocationId, (SelectList)ViewBag.LocationId)
+             @Html.ValidationMessageFor(model => model.LocationId)
+        </div>
+
+           <div style="clear:both"></div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PhoneNumber,"Phone Number")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PhoneNumber)
+            @Html.ValidationMessageFor(model => model.PhoneNumber)
+        </div>
+
+               <div style="clear:both"></div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DetailInfo,"Detail Info")
+        </div>
+        <div class="editor-field">
+           @Html.TextAreaFor(model => model.DetailInfo, new {@cols = 45, @rows = 6 })
+            @Html.ValidationMessageFor(model => model.DetailInfo)
+        </div>
+
+               <div style="clear:both"></div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IsServiceChargeApplicable,"Is Service Charge Applicable?")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.IsServiceChargeApplicable)
+            @Html.ValidationMessageFor(model => model.IsServiceChargeApplicable)
+        </div>
+
+               <div style="clear:both"></div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IsVatApplicable,"Is Vat Applicable?")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.IsVatApplicable)
+            @Html.ValidationMessageFor(model => model.IsVatApplicable)
+        </div>
+               <div style="clear:both"></div>
+
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ServiceChargePercent,"Service Charge Percent")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ServiceChargePercent)
+            @Html.ValidationMessageFor(model => model.ServiceChargePercent)
+        </div>
+               <div style="clear:both"></div>
+
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.OpeningTime,"Opening Time")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.OpeningTime)
+            @Html.ValidationMessageFor(model => model.OpeningTime)
+        </div>
+
+               <div style="clear:both"></div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.MinOrderAmount,"Minimum Order Amount")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.MinOrderAmount)
+            @Html.ValidationMessageFor(model => model.MinOrderAmount)
+        </div>
+
+               <div style="clear:both"></div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CusineInfo,"Cusine")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CusineInfo)
+            @Html.ValidationMessageFor(model => model.CusineInfo)
+        </div>
+               <div style="clear:both"></div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.VATPercent,"VAT Percent")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.VATPercent)
+            @Html.ValidationMessageFor(model => model.VATPercent)
+        </div>
+               <div style="clear:both"></div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PANNumber,"PAN Number")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PANNumber)
+            @Html.ValidationMessageFor(model => model.PANNumber)
+        </div>
+
+         <div style="clear:both"></div>
+           <div class="editor-label"></div>       
+        <div class="editor-field">
+            <input type="submit" value="Save" />
+        </div>
+        <div style="clear:both"></div>
+</div>
+
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+     <script type="text/javascript" language="javascript">
+         function checkfile(sender) {
+             var validExts = new Array(".JPG", ".JPEG", ".JIF", ".PNG", "GIF");
+             var fileExt = sender.value;
+             fileExt = fileExt.substring(fileExt.lastIndexOf('.'));
+             if (validExts.indexOf(fileExt.toUpperCase()) < 0) {
+                 alert("Invalid file selected, valid files are of " +
+                          validExts.toString() + " types.");
+                 // var _fileuploadcontrolId = document.getElementById("att3");
+                 // _fileuploadcontrolId.value = "";
+                 // _fileuploadcontrolId.focus();
+                 sender.value = "";
+                 sender.focus();
+                 return false;
+             }
+             else return true;
+         }
+         function clearfile() {
+             document.getElementById("fileArticle").value = '';
+         }
+         function clearfile1() {
+             document.getElementById("RestaurantImage").value = '';
+         }
+</script>
+}

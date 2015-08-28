@@ -1,0 +1,198 @@
+﻿@using FoodExNepal.Models;
+ 
+<div class="cart">
+    @{
+        string res = "";
+        if ((Cart)Session["Cart"] != null)
+        {
+
+            Restaurant restaurant = ((Cart)Session["Cart"]).restaurantsess;
+        res = restaurant.RestaurantName;
+        }
+        }
+
+          
+        @if (ViewBag.message == "Added")
+        {
+    
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            toastr.success('Added');
+        })
+    </script>  
+        }
+                
+ @*<script type="text/javascript">
+         $(document).ready(function () {
+             if ('@ViewData["message"]' == "Added") {
+                 toastr.success('Item Added To Your Cart');
+             }
+             else if ('@ViewData["message"]' == "Removed") {
+                 toastr.success('Item removed From Your Cart');
+             }
+             else if ('@ViewData["message"]' == "Updated") {
+                toastr.success('Your Cart Has Updated');
+            }
+            else if ('@ViewData["message"]' == "RestaurantChanged") {
+                toastr.success('Your Item Will Be Removed To Add New Item');
+            }
+            else { }
+         });
+</script>	 *@           
+               
+                @{
+                    
+                Cart cart = (Cart)Session["Cart"];
+
+                if (cart != null)
+                {
+                    if (cart.cartDetail.Count != 0 && cart.cartSummary != null)
+                    {
+                        <h6>
+                            <span style="font-weight: bold; color: #048F01; font-size: 14px;">FOOD Cart : <text><b>@res</b></text> </span>
+                                <hr />
+                                <table class="tab">
+                                    @foreach (var item in cart.cartDetail)
+                                    {
+
+                                        <tr>
+                                            <td width="30px">
+                                                <img src="../../images/unchecked.gif" onclick="RemoveFromCart(@item.FoodItemId)">
+                                            </td>
+                                            <td width="300px">
+                                                @item.FoodItem
+                                        </td>
+                                        <td width="60px">
+                                            @item.Rate
+                                    </td>
+                                    <td width="30px">
+                                        <input type="text" id="inp+@item.FoodItemId" class="qty" minlenght="1" maxlength="3" value="@item.Quantity" onblur="CartChange(@item.FoodItemId)" />
+                                    </td>
+                                    <td>
+                                        @item.Total
+                                    </td>
+                                </tr>
+                                        <tr><td colspan="5"></td></tr>
+                                    }
+                                </table>
+                                <hr>
+
+                                <table style="text-align:right;" cellpadding="5px">
+                                    <tr>
+                                        <td width="300px">Sub Total</td>
+                                        <td width="20px">:</td>
+                                        <td style="padding-left:10px">@cart.cartSummary.SubTotal</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Restaurant Service Charge(@cart.cartSummary.ServiceChargePercent)</td>
+                                        <td>:</td>
+                                        <td>@cart.cartSummary.ServiceCharge</td>
+                                    </tr>
+                                    <tr>
+                                        <td>VAT(@cart.cartSummary.VATPercent)</td>
+                                        <td>:</td>
+                                        <td>@cart.cartSummary.VAT</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Delivery Charge</td>
+                                        <td>:</td>
+                                        <td>@cart.cartSummary.DeliveryCharge</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td><b>Grand Total</b></td>
+                                        <td>:</td>
+                                        <td><b>@cart.cartSummary.GrossTotal</b></td>
+
+                                    </tr>
+
+                                </table>
+
+                                <div class="editor-label" style="padding-left:122px">
+                                    <a href="~/ShoppingCart/CheckOut">
+                                        <img src="~/images/checkout-doublesize.png" height="40px" />
+                                    </a>
+                                    @* <a href="@Url.Action("CheckOut", "ShoppingCart")" style="text-decoration:none; padding:10px 0 0 18px;">
+                    <div class="vmenu">Checkout</div>
+                </a>  *@
+                                </div>
+                                <div style="clear:both"></div>
+</h6>
+                    }
+                    else
+                    {
+                        <h6>
+                            <span style="font-weight: bold; color: #048F01; font-size: 13px;">FOOD Cart : <text></text></span> <hr />                            
+                            <div>There is not item in your cart</div>
+                        </h6>
+                    }
+                }
+                else
+                {
+                    <h6>
+                        <span style="font-weight: bold; color: #048F01; font-size: 13px;">FOOD Cart : <text></text></span> <hr />
+                        <div>There is not item in your cart</div>
+                    </h6>
+                }
+}
+
+@*@{
+
+                  Cart cart = (Cart)Session["Cart"];
+                   }
+                   @if(cart!=null){
+                    if (cart.cartDetail != null && cart.cartSummary!=null)
+                   {
+                       foreach (var item in cart.cartDetail)
+                     {
+                          <text> rik</text>
+                         decimal total = (decimal)item.Rate * item.Quantity;
+
+                         <div class="cart-row">
+                         <div class="column1">@item.FoodItem</div> <div class="column2" >@item.Rate</div> <div class="column3">@item.Quantity</div> <div class="column4">@total</div>
+                         </div>
+                       }
+
+
+
+                       decimal subtotal = cart.cartSummary.SubTotal;
+                       decimal service = cart.cartSummary.ServiceCharge;
+                       decimal vat = cart.cartSummary.VAT;
+                       decimal delivery = cart.cartSummary.DeliveryCharge;
+                       decimal gtotal = cart.cartSummary.GrossTotal;
+                                 <div>@Html.Label("Subtotal: ")</div><div>@subtotal</div>
+                                 <div>@Html.Label("Service Charge")@cart.cartSummary.ServiceChargePercent:</div><div>@service</div>
+                                 <div>@Html.Label("VAT")@cart.cartSummary.VATPercent:</div><div>@vat</div>
+                                 <div>@Html.Label("Delivery Charge: ")</div><div>@delivery</div>
+                                 <div>@Html.Label("Grand Total: ")</div><div>@gtotal</div>
+                   }}
+
+    </div>*@
+</div>
+
+
+
+@*<script type="text/javascript">
+         $(document).ready(function () {
+             if ('@ViewData["message"]' == "Added") {
+                toastr.success('Item Added To Your Cart');
+            }
+            else if ('@ViewData["message"]' == "Removed") {
+                toastr.success('Item removed From Your Cart');
+            }
+            else if ('@ViewData["message"]' == "Updated") {
+                toastr.success('Your Cart Has Updated');
+            }
+            else if ('@ViewData["message"]' == "RestaurantChanged") {
+                toastr.success('Your Item Will Be Removed To Add New Item');
+            }
+            else { }
+        });
+</script> *@
+
+		
+@section scripts{
+  
+}

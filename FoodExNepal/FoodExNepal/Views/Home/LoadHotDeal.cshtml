@@ -1,0 +1,51 @@
+﻿@model IEnumerable<FoodExNepal.Models.FoodItem>
+
+
+    <div id="demo1">
+        <div class="container">
+            <div class="row">
+                <div class=" span12">
+            <div id="owl-demo12" class="owl-carousel">
+                @{
+                    // int i=1;
+
+                    foreach (var item in Model)
+                    {
+                        <div class="item" style="background:#ffffff; padding:0px;">
+                            <a href="@Url.Action("RestaurantDetail", "RestaurantList", new { id=item.RestaurantId})">
+
+                                <h5 style="text-align:center; font-weight:bold; font-size:14px; color:#DC2320">@item.Restaurant.RestaurantName</h5>
+                                <img src="~/images/Hotdeals/@item.HotDealImage" alt="@item.Restaurant.RestaurantName">
+
+                                <div style="padding: 5px 14px 0 10px;">
+                                @Html.Raw(item.HotDealDescription)
+</div>
+                            </a>
+
+                        </div>
+
+
+                    }
+                }
+
+
+
+                @*  </div>
+                </div>*@
+            </div>
+        </div>
+
+            </div>
+
+
+            <script>
+                $(document).ready(function () {
+                    $("#owl-demo12").owlCarousel({
+                        autoPlay: 4750,
+                        items: 4,
+                        itemsDesktop: [1199, 3]
+
+                    });
+
+                });
+            </script>

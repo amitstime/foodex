@@ -1,0 +1,181 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Restaurant Panel-Foodex Nepal</title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+        @*Styles.Render("~/Content/css")*@
+        @Scripts.Render("~/bundles/modernizr")
+<link rel="stylesheet" href="~/Scripts/jquery-ui-1.8.17.custom/development-bundle/themes/base/jquery.ui.all.css" >
+<script src="~/Scripts/jquery-ui-1.8.17.custom/development-bundle/ui/jquery.ui.core.js"></script>
+<script src="~/Scripts/jquery-ui-1.8.17.custom/development-bundle/ui/jquery.ui.widget.js"></script>
+<script src="~/Scripts/jquery-ui-1.8.17.custom/development-bundle/ui/jquery.ui.datepicker.js"></script>
+<link rel="stylesheet" href="~/Scripts/jquery-ui-1.8.17.custom/development-bundle/demos/demos.css"><link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+<script src="~/Scripts/tinymce/tinymce/js/tinymce/tinymce.min.js"></script>
+<script>
+    tinymce.init({
+        selector: "textarea",
+        plugins: [
+                "advlist autolink link lists hr anchor pagebreak spellchecker",
+                "wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
+                "table contextmenu directionality emoticons template textcolor paste textcolor"
+        ],
+
+        toolbar1: "alignleft aligncenter alignright alignjustify | styleselect formatselect fontselect fontsizeselect",
+        toolbar2: "cut copy paste | bold italic underline strikethrough | bullist numlist | outdent indent blockquote | undo redo | link unlink anchor image media code ",
+        toolbar3: "forecolor backcolor | table | hr removeformat | subscript superscript | charmap emoticons | print fullscreen | ltr rtl | spellchecker | visualchars visualblocks nonbreaking template pagebreak restoredraft",
+
+        menubar: false,
+        toolbar_items_size: 'small',
+
+        style_formats: [
+                { title: 'Bold text', inline: 'b' },
+                { title: 'Red text', inline: 'span', styles: { color: '#ff0000' } },
+                { title: 'Red header', block: 'h1', styles: { color: '#ff0000' } },
+                { title: 'Example 1', inline: 'span', classes: 'example1' },
+                { title: 'Example 2', inline: 'span', classes: 'example2' },
+                { title: 'Table styles' },
+                { title: 'Table row 1', selector: 'tr', classes: 'tablerow1' }
+        ]
+        //],
+
+        //templates: [
+        //        { title: 'Test template 1', content: 'Test 1' },
+        //        { title: 'Test template 2', content: 'Test 2' }
+        //]
+    });
+</script>       
+ <link rel="stylesheet" href="~/Content/admin.css" />
+    </head>
+    <body>
+       
+        <div id="container">
+        <div id="heading">
+    	<div id="adminpanel">
+        	<h1>
+    		Foodex Nepal
+       		</h1>
+        </div>
+            
+       <!--<div id="menu">
+            @if(Session["RestaurantUser"]==null && Session==null)
+         
+         {
+             Response.Redirect("~/RestaurantControl/Login");
+         }
+        </div>-->
+        <div id="welcome">
+        	<ul>
+              
+                <li>
+                    <a href="#"> 
+                        <span class="icon-logout icon-font"></span>
+                         @Html.ActionLink("Log Out","Logout","RestaurantControl")
+                    </a>
+                </li>
+        	</ul>
+        </div>
+    </div>
+ 
+    <div id="content">
+    	 <div id="left_content">
+         		<div id="inner_content">
+                    <!--<div id="search">
+                        <input type="search"/>
+                    </div>-->
+
+                     <div id="sidemenu">
+                        @* <div>
+                             <h1 class="dashboard">Dashboard</h1>
+                             <ul>
+                                 <li><a href="~/Admin/Dashboard">View my Dashboard</a></li>
+                                 
+                             </ul>
+                         </div>*@
+                         <div>
+                         <h1 class="inventory">Edit Restaurant</h1>
+                         <ul>
+                             
+                              <li><a href="~/RestaurantUser/EditRestaurant">Edit Restaurant</a></li>                                                        
+                                            
+                          </ul>
+                         </div>
+                         <div>
+                         <h1 class="inventory">Category</h1>
+                         <ul>
+                             <!-- <li><a href="~/Report/MonthlyPresentAbsent">Present Absent</a></li> -->
+                             <li><a href="~/RestaurantUser/ListCategory">Category List</a></li>
+                             
+                         </ul>
+                         </div>
+                          
+                         <div>
+                         <h1 class="inventory">Food Item</h1>
+                         <ul>
+                             
+                              <li><a href="~/RestaurantUser/RFoodItem">Food Item List</a></li>                                                        
+                                            
+                          </ul>
+                         </div>
+
+                        <div>
+                         <h1 class="order">View Order</h1>
+                         <ul>
+                             @*<li><a href="#">Recent Order</a></li>
+                             <li><a href="~/Admin/Category/Index">Manage Categories</a></li>*@
+                             <li><a href="~/RestaurantUser/OrderList">Recent Order</a></li>
+                             <li><a href="~/RestaurantUser/DeliveryStaff">Confirmed</a></li>
+                              <li><a href="~/RestaurantUser/FoodCategory">Delivered</a></li>
+                              <li><a href="~/RestaurantUser/WebsiteProfile/edit/1">Cancelled</a></li>
+                              <li><a href="~/RestaurantUser/Menu">On Process</a></li>
+                             <li><a href="#">Order History</a></li>
+                             
+                             
+                            
+                             
+                             
+                             @*<li><a href="~/Report/YearlyAttendance">Manage Attributes</a></li>
+                             <li><a href="~/Report/YearlyAttendance">Locations</a></li>*@
+                         </ul>
+                         </div>
+                         
+                         @*<div style="border-bottom:0px !important">
+                         <h1 class="report">Data</h1>
+                         <ul>
+                              <li><a href="#">Reataurant</a></li>
+                              <li><a href="#">Food Menu</a></li>
+                             <li><a href="#">Customer</a></li>
+                              <li><a href="#">Delivery Boy</a></li>
+                              
+                         </ul>
+                         </div>*@
+                     </div>
+                </div>    
+    	 </div>
+         <div id="middle_content">
+
+   			 	@RenderSection("featured", required: false)
+           		@RenderBody()
+            
+           
+         </div>
+
+        
+	<footer>
+        <div id="copyright">
+            &copy Copyright <a href="http://www.amsoft.com.np"></a>Amsoft Technologies
+        </div>
+	</footer>
+    </div>      
+   
+
+        @Scripts.Render("~/bundles/jquery")
+        @RenderSection("scripts", required: false)
+		
+		
+		
+    </body>
+</html>
+

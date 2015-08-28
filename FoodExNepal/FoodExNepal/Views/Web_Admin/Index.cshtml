@@ -1,0 +1,55 @@
+﻿@model FoodExNepal.Models.AdminUser
+
+
+@{
+    
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+
+<h2>Admin Login</h2>
+<div class="add">
+@using (Html.BeginForm(new { ReturnUrl=ViewBag.ReturnUrl}))
+{
+    <span style="color:red">@Html.ValidationSummary(true)</span>
+    
+    <div class="editor-label" style="width:150px">
+            Username
+        </div>
+   <div class="editor-field">
+            @Html.TextBoxFor(model => model.AdminUsername) <br />
+            @Html.ValidationMessageFor(model => model.AdminUsername)
+        </div>
+        <div style="clear:both"></div>
+        <p></p>
+        <div class="editor-label" style="width:150px">
+            Password
+        </div>
+        <div class="editor-field">
+            @Html.PasswordFor(model => model.AdminPassword)<br />
+            @Html.ValidationMessageFor(model => model.AdminPassword)
+        </div>
+        <div style="clear:both"></div>
+        <p></p>
+           <div class="editor-label" style="width:324px;">
+           
+                </div>
+                <div class="editor-field">
+                      <input type="submit" value="Login" />
+                </div>
+        <div style="clear:both"></div>
+}
+    </div>
+
+
+@section Scripts {
+    <script type="text/javascript">
+       // window.onload = load();
+
+        function load() {
+            //Your JavaScript here
+            alert("Task Successfully Assigned");
+            // window.location = "@Url.Content("~/ToDoTask/MyTask")";
+        }
+  </script>
+}

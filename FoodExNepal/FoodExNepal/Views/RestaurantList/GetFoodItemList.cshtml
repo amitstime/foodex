@@ -1,0 +1,107 @@
+﻿@*@model IEnumerable<FoodExNepal.Models.FoodItem>*@
+@model PagedList.IPagedList<FoodExNepal.Models.FoodItem>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "GetFoodItemList";
+    Layout = "~/Views/Shared/_TwoColumnLayout.cshtml";
+}
+@using FoodExNepal.Models;
+
+@{
+    FoodExEntities db = new FoodExEntities();
+    int restid=ViewBag.Restaurantid;
+    var restaurant = db.Restaurants.SingleOrDefault(a => a.RestaurantId == restid);
+    }
+<div class="templatemo-service">
+    <div class="container">
+       
+                <div class="r2_restcontent">
+                     <div  class="col-md-2" style="padding:5px 0 5px 5px">                     
+                        <img src="~/images/restaurant/@restaurant.RestaurantLogo" />
+                     </div>
+                     <div  class="col-md-6">   
+                        <div class="rest_Name_fd">@restaurant.RestaurantName</div>
+                        <div class="rest_Address"><i>@restaurant.Address</i></div>
+                        <div class="rest_order_detail">@restaurant.CusineInfo, @restaurant.RestaurantType, @restaurant.Speciality</div>
+                     </div>
+                        <div class="col-md-3" style="padding-top:5px;">
+                           <div id="SC"> @if (restaurant.IsServiceChargeApplicable == true)
+                                  { <div class="true">Service Charge</div> }
+                            else
+                            {
+                                { <div class="false">Service Charge</div> }
+                            } @if (restaurant.IsVatApplicable == true)
+                              {
+                                  <div class="true">VAT</div> 
+                                   }
+                                else
+                                   {
+                                       <div class="false">VAT</div> 
+                                   }</div>
+                        </div>                      
+                </div>
+     
+        <br />
+           
+          @using (Html.BeginForm("GetFoodItemList", "RestaurantList", new { id= ViewBag.Restaurantid}))
+          {
+        
+            <div class="editor-label" style="width:90px">item/dish &nbsp;:</div>
+            <div class="editor-field"><input type="text" id="txtSearchRes" name="txtSearchRes" value="@ViewBag.Searchtxt" class="form-control"/></div>
+            <div class="editor-label" style="width:90px; padding-left:15px; text-align:center; ">in&nbsp;:</div>
+            <div class="editor-field" style="width:180px">
+                 @Html.DropDownList("FoodCategoryid", null, string.Empty, new { @class = "form-control" })
+            </div>
+            <div class="editor-field" style="padding: 6px 0 0 70px;"><input type="submit" class="form-control" name="submit" value="Search" /></div>
+    
+          }
+   <div style="clear:both"></div>
+        <br />
+        <h3>Food Item List</h3>
+    </div>
+</div>
+     
+    
+
+
+<div role="tablist" class="ui-accordion ui-widget ui-helper-reset" id="accordion" style="max-width:710px; padding-left:15px;">
+    @ViewData["message"]
+ 
+  
+   <table cellpadding="5px" > 
+            
+@foreach(var item in Model)
+{
+       <input type="hidden" id="rest+@item.FoodItemId" value="@item.RestaurantId"/>
+    <input type="hidden" id="sec+@item.FoodItemId" value="@restid"/>
+            <tr id="add">
+                <td colspan="3" style="width:175px">@item.FoodItemName@* @Html.ActionLink(, "FoodItemDetail", "RestaurantList", new {id=item.FoodItemId },null)*@</td><td rowspan="2"><img src="~/images/Uploads/@item.FoodItemImage" width="65px"/></td></tr>
+              <tr>  <td style="width:75px">Rs.@item.FoodItemRate</td>
+                <td><input id="int+@item.FoodItemId" type="text" value="1" style="width:50px"/></td>
+                <td><input type="button" id="@item.FoodItemId" value="Add" style="width:80px" class="AddCart" onclick="Addtocart(this)"/></td>
+            </tr>
+    if (item.IsHotDeal == true)
+    {
+        <tr><td colspan="4"><span>@Html.Raw(item.HotDealDescription)</span></td></tr>
+    }
+       
+}
+       
+             </table>
+  
+  
+ Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page,Keyword=ViewBag.Keyword,Location=ViewBag.LocationSelectedId}))
+
+          
+</div>
+ 
+
+
+
+
+
+
+
+

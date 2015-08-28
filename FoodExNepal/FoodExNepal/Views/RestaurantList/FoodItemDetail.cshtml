@@ -1,0 +1,61 @@
+﻿@model FoodExNepal.Models.FoodItem
+
+@{
+    ViewBag.Title = "FoodItemDetail";
+    Layout = "~/Views/Shared/_TwoColumnLayout.cshtml";
+}
+<div class="templatemo-service">
+            <div class="container">
+                <div id="reg_form">
+<h2>Food Item Detail</h2>
+<p></p>
+<labelset>
+    <legend>FoodItem</legend>
+
+    <div class="editor-label">
+         @Html.DisplayNameFor(model => model.FoodItemName)
+    </div>
+    <div class="editor-label">
+       : @Html.DisplayFor(model => model.FoodItemName)
+    </div>
+
+    
+    <div style="clear:both"></div>
+    <div class="editor-label">
+         @Html.DisplayNameFor(model => model.FoodCategoryId)
+    </div>
+    <div class="editor-label" style="height:20px">
+       : @Html.DisplayFor(model => model.FoodCategoryId)
+    </div>
+    <div style="clear:both"></div>
+    <div class="editor-label">
+         @Html.DisplayNameFor(model => model.FoodDescription)
+    </div>
+    <div class="editor-label">
+       : @Html.Raw(Model.FoodDescription)
+    </div>
+    <div style="clear:both"></div>
+    <div class="editor-label">
+         @Html.DisplayNameFor(model => model.FoodItemRate)
+    </div>
+    <div class="editor-label">
+       : @Html.DisplayFor(model => model.FoodItemRate)
+    </div>
+    <div style="clear:both"></div>
+    <div class="editor-label">
+         @Html.DisplayNameFor(model => model.FoodItemImage)
+    </div>
+    <div class="editor-label">
+       : @Html.DisplayFor(model => model.FoodItemImage)
+    </div>
+    <div style="clear:both"></div>
+    <div class="editor-label">
+         @Html.DisplayNameFor(model => model.Rating)
+    </div>
+    <div class="editor-label">
+       : @Html.DisplayFor(model => model.Rating)
+    </div>
+    <div style="clear:both"></div>
+</labelset>
+
+                </div></div></div>

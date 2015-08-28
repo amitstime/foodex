@@ -1,0 +1,64 @@
+﻿@model FoodExNepal.Models.Restaurant
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Model.RestaurantName Details</h2>
+
+<table>
+    <tr>
+       <td>
+           About us
+       </td>
+       
+        <td>
+            @Model.DetailInfo
+        </td>
+         </tr>
+    <tr>
+        <td>
+          Address
+       </td>
+        <td>
+            @Model.Adrress
+        </td>
+    </tr>
+     <tr>
+        <td>
+          Phone
+       </td>
+        <td>
+            @Model.PhoneNumber
+        </td>
+    </tr>
+    <tr>
+        <td>
+          Vat
+       </td>
+        <td>
+            @if (Model.isVatApplicable == true)
+            {
+                <text>Applicable</text> 
+            }
+            else
+            {
+             <text>Not Applicable</text> }
+        </td>
+    </tr>
+    <tr>
+        <td>
+          Service Charge
+       </td>
+        <td>
+            @if (Model.isServiceChargeApplicable == true)
+            {
+                <text>Applicable</text> 
+            }
+            else
+            {
+             <text>Not Applicable</text> }
+        </td>
+    </tr>
+
+</table>

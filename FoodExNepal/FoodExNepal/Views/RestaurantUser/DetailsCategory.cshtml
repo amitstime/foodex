@@ -1,0 +1,30 @@
+﻿@model FoodExNepal.Models.FoodCategory
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_RestaurantLayout.cshtml";
+}
+
+<h2>Food Category Details</h2>
+
+<div id="add">
+
+    <div class="display-label">
+        Name
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FoodCategoryName)
+    </div>
+    <div style="clear:both"></div>
+    <div class="display-label">
+        Description
+    </div>
+    <div class="display-field">
+        @Html.Raw(Model.FoodCategoryDescription)
+    </div>
+    <div style="clear:both"></div>
+</div>
+<p>
+    @Html.ActionLink("Edit", "EditCategory", new { id=Model.FoodCategoryId }) |
+    @Html.ActionLink("Back to List", "ListCategory")
+</p>

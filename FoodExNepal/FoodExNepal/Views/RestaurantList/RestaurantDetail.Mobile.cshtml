@@ -1,0 +1,52 @@
+﻿@model FoodExNepal.Models.Restaurant
+
+@{
+    ViewBag.Title = "RestaurantDetail.Mobile";
+    Layout = "~/Views/Shared/_Layout.Mobile.cshtml";
+}
+
+<h2 style="color:#F8142B">Restaurant Detail</h2>
+
+
+<h3 style="color:#F5BA10; padding-bottom:0; margin-bottom:0">@Model.RestaurantName</h3> 
+             
+                <p style="font-family:'Century Gothic'; margin-top:2px">@Model.Address <br/> 
+Tel: @Model.PhoneNumber</p>
+@{if(string.IsNullOrEmpty(Model.RestaurantImageInDetailPage))
+  {
+      <img src="~/images/restaurant/@Model.RestaurantLogo" style="width:100%; border:2px solid #B9B9B9"/>
+  }
+  else
+  {
+      <img src="~/images/restaurant/@Model.RestaurantImageInDetailPage" style="width:100%; border:2px solid #B9B9B9"/>
+  }
+      }
+                        
+                                                  
+                              <div style="font-family:'Century Gothic'">@Html.Raw(Model.DetailInfo)</div>   
+                
+                            <p style="font-family:'Century Gothic'; margin-bottom:2px">Cuisine : 
+                          @Model.CusineInfo
+                           <br/> 
+                           
+                            
+                           <div id="SC" style="font-size:15px !important; font-family:'Century Gothic'"> @if (Model.IsServiceChargeApplicable == true)
+                                  { <div class="true" style="font-size:15px !important">Service Charge</div> }
+                            else
+                            {
+                                { <div class="false"  style="font-size:15px !important">Service Charge</div> }
+                            } @if (Model.IsVatApplicable == true)
+                              {
+                                  <div class="true"  style="font-size:15px !important">VAT</div> 
+                                   }
+                                else
+                                   {
+                                       <div class="false" style="font-size:15px !important">VAT</div> 
+                                   }</div>
+                                
+                            <p style="font-family:'Century Gothic'; margin-top:2px">Opening Time : 
+                            @Model.OpeningTime
+                
+      </p>            
+             @Html.ActionLink("View Menu", "FoodMenu", "RestaurantList", new { id=Model.RestaurantId},null)
+

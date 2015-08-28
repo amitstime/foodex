@@ -1,0 +1,53 @@
+﻿@model FoodExNepal.Models.WebsiteProfile
+<!-- welcome foodex nepal-->
+<div class="col-md-4">
+                        <div class="templatemo-service-item">
+                            <div>
+                                <img src="~/images/foodex.png">
+                                <span class="templatemo-service-item-header">
+									Welcome to Foodex Nepal
+								</span>
+                            </div>
+                           <p> 
+                               @Model.WelcometoFoodexNepalCaption
+						   <!-- Looking for a Pizza, a Burger, how about some Indian Food or maybe some Chinese Food ? Look no more ! 
+						   We have a wide variety of restaurants in Nepal. Foodexnepal.com is your destination for online food 
+						   delivery in Nepal. Simply choose your favourite restaurant, view the restaurant menu, and place your 
+						   order online. You can pay for your order by cash on delivery. 
+						  It takes just a few clicks to place an order from any of our restaurants in Nepal through our website, 
+						   mobile applications or tablet device. So what are you waiting for? Happy Ordering !-->
+						   </p>
+                            <div>
+                                @Html.ActionLink("READ MORE", "WelcomeDetails", "Home",null, new { @class="templatemo-btn-read-more btn btn-orange"})
+                            	@*<a href="#" 
+                                	class="templatemo-btn-read-more btn btn-orange">READ MORE</a>*@
+                            </div>
+                            <br class="clearfix"/>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+
+
+<!-- Why food ex nepal block-->
+<div class="col-md-4">
+                        <div class="templatemo-service-item" >
+                            <div>
+                                <img src="~/images/foodex1.png">
+                                <span class="templatemo-service-item-header">Why Foodex Nepal ?</span>
+                            </div>
+							<p>
+                                @Model.WhyFoodExNepalCaption
+								@*Looking for a Pizza, a Burger, how about some Indian Food or maybe some Chinese Food ? Look no more ! 
+						   We have a wide variety of restaurants in Nepal. Foodexnepal.com is your destination for online food 
+						   delivery in Nepal.*@
+							</p>
+                            <div>
+                                @Html.ActionLink("READ MORE", "WhyFoodexDetails", "Home",null, new { @class="templatemo-btn-read-more btn btn-orange"})
+                            	
+                                @*<a href="#" 
+                                	class="templatemo-btn-read-more btn btn-orange">READ MORE</a>*@
+                            </div>
+                            <br class="clearfix"/>
+                        </div>
+                        
+                    </div>

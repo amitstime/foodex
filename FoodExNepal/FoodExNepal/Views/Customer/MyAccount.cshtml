@@ -1,0 +1,58 @@
+﻿@model FoodExNepal.Models.Customer
+
+@{
+    ViewBag.Title = "MyAccount";
+    Layout = "~/Views/Shared/_TwoColumnLayout.cshtml";
+}
+
+<div style="width: 743px; border: 1px solid rgb(225, 225, 225); min-height:400px;">    
+    <h3 class="foodtitle" style="color:#F19300; font-size:18px; font-weight:bold; padding:15px">
+        MyAccount 
+        <span style="float:right; font-size:16px;">
+            @*Html.ActionLink("Check Your Order History", "OrderHistory", "Customer", new { style="color:#128BC6"})*@
+        </span> 
+
+    </h3>  
+
+<h3></h3>
+
+<div id="add" style="padding:10px">
+     <h4>Personal Info</h4>
+                           
+                <hr />
+    <div class="editor-label"> Full Name:</div>              
+    <div class="editor-field"><input disabled="disabled" name="txtFName" type="text" id="txtFName" value="@Html.DisplayFor(model => model.Name)"></div>    
+                
+    <div style="clear:both"></div>     
+    
+    <div class="editor-label">Address*</div>                        
+    <div class="editor-field"><input disabled="disabled" name="txtAddress" type="text" id="txtAddress" value="@Html.DisplayFor(model => model.Address)"></div>                       
+    
+    <div style="clear:both"></div>                                                          
+                            
+    <div class="editor-label">Email*</div> 
+    <div class="editor-field"> <input disabled="disabled" name="txtEmail" type="text" id="txtEmail" value=" @Html.DisplayFor(model => model.Email)">@Html.ValidationMessage("Email")<span id="User_EmailExists"></span></div>
+    
+    <div style="clear:both"></div>
+    
+    <br />                       
+    <h4>Contact Info</h4>
+    <div style="clear:both"></div>
+    <hr />
+                     
+    <div class="editor-label">Contact*</div>                       
+    <div class="editor-field"><input disabled="disabled" name="txtContact" type="text" maxlength="30" id="txtContact" value="@Html.DisplayFor(model => model.ContactNumber)"></div>
+                            
+    <div style="clear:both"></div>    
+    
+   <div class="editor-label"></div>   
+    <div class="editor-field">@Html.ActionLink("Edit", "EditAccount", "Customer") </div>         
+               
+                       
+</div>
+
+    </div>
+
+                    
+    
+

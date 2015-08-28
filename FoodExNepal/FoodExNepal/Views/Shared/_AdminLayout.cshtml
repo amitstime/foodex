@@ -1,0 +1,207 @@
+﻿<!DOCTYPE html>
+@using FoodExNepal.Models;
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Administration-Foodex Nepal</title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+        @*Styles.Render("~/Content/css")*@
+        @Scripts.Render("~/bundles/modernizr")
+
+<link rel="stylesheet" href="~/Scripts/jquery-ui-1.8.17.custom/development-bundle/themes/base/jquery.ui.all.css" >
+        <script src="~/Scripts/jquery-ui-1.8.17.custom/development-bundle/jquery-1.7.1.js"></script>
+         <script src="~/Scripts/js//jquery-1.7.1.min.js"></script>
+<script src="~/Scripts/jquery-ui-1.8.17.custom/development-bundle/ui/jquery.ui.core.js"></script>
+<script src="~/Scripts/jquery-ui-1.8.17.custom/development-bundle/ui/jquery.ui.widget.js"></script>
+<script src="~/Scripts/jquery-ui-1.8.17.custom/development-bundle/ui/jquery.ui.datepicker.js"></script>
+<link rel="stylesheet" href="~/Scripts/jquery-ui-1.8.17.custom/development-bundle/demos/demos.css">
+        <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+<script src="~/Scripts/tinymce/tinymce/js/tinymce/tinymce.min.js"></script>
+<script>
+    tinymce.init({
+        selector: "textarea",
+        plugins: [
+                "advlist autolink link lists hr anchor pagebreak spellchecker",
+                "wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
+                "table contextmenu directionality emoticons template textcolor paste textcolor"
+        ],
+
+        toolbar1: "alignleft aligncenter alignright alignjustify | styleselect formatselect fontselect fontsizeselect",
+        toolbar2: "cut copy paste | bold italic underline strikethrough | bullist numlist | outdent indent blockquote | undo redo | link unlink anchor image media code ",
+        toolbar3: "forecolor backcolor | table | hr removeformat | subscript superscript | charmap emoticons | print fullscreen | ltr rtl | spellchecker | visualchars visualblocks nonbreaking template pagebreak restoredraft",
+
+        menubar: false,
+        toolbar_items_size: 'small',
+
+        style_formats: [
+                { title: 'Bold text', inline: 'b' },
+                { title: 'Red text', inline: 'span', styles: { color: '#ff0000' } },
+                { title: 'Red header', block: 'h1', styles: { color: '#ff0000' } },
+                { title: 'Example 1', inline: 'span', classes: 'example1' },
+                { title: 'Example 2', inline: 'span', classes: 'example2' },
+                { title: 'Table styles' },
+                { title: 'Table row 1', selector: 'tr', classes: 'tablerow1' }
+        ]
+        //],
+
+        //templates: [
+        //        { title: 'Test template 1', content: 'Test 1' },
+        //        { title: 'Test template 2', content: 'Test 2' }
+        //]
+    });
+</script>       
+       
+ <link rel="stylesheet" href="~/Content/admin.css" />
+    </head>
+    <body>
+       
+        <div id="container">
+        <div id="heading">
+    	<div id="adminpanel">
+        	<h1>
+    		Foodex Nepal
+       		</h1>
+        </div>
+            
+       <!--<div id="menu">
+            @if(Session["User"]==null && Session==null)
+         
+         {
+             Response.Redirect("~/Admin/Login");
+         }
+        </div>-->
+        <div id="welcome">
+        	<ul>
+              
+                <li>
+                    <a href="#"> 
+                        <span class="icon-logout icon-font"></span>
+                        @if(Session["RestaurantUser"]!=null)
+                        {
+                            @Html.ActionLink("Log Out", "Logout", "../RAdmin");
+                        }
+                        else
+                        { 
+                            @Html.ActionLink("Log Out","Logout","AdminUser");
+                        }
+                    </a>
+                </li>
+        	</ul>
+        </div>
+    </div>
+ 
+    <div id="content">
+    	 <div id="left_content">
+         		<div id="inner_content">
+                    <!--<div id="search">
+                        <input type="search"/>
+                    </div>-->
+
+                     <div id="sidemenu">
+                        @* <div>
+                             <h1 class="dashboard">Dashboard</h1>
+                             <ul>
+                                 <li><a href="~/Admin/Dashboard">View my Dashboard</a></li>
+                                 
+                             </ul>
+                         </div>*@
+                         @if(Session["RestaurantUser"]==null)
+                         { 
+                         <div>
+                         <h1 class="accounts">Accounts</h1>
+                         <ul>
+                             <!-- <li><a href="~/Report/MonthlyPresentAbsent">Present Absent</a></li> -->
+                             <li><a href="~/Admin/AdminUser/Index">Admin List</a></li>
+                             
+                         </ul>
+                         </div>
+                          
+                         <div>
+                         <h1 class="inventory">Web Management</h1>
+                         <ul>
+                             
+                              <li><a href="~/Admin/Banner">Banner</a></li>                                                        
+                              <li><a href="~/Admin/WebsiteProfile/edit/1">Website Profile</a></li>
+                             <li><a href="~/Admin/Location/">Location</a></li>  
+                                            
+                          </ul>
+                         </div>
+               
+                         <div>
+                         <h1 class="restaurant">Restaurant</h1>
+                         <ul>  
+                              <li><a href="~/Admin/Restaurant">Restaurant</a></li>                                                           
+                              <li><a href="~/Admin/Restaurant/FoodItemHotDeals">HOT Deals</a></li>                             
+                              @*<li><a href="~/Admin/Menu">Food Menu Item </a></li>*@
+                              <li><a href="~/Admin/CustomerUser">Customer</a></li>                                                                           
+                          </ul>
+                         </div>
+                        
+                         <div>
+                         <h1 class="order">Order</h1>
+                         <ul>                             
+                              <li><a href="~/Admin/OrderList">Recent Order</a></li>
+                              <li><a href="~/Admin/OrderList/ConfirmedList">Confirmed</a></li>
+                              <li><a href="~/Admin/OrderList/DeliveredList">Delivered</a></li>
+                              <li><a href="~/Admin/OrderList/CancelledList">Cancelled</a></li>                             
+                         </ul>
+
+                         <h1 class="order">Sales History</h1>
+                         <ul>
+                              <li><a href="~/Admin/OrderList/OrderHistory">Sales History</a></li>
+                         </ul>
+
+                         </div>
+                        }
+                        else
+                         {
+                              
+                             <h1 class="order">Menu</h1>
+                         <ul>                             
+                             
+                              <li>@Html.ActionLink("Details","Details", "Restaurant", new { id = ((Restaurant)Session["RestaurantUser"]).RestaurantId },null)</li>                              
+                              @*<li><a href="~/Admin/Restaurant/Edit/@Session["RestaurantUser"]">Edit Info</a></li>*@
+                              <li>@Html.ActionLink("Edit Info", "Edit", "Restaurant", new { id = ((Restaurant)Session["RestaurantUser"]).RestaurantId },null)</li>
+                              @*<li><a href="~/Admin/Restaurant/Foodmenu/@Session["RestaurantUser"]">Food Menu</a></li>*@        
+                             <li>@Html.ActionLink("Food Menu", "Foodmenu", "Restaurant", new { id = ((Restaurant)Session["RestaurantUser"]).RestaurantId }, null)</li>                   
+                         </ul>
+                         }
+                         @*<div style="border-bottom:0px !important">
+                         <h1 class="report">Data</h1>
+                         <ul>
+                              <li><a href="#">Reataurant</a></li>
+                              <li><a href="#">Food Menu</a></li>
+                             <li><a href="#">Customer</a></li>
+                              <li><a href="#">Delivery Boy</a></li>
+                              
+                         </ul>
+                         </div>*@
+                     </div>
+                </div>    
+    	 </div>
+         <div id="middle_content">
+
+   			 	@RenderSection("featured", required: false)
+           		@RenderBody()
+            
+           
+         </div>
+
+        
+	<footer>
+        <div id="copyright">
+            &copy Copyright <a href="http://www.amsoft.com.np"></a>Amsoft Technologies
+        </div>
+	</footer>
+    </div>      
+   
+
+       @* @Scripts.Render("~/bundles/jquery")*@
+        @RenderSection("scripts", required: false)
+		
+		
+		
+    </body>
+</html>
+

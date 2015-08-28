@@ -1,0 +1,146 @@
+﻿@model IEnumerable<FoodExNepal.Models.FoodCategory>
+
+@{
+    ViewBag.Title = "FoodMenu";
+    Layout = "~/Views/Shared/_TwoColumnLayout.cshtml";
+}
+@using FoodExNepal.Models;
+@{
+    FoodExEntities db = new FoodExEntities();
+    int restid=ViewBag.Restaurantid;
+    var restaurant = db.Restaurants.SingleOrDefault(a => a.RestaurantId == restid);
+    }
+
+            <div class="breadCrums">
+    <ul>
+        <li @if(ViewBag.Bread=="Home")
+             { <text>class="selected"</text>}>
+            <span>
+               @* <a href="@Url.Action("Index","Home")">Home</a>*@Home
+            </span>
+        </li>
+        <li @if (ViewBag.Bread == "Restaurant")
+             { <text>class="selected"</text>}>
+            <span>
+                @*<a href="@Url.Action("Index","RestaurantList")" id="">Choose Restaurant</a>*@Choose Restaurant
+            </span>
+        </li>
+        <li @if (ViewBag.Bread == "Food")
+             { <text>class="selected"</text>}>
+            <span>
+               @* <a href="@Url.Action("","")" id="">Choose Item</a>*@Choose Food
+            </span>
+        </li>
+        <li @if (ViewBag.Bread == "Checkout")
+             { <text>class="selected"</text>}>
+            <span>
+                @*<a href="#" id="">Checkout</a>*@Checkout
+            </span>
+        </li>
+    </ul>
+</div>
+
+<br /> <br /> <br />
+<div class="templatemo-service">
+    <div class="container" style="margin-left:-15px;">
+                <h3>Choose Food</h3>
+       
+                <div class="r2_restcontent">
+                    <div class="logodiv">
+                        <img src="~/images/restaurant/@restaurant.RestaurantLogo" />
+                    </div>
+                     <div  class="col-md-6">   
+                        <div class="rest_Name_fd">@restaurant.RestaurantName</div>
+                        <div class="rest_Address">@restaurant.Address</div>
+                        <div class="rest_order_detail"> Minimum Order Amount : Rs. @restaurant.MinOrderAmount </div>
+                        <div class="rest_order_detail"> Restaurant Delivery Charges: Rs. @restaurant.MinOrderAmount </div>
+                            
+                            @*<div class="rest_order_detail">@restaurant.CusineInfo, @restaurant.RestaurantType, @restaurant.Speciality</div> *@
+                         </div>
+                        @*<div class="col-md-3" style="padding-top:5px;">
+                           <div id="SC"> @if (restaurant.IsServiceChargeApplicable == true)
+                                  { <div class="true">Service Charge</div> }
+                            else
+                            {
+                                { <div class="false">Service Charge</div> }
+                            } @if (restaurant.IsVatApplicable == true)
+                              {
+                                  <div class="true">VAT</div> 
+                                   }
+                                else
+                                   {
+                                       <div class="false">VAT</div> 
+                                   }</div>
+                        </div>  *@                     
+                </div>
+     
+        <br />
+           
+        @*
+          @using (Html.BeginForm("GetFoodItemList", "RestaurantList", new { id= ViewBag.Restaurantid}))
+          {
+        
+            <div class="editor-label" style="width:90px">item/dish &nbsp;:</div>
+            <div class="editor-field"><input type="text" id="txtSearchRes" name="txtSearchRes" value="@ViewBag.Keyword" class="form-control"/></div>
+            <div class="editor-label" style="width:90px; padding-left:15px; text-align:center; ">in&nbsp;:</div>
+            <div class="editor-field" style="width:180px">
+                 @Html.DropDownList("FoodCategoryid", null, string.Empty, new { @class = "form-control" })
+            </div>
+            <div class="editor-field" style="padding: 6px 0 0 70px;"><input type="submit" class="form-control" name="submit" value="Search" /></div>
+    
+          }
+   <div style="clear:both"></div>
+        <br />
+        <h3>Food Category</h3>  *@
+    </div>
+</div>
+     
+    
+
+@section scripts{
+@*<script src="../../Scripts/jquery-2.1.1.js" type="text/javascript"></script>
+<script src="~/Scripts/bootstrap-modal.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="../../Content/Style.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+
+<link rel="stylesheet" href="/resources/demos/style.css">*@
+
+
+<script type="text/javascript">  
+    $(document).ready(function () {
+        $("#ddlCategory").change(function () {
+            var categoryId =  $("#ddlCategory").val();
+               $("#dvCategoryResults").load('@(Url.Action("GetCategoryProducts","Home",null, Request.Url.Scheme))?categoryId=' + categoryId);
+        });     
+    });
+</script> 
+      
+}
+<div style="width: 743px; border: 1px solid rgb(225, 225, 225);" >
+    @ViewData["message"]
+
+
+    @foreach (var item in Model)
+    {
+        <h3 class="foodtitle">@item.FoodCategoryName</h3>
+        <div>
+            @{
+        if (item.FoodCategoryId == 0)
+        {
+            Html.RenderAction("LoadHotDealFoodItem", "RestaurantList", new { Restaurantid = ViewBag.Restaurantid });
+
+        }
+        else
+        {
+            Html.RenderAction("LoadFoodItem", "RestaurantList", new { id = item.FoodCategoryId, Restaurantid = ViewBag.Restaurantid, searchtxt = ViewBag.Searchtxt });
+        }
+            }
+        </div>
+    }
+
+
+
+
+</div>

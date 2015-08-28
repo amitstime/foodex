@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title</title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Varela+Round">
+        <meta name="viewport" content="width=device-width" />
+        <link rel="stylesheet" href="~/Content/admin.css" />
+        @Scripts.Render("~/bundles/modernizr")
+       
+    </head>
+    <body style="background:none">
+        <div id="admin_container">
+          <div id="heading">
+    	<div id="adminpanel">
+        	<h1>
+    		   Foodex Nepal - Website Administration
+       		</h1>
+        </div>
+       <!--<div id="menu">
+            
+        </div>-->
+        <div id="welcome">
+        	<ul>
+                
+                <li>
+                    <a href="#"> 
+                        <span class="icon-profile icon-font"></span>
+                        Welcome 
+                    </a>
+                </li>
+
+                
+        	</ul>
+        </div>
+    </div>
+        	<div id="login">
+
+		  @RenderBody()
+
+	</div> <!-- end login -->
+
+      
+	<footer>
+        <div id="copyright">
+            &copy Copyright 2014 <a href="http://www.amsoft.com.np"></a>Amsoft Technologies
+        </div>
+	</footer>          
+               
+          </div>    
+
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts",required:false)  
+</body>
+</html>

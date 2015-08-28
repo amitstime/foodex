@@ -1,0 +1,41 @@
+﻿@model FoodExNepal.Models.Restaurant
+
+
+@{
+    
+    ViewBag.Title = "Restaurant Login";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+
+<h2>Restaurant Login</h2>
+<div class="add">
+@using (Html.BeginForm(new { ReturnUrl=ViewBag.ReturnUrl}))
+{
+    <span style="color:red">@Html.ValidationSummary(true)</span>
+    
+    <div class="editor-label" style="width:150px">
+Username        </div>
+   <div class="editor-field">
+            @Html.TextBoxFor(model => model.Username) <br />
+            @Html.ValidationMessageFor(model => model.Username)
+        </div>
+        <div style="clear:both"></div>
+        <p></p>
+        <div class="editor-label" style="width:150px">
+            Password
+        </div>
+        <div class="editor-field">
+            @Html.PasswordFor(model => model.Password)<br />
+            @Html.ValidationMessageFor(model => model.Password)
+        </div>
+        <div style="clear:both"></div>
+        <p></p>
+           <div class="editor-label" style="width:324px;">
+           
+                </div>
+                <div class="editor-field">
+                      <input type="submit" value="Login" />
+                </div>
+        <div style="clear:both"></div>
+}
+    </div>

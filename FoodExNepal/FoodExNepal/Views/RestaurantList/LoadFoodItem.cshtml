@@ -1,0 +1,124 @@
+﻿@model IEnumerable<FoodExNepal.Models.FoodItem>
+<style type="text/css">
+    /* ------------- CSS Popup Image ------------- */
+    #thumbwrap {
+        width: 252px;
+        height: 252px;
+    }
+
+    .thumb {
+        float: left; /* must be floated for same cross browser position of larger image */
+        position: relative;
+        margin: 3px;
+    }
+
+        .thumb img {
+            border: 1px solid #D0D0D0;
+            vertical-align: bottom;
+        }
+
+        .thumb:hover {
+            border: 0; /* IE6 needs this to show large image */
+            z-index: 1;
+        }
+
+        .thumb span {
+            position: absolute;
+            visibility: hidden;
+        }
+
+        .thumb:hover span {
+            visibility: visible;
+            top: 37px;
+            left: 37px;
+        }
+
+    .small {
+        width: 60px;
+    }
+    .big {
+        margin-left: 34px;
+        margin-top: -37px;
+        width: 400px;
+    }
+   .newtable td {
+        padding: 16px 7px 10px 10px;
+        vertical-align: top;
+    }
+
+    .container p {
+        font-size: 12px;
+        margin: 0;
+        padding: 0 !important;
+        text-align: justify;
+    }
+</style>
+
+<div class="templatemo-service">
+    <table class="newtable">
+        @{ int restid = 0;
+         if (ViewBag.Restaurantid != null)
+         {
+             restid = ViewBag.Restaurantid;
+         }
+        }
+        @foreach (var item in Model)
+        {
+            <input type="hidden" id="rest+@item.FoodItemId" value="@item.RestaurantId" />
+            <input type="hidden" id="sec+@item.FoodItemId" value="@restid" />
+
+            <tr>
+               
+                <td><input class="btnadd" type="button" id="@item.FoodItemId" value="" onclick="Addtocart(this)" /></td>
+                <td><input id="int+@item.FoodItemId" type="text" value="1" style="width:50px" /></td>
+                <td style="width:500px">
+                    @item.FoodItemName
+                 
+            </td>
+                <td width="50px">Rs.@item.FoodItemRate</td>
+
+            <td>@if (!Request.Browser.IsMobileDevice )
+                {
+                if (!string.IsNullOrEmpty(item.FoodItemImage))
+                {
+                    <a class="thumb" href="#">
+                        <img src="~/images/Uploads/@item.FoodItemImage" class="small" />
+                        <span>
+                            <img src="~/images/Uploads/@item.FoodItemImage" alt="" class="big">
+                        </span>
+                    </a>
+                }
+                else
+                {
+
+                    <a class="thumb" href="#">
+                        <img src="~/images/Uploads/detaultFoodItem.jpg" alt="" class="small">
+                        <span>
+                            <img src="~/images/Uploads/detaultFoodItem.jpg" alt="" class="big">
+                        </span>
+                    </a>
+                }
+                }
+            </td>
+
+            </tr>
+            <tr><td colspan="5"> @if (item.IsHotDeal == true)
+                            {
+
+                                if (Request.Browser.IsMobileDevice)
+                                {
+                                     <div style="width:244px;">
+                    <span >@Html.Raw(item.HotDealDescription)</span></div>
+                                }else{
+                                     <div>
+                    <span >@Html.Raw(item.HotDealDescription)</span></div>}
+                            }</td></tr>
+
+            <tr>
+                <td colspan="5" style="border-bottom:1px dashed lightGrey; padding:0px"></td>
+            </tr>
+
+        }
+    </table>
+
+</div>

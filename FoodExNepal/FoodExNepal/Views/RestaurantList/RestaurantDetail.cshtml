@@ -1,0 +1,69 @@
+﻿@model FoodExNepal.Models.Restaurant
+
+@{
+    ViewBag.Title = "RestaurantDetail";
+    Layout = "~/Views/Shared/_TwoColumnLayout.cshtml";
+}
+
+                <h3 style="padding-top:8px;">@Model.RestaurantName</h3>
+                <div style="clear:both"></div>
+                <p><i>@Model.Address, tel: @Model.PhoneNumber</i></p> 
+                <hr />
+            <div class="table table-responsive">
+              
+                    <div style="margin-top:-8px">
+                        @{if(string.IsNullOrEmpty(Model.RestaurantImageInDetailPage))
+  {
+      <img src="~/images/restaurant/@Model.RestaurantLogo" style="width:100%; border:2px solid #B9B9B9"/>
+  }
+  else
+  {
+      <img src="~/images/restaurant/@Model.RestaurantImageInDetailPage" style="width:100%; border:2px solid #B9B9B9"/>
+  }
+      } </div>
+<br />                                                     
+                <div style="padding: 0px 16px 0px 0px ! important;" class="col-md-7">
+                    <p>@Html.Raw(Model.DetailInfo)</p>
+                </div>
+                <div style="padding:0px !important" class=" col-md-5">
+                    <div class="rest_about">
+                        <div class="rest_Name" style="width:100px; float:left;">
+                            Cuisine
+                        </div>
+                        <p>: @Model.CusineInfo</p>
+
+                        <div class="rest_Name" style="width:100px; float:left;">Service Charge</div>
+
+                        <p>
+                            : @if (Model.IsServiceChargeApplicable == true)
+                            {
+                                <text>Applicable</text>
+                            }
+                            else
+                            {
+                                <text>Not Applicable</text> }
+                        </p>
+                        <div class="rest_Name" style="width:100px; float:left;">VAT</div>
+                        <p>
+                            : @if (Model.IsVatApplicable == true)
+                            {
+                                <text>Applicable</text>
+                            }
+                            else
+                            {
+                                <text>Not Applicable</text> }
+                        </p>
+                        <div class="rest_Name" style="width:100px; float:left;">Opening Time</div>
+                        <p>: </p>
+                        <div class="" style="text-align:center">
+                            <div class="vmenu">@Html.ActionLink("View Menu", "FoodMenu", "RestaurantList", new { id = Model.RestaurantId }, null)</div>
+                        </div>
+                    </div>
+
+                   
+                </div>
+                </div>
+
+                   
+
+           

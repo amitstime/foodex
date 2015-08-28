@@ -1,0 +1,71 @@
+﻿@model IEnumerable<FoodExNepal.Models.Order>
+
+@{
+    ViewBag.Title = "OrderHistory";
+    Layout = "~/Views/Shared/_TwoColumnLayout.cshtml";
+}
+@{
+    if(ViewBag.MSG!="")
+    {
+        <script type="text/javascript">
+          var message = ViewBag.MSG;
+    
+        alert(message);
+</script>
+}
+}
+
+<div style="width: 743px; border: 1px solid rgb(225, 225, 225); min-height:400px;">    
+    <h3 class="foodtitle" style="color:#F19300; font-size:18px; font-weight:bold; padding:15px">Order History </h3>  
+
+<div class="templatemo-service">
+            <div class="container" style="min-height:457px">
+                <div id="reg_form">
+@if (Model.Count() > 0)
+{
+    <div class="list">
+    @foreach(var item in Model){
+        <table>
+            <tr>
+                <th width="200px">Order Number</th>
+                <td>Order-@item.OrderId</td>
+            </tr>
+            <tr>
+                <th width="200px">Order From</th>
+                <td>@item.Restaurant.RestaurantName</td>
+            </tr>
+            <tr>
+                <th width="170px">Order Date</th>
+                 <td>@item.DateTime</td>
+
+            </tr>
+            <tr>
+                <th width="100px">Amount(Inc. of VAT and TSC)</th>
+                <td>@item.Amount</td>
+            </tr>
+            </table>
+          <br />
+       
+            <div style="margin-left:50px">
+                @{
+                    Html.RenderAction("OrderDetails", "Customer", new { id = @item.OrderId });
+                 }
+                <hr width="500px" align="left" />
+            </div> 
+
+        
+        <br />
+    }
+
+    </div>
+}
+else
+{
+
+<text><h4> No Order History </h4></text>
+}
+                    </div>
+                </div>
+    </div>
+
+</div>

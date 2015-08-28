@@ -1,0 +1,301 @@
+﻿@using FoodExNepal.Models;
+@{
+    FoodExEntities db = new FoodExEntities();
+    WebsiteProfile websiteprofile = db.WebsiteProfiles.First();
+
+}
+ 
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title-Foodex Nepal</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+
+
+
+    <style>
+        #topbar {
+            position: absolute;
+            padding: 0px;
+            border: 10px solid rgba(0, 0, 0, 0.7);
+            border-radius: 20px;
+            margin: 70px 0 0 190px;
+            width: 820px;
+            z-index: 50;
+            visibility: hidden;
+        }
+
+        #notice {
+            position: absolute;
+            padding: 0px;
+            z-index: 500;
+            border: 10px solid rgba(0, 0, 0, 0.7);
+            border-radius: 20px;
+            margin: 100px 0 0 85px;
+            visibility: hidden;
+        }
+    </style>
+    <!--
+    Urbanic Template
+    http://www.templatemo.com/preview/templatemo_395_urbanic
+    -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--<link rel="shortcut icon" href="PUT YOUR FAVICON HERE">-->
+    <!-- Google Web Font Embed -->
+    <!-- Bootstrap core CSS -->
+    <link href="~/Content/css/bootstrap.css" rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this template -->
+    <link href="~/Scripts/js/colorbox/colorbox.css" rel='stylesheet' type='text/css'>
+    <link href="~/Content/css/templatemo_style.css" rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="~/Content/css/default.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="~/Content/Site.css" type="text/css" />
+    <link rel="stylesheet" href="~/Content/css/nivo-slider.css" type="text/css" media="screen" />
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+      <script type="text/javascript">
+          function Addtocart(e) {
+
+              //e.preventDefault();
+              var id = e.id;
+              var quant = document.getElementById("int+" + id).value;
+              $.ajax({
+                  url: '@Url.Action("AddToCart","ShoppingCart")',
+                 type: 'post',
+                 cache: false,
+                 async: true,
+                 data: { id: id, quantity: quant },
+                 success: function (result) {
+                     $('.cart').html(result);
+                     toastr.success('Item removed From Your Cart');
+
+                 }
+             });
+         }
+
+         function RemoveFromCart(e) {
+             //e.preventDefault();
+             var id = e;
+             //var quant = document.getElementById("int+" + id).value;
+             $.ajax({
+                 url: '@Url.Action("RemoveFromCart","ShoppingCart")',
+                type: 'post',
+                cache: false,
+                async: true,
+                data: { id: id },
+                success: function (result) {
+                    $('.cart').html(result);
+
+                }
+            });
+        }
+
+        function CartChange(e) {
+
+            //e.preventDefault();
+            var id = e;
+            var quant = document.getElementById("inp+" + id).value;
+            $.ajax({
+                url: '@Url.Action("ChangeCart","ShoppingCart")',
+                        type: 'post',
+                        cache: false,
+                        async: true,
+                        data: { id: id, quantity: quant },
+                        success: function (result) {
+                            $('.cart').html(result);
+                        }
+                    });
+                }
+			</script>
+     <script type="text/javascript">
+         $(document).ready(function () {
+             if ('@ViewData["message"]' == "Added") {
+                 toastr.success('Item Added To Your Cart');
+             }
+             else if ('@ViewData["message"]' == "Removed") {
+                 toastr.success('Item removed From Your Cart');
+             }
+             else if ('@ViewData["message"]' == "Updated") {
+                toastr.success('Your Cart Has Updated');
+            }
+            else if ('@ViewData["message"]' == "RestaurantChanged") {
+                toastr.success('Your Item Will Be Removed To Add New Item');
+            }
+            else { }
+         });
+</script> 
+</head>
+<body>
+    @*  <center>   <div id="topbar">
+        <a href="" onClick="closebar(); return false"><img src="~/images/close.png" height="30px" border="0" style="position:absolute; padding-left:793px; margin-top:-15px" ></a>
+        <img src="~/images/picnew.jpg">
+        </div> </center>*@
+
+
+
+    <div class="">
+        <div class="templatemo-top-bar " id="templatemo-top">
+            <div class="container">
+                <div class="subheader">
+                    <div class="col-md-3">
+                        <a href="../home" class="navbar-brand">
+                            <img src="~/images/homepageimage/@websiteprofile.Logo" alt="Foodex Nepal" title="Foodex Nepal" width="230px" />
+                        </a>
+
+                    </div>
+                    <div class="col-md-8 right">
+                        <div class="signin" style="text-decoration:none;">
+                            <!-- <img src="~/images/phone.png" alt="phone" width="20px"/>-->
+                            
+                            @*websiteprofile.ContactNumber   <b style="color:#E81F21">Service Hour: </b>@websiteprofile.ServiceHour *@
+                            @{
+                                if (Session["Customer"] != null)
+                                {
+                                    Customer cust = (Customer)Session["Customer"];
+                                    <text> Welcome @cust.Name | @Html.ActionLink("My Account", "MyAccount", "Customer") | @Html.ActionLink("Logout", "Logout", "Customer") </text>
+                                }
+                                else if (Session["Customer"] == null)
+                                {
+                                    <text> <a href="~/customer/login">Sign In</a> | <a href="~/customer/register">New User?</a></text>
+
+                                }
+                            }
+                            @* | @Html.Partial("_ViewSwitcher")*@
+                        </div>
+                      <!--  <div class="navbar-collapse collapse" id="templatemo-nav-bar">
+                            <ul class="nav navbar-nav navbar-right" style="margin-top: 15px;">
+                                <li @if ((Request.Path).ToUpper().Contains("HOME")) { <text> class="active" </text>  }><a href="~/Home">HOME</a></li>
+                                <li @if ((Request.Path).ToUpper().Contains("ABOUT")) { <text> class="active" </text>  }><a href="~/About">ABOUT</a></li>
+                                <li @if ((Request.Path).ToUpper().Contains("RESTAURANTLIST")) { <text> class="active" </text>  }><a href="~/RestaurantList">RESTAURANTS</a></li>
+                                <li @if ((Request.Path).ToUpper().Contains("HOWTOORDER")) { <text> class="active" </text>  }><a href="~/HowToOrder">HOW TO ORDER</a></li>
+                                <li @if ((Request.Path).ToUpper().Contains("CONTACT")) { <text> class="active" </text>  }><a href="~/Contact">CONTACT</a></li>
+                            </ul>
+                        </div><!--/.nav-collapse -->-->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="menubg">
+
+
+
+        <div style="width: 100%; text-align: center; position: relative; background:rgba(0, 0, 0, 0.45); height: 50px; z-index:10">
+            <div style="margin: 0 auto; padding-left:25%">
+                <ul class="nav navbar-nav" style="margin:0 auto; font-size:15px; padding-top:6px; font-weight:bold; color:white; text-align:center">
+                    <li @if ((Request.Path).ToUpper().Contains("HOME")) { <text> class="active" </text>      }><a href="~/Home" style="color:white">HOME</a></li>
+                    <li @if ((Request.Path).ToUpper().Contains("ABOUT")) { <text> class="active" </text>      }><a href="~/About" style="color:white">ABOUT</a></li>
+                    <li @if ((Request.Path).ToUpper().Contains("RESTAURANTLIST")) { <text> class="active" </text>      }><a href="~/RestaurantList" style="color:white">RESTAURANTS</a></li>
+                    <li @if ((Request.Path).ToUpper().Contains("HOWTOORDER")) { <text> class="active" </text>      }><a href="~/HowToOrder" style="color:white">HOW TO ORDER</a></li>
+                    <li @if ((Request.Path).ToUpper().Contains("CONTACT")) { <text> class="active" </text>      }><a href="~/Contact" style="color:white">CONTACT</a></li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+
+
+
+
+    <div style="clear:both"></div>
+
+    <div class="container" style="min-height:457px;"><br />
+        <div class="col-md-8">
+
+            <div style="clear:both"></div>
+
+            @RenderBody()
+        </div>
+        <div class="col-md-4">
+            @{
+                Html.RenderAction("Index", "ShoppingCart");
+            }
+        </div>
+    </div>
+
+    <div class="templatemo-tweets">
+        <div class="container">
+            <div style="width:100%; font-weight:bold; font-size:13px; text-align:right; padding:10px; color:lightcyan">
+                &copy; copyright @{ <text> @DateTime.Now.Year  </text> } FOODEXNEPAL.COM - Express Food Delivery Service
+            </div>
+            <!--   <div class="row">
+
+
+                   <div class="col-md-4">
+                       <div class="templatemo-service-item">
+                           <div style="font-weight:bold;margin-top:20px">
+
+                               <span>
+                                   Foodex Nepal App
+                               </span>
+                           </div>
+                          <p style="color:white">
+                         You can also order from your favorite restaurants through our iPhone, iPad, Android and mobile website applications.
+                          </p>
+                          <img src="~/images/icon_googlplay_n2x.png" width="110px">
+                          <img src="~/images/icon_ipadApp_n2x.png" width="110px">
+                          <img src="~/images/icon_iPhoneApp_n2x.png" width="110px">
+
+                           <br class="clearfix"/>
+                       </div>
+                       <div class="clearfix"></div>
+                   </div>
+
+                   <div class="col-md-4">
+                       <div class="templatemo-service-item" >
+                            <div style="font-weight:bold;margin-top:20px">
+                               <span class="">Why Foodex Nepal ?</span>
+                           </div>
+                           <p style="color:white">
+                               Looking for a Pizza, a Burger, how about some Indian Food or maybe some Chinese Food ? Look no more !
+                          We have a wide variety of restaurants in Nepal. Foodexnepal.com is your destination for online food
+                          delivery in Nepal.
+                           </p>
+
+                       </div>
+
+                   </div>
+
+                   <div class="col-md-4">
+                       <div class="templatemo-service-item">
+                           <div style="font-weight:bold;margin-top:20px">
+                               <span class="">Get in touch</span>
+                           </div>
+                           <p>
+                               <img src="~/images/ficon_n.png" width="50px">
+                               <img src="~/images/twitterIcon_n.png" width="50px">
+                           </p>
+
+                       </div>
+                       <br class="clearfix"/>
+                   </div>-->
+        </div>
+    </div><!-- /.container -->
+
+
+    <script src="~/Scripts/js/jquery.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/stickUp.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/colorbox/jquery.colorbox-min.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/templatemo_script.js" type="text/javascript"></script>
+    <script type="text/javascript" src="~/Scripts/js/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/js/jquery.nivo.slider.js"></script>
+
+    <!-- templatemo 395 urbanic -->
+    @* @Scripts.Render("~/bundles/jquery")*@
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>

@@ -1,0 +1,16 @@
+﻿ @using (Html.BeginForm("Index", "RestaurantList"))
+                                {        
+                                    <div class="editor-label" style="width:250px;"><div class="strokeme"><p style="color:#FF6000; font-size:30px;">Find  Restaurant</p></div></div>
+                                    <div class="editor-field" style="width:250px; height:40px;"><input type="text" name="KeyWord" id="txtSearchRes" placeholder="Restaurant" class="form-control"/></div>
+                                    
+                                    <div style="clear:both"></div>
+                                    
+                                    <div class="editor-field" style="width:250px; height:38px">
+                                        @Html.DropDownList("Location", null, "Location", new { @class = "form-control" })
+                                    </div>
+                                    
+                                    <div style="clear:both"></div>
+                                    
+                                    <div class="editor-field" style="padding: 6px 0 0 160px;"><input type="submit" class="form-control" name="submit" value="Search" /></div>
+    
+                                }

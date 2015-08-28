@@ -1,0 +1,198 @@
+﻿@model FoodExNepal.Models.Customer
+
+@{
+    ViewBag.Title = "EditAccount";
+    Layout = "~/Views/Shared/_TwoColumnLayout.cshtml";
+}
+<h3>User Edit </h3>
+
+                
+    
+
+    <style type="text/css" media="screen">
+.wholePageRep{    
+      height:152px;
+    }
+    
+.content-page-rep{
+ 
+    width:100%;
+    height:auto;
+    margin-top:-42px;
+    }   
+    </style>
+
+
+        <div style="background-color:#fff;">
+            
+    
+
+
+<script type="text/javascript">
+   
+
+    function validateCaptcha() {
+
+        var captcha;
+
+        if (E(clientID.hdncaptchaText).value == "") {
+            captcha = '300167';
+        } else {
+            captcha = E(clientID.hdncaptchaText).value;
+
+        }
+        var txtcaptcha = E('ctl00_ctl00_cph1_cph1_as1_CaptchaCtrl1' + '_txtCode').value;
+
+        if (txtcaptcha == '') return false;
+        if (txtcaptcha != captcha) return false;
+        return true;
+
+    }
+
+    function changeCaptcha() {
+        var name = "./CaptchaImage.aspx?rand=" + Math.random();
+        document.images["imgCaptcha"].src = name;
+        E('ctl00_ctl00_cph1_cph1_as1_CaptchaCtrl1' + '_txtCode').value = '';
+    }
+
+    $(document).ready(function () {
+        if (E(clientID.txtPassowrd).value == '') E(clientID.txtPassowrd).value = '';
+        if (E(clientID.txtMobileNo).value == '') E(clientID.txtMobileNo).value = '';
+    });
+
+
+</script>
+
+ @using (Html.BeginForm("EditAccount", "Customer", new { Returnurl = ViewBag.ReturnUrl }))
+ {
+<div id="add">
+    <input type="hidden" id="userid" value="@Model.CustomerId" />
+                <div id="divUserRegister">
+                </div>
+                <h4>Personal Info</h4>
+                           
+                <hr />
+              
+                <div class="editor-label">Full Name*</div>              
+                <div class="editor-field"><input name="txtFName" type="text" id="txtFName" value="@Model.Name"></div>    
+                
+    <div style="clear:both"></div>     
+    
+                         <div class="editor-label">Address*</div>                        
+                         <div class="editor-field"><input name="txtAddress" type="text" id="txtAddress" value="@Model.Address"></div>                       
+    
+        <div style="clear:both"></div>                                                          
+                            
+                <div class="editor-label">Email*</div> 
+                <div class="editor-field"> <input name="txtEmail" type="text" id="txtEmail" value="@Model.Email">@Html.ValidationMessage("Email")<span id="User_EmailExists"></span></div>
+    
+    <div style="clear:both"></div>
+    
+                <br />                       
+                        <h4>Contact Info</h4>
+                <div style="clear:both"></div>
+                <hr />
+                     
+                        <div class="editor-label">Contact*</div>                       
+                        <div class="editor-field"><input name="txtContact" type="text" maxlength="30" id="txtContact" value="@Model.ContactNumber"></div>
+                            
+        <div style="clear:both"></div>    
+    
+                 
+                <br />
+                         <h4>Your Password</h4>
+                      
+                 <hr />
+              
+                        <div class="editor-label">Password*</div>
+                        <div class="editor-field"><input name="txtPassowrd" type="password" id="txtPassowrd" value="@Model.Password"></div>
+                            
+    <div style="clear:both"></div>
+    
+                        <div class="editor-label">Re-enter Password*</div>
+                        <div class="editor-field"><input name="txtRePassowrd" type="password" id="txtRePassowrd" value="@Model.Password"></div>
+    
+    <div style="clear:both"></div>
+                <br />
+                    <input type="submit" name="Save" value="Save">
+                       
+</div>
+ }
+<div style="clear:both"></div>
+
+
+ <div  style="display: none; left: 478px; top: 244px;">
+	<div><img src="./images/top-info-box.png" width="182" height="27" alt="tooltip"></div>
+	<div class="innerDiv" id="divTooltipText">Please enter your valid email.</div>
+	<div><img src="./images/bottom-info-box.png" width="182" height="9" alt="tooltip"></div>
+ </div>
+
+  
+  
+  
+        </div>
+   
+
+    <div style="clear:both"></div>
+
+<div>
+    @Html.ActionLink("Back", "MyAccount")
+</div>
+
+
+     @section scripts{
+     <script type="text/javascript">
+
+         $(document).ready(function () {
+             $('#txtEmail').blur(function () {
+                 if ($('#txtEmail').val != "") {
+                     //var params = { email: $(this).val() };
+                     $.ajax({
+                         url: "CheckUserEmail",
+                         type: "post",
+                         data: { email: $("#txtEmail").val(),id:$("#userid").val() },
+                         success: function (response, textStatus, jqXHR) {
+
+                             if (response.IsExisting == "Exists") {
+                                 // User name is existing already, you can display a message to the user
+                                 $("#User_EmailExists").html("Email Already Exists")
+                                 $("#User_EmailExists").css("color", "red");
+                                 //$('input[type="submit"]').attr('disabled', 'disabled');
+                                 emailConf = "false";
+                                 savedBtnStatus();
+                             }
+                             else {
+                                 // User name is not existing
+                                 $("#User_EmailExists").html("")
+                                 $("#User_EmailExists").css("color", "green");
+                                 //$('input[type="submit"]').removeAttr('disabled');
+                                 emailConf = "true";
+                                 savedBtnStatus();
+                             }
+                         },
+                         error: function (jqXHR, textStatus, errorThrown) {
+
+                             alert("error");
+                         },
+                         // callback handler that will be called on completion
+                         // which means, either on success or error
+                         complete: function () {
+                         }
+                     });
+                 }
+                 else {
+                     $("#User_EmailExists").html("Email Cannot be Empty")
+                     $("#User_EmailExists").css("color", "red");
+                     emailConf = "false";
+                     savedBtnStatus();
+                 }
+             });
+         });
+
+
+
+
+
+</script>
+
+}

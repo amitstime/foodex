@@ -1,0 +1,159 @@
+﻿@model IEnumerable<FoodExNepal.Models.FoodCategory>
+
+@{
+    ViewBag.Title = "FoodMenu.Mobile";
+    Layout = "~/Views/Shared/_Layout.Mobile.cshtml";
+}
+@using FoodExNepal.Models;
+@{
+    FoodExEntities db = new FoodExEntities();
+    int restid=ViewBag.Restaurantid;
+    var restaurant = db.Restaurants.SingleOrDefault(a => a.RestaurantId == restid);
+    }
+
+<h3>Food Menu</h3>
+
+<div class="r2_restcontent">
+                     <div  class="col-md-2" style="padding:5px 0 5px 5px">                     
+                        <img src="~/images/restaurant/@restaurant.RestaurantLogo" style="max-width:300px;"/>
+                     </div>
+                     <div  class="col-md-6">   
+                        <div class="rest_Name_fd">@restaurant.RestaurantName</div>
+                        <div class="rest_Address"><i>@restaurant.Address</i></div>
+                        <div class="rest_order_detail">@restaurant.CusineInfo, @restaurant.RestaurantType, @restaurant.Speciality</div>
+                     </div>
+                        <div class="col-md-3" style="padding-top:5px;">
+                           <div id="SC"> @if (restaurant.IsServiceChargeApplicable == true)
+                                  { <div class="true">Service Charge</div> }
+                            else
+                            {
+                                { <div class="false">Service Charge</div> }
+                            } @if (restaurant.IsVatApplicable == true)
+                              {
+                                  <div class="true">VAT</div> 
+                                   }
+                                else
+                                   {
+                                       <div class="false">VAT</div> 
+                                   }</div>
+                        </div>                      
+                </div>
+<hr />
+
+
+
+
+
+
+
+   
+
+@section scripts{
+
+
+<script type="text/javascript">  
+    $(document).ready(function () {
+        $("#ddlCategory").change(function () {
+            var categoryId =  $("#ddlCategory").val();
+               $("#dvCategoryResults").load('@(Url.Action("GetCategoryProducts","Home",null, Request.Url.Scheme))?categoryId=' + categoryId);
+        });     
+    });
+</script> 
+     <script type="text/javascript">
+         function Addtocart(e) {
+
+             //e.preventDefault();
+             var id = e.id;
+             var quant = document.getElementById("int+" + id).value;
+             $.ajax({
+                 url: '@Url.Action("AddToCart","ShoppingCart")',
+                type: 'post',
+                cache: false,
+                async: true,
+                data: { id: id, quantity: quant },
+                success: function (result) {
+                    $('.cart').html(result);
+                    toastr.success('Item removed From Your Cart');
+
+                }
+            });
+        }
+
+        function RemoveFromCart(e) {
+            //e.preventDefault();
+            var id = e;
+            //var quant = document.getElementById("int+" + id).value;
+            $.ajax({
+                url: '@Url.Action("RemoveFromCart","ShoppingCart")',
+                        type: 'post',
+                        cache: false,
+                        async: true,
+                        data: { id: id },
+                        success: function (result) {
+                            $('.cart').html(result);
+                            
+                        }
+                    });
+                }
+
+                function CartChange(e) {
+
+                    //e.preventDefault();
+                    var id = e;
+                    var quant = document.getElementById("inp+" + id).value;
+                    $.ajax({
+                        url: '@Url.Action("ChangeCart","ShoppingCart")',
+            type: 'post',
+            cache: false,
+            async: true,
+            data: { id: id, quantity: quant },
+            success: function (result) {
+                $('.cart').html(result);
+            }
+        });
+    }
+			</script>
+     <script type="text/javascript">
+         $(document).ready(function () {
+             if ('@ViewData["message"]' == "Added") {
+                toastr.success('Item Added To Your Cart');
+            }
+            else if ('@ViewData["message"]' == "Removed") {
+                toastr.success('Item removed From Your Cart');
+            }
+            else if ('@ViewData["message"]' == "Updated") {
+                toastr.success('Your Cart Has Updated');
+            }
+            else if ('@ViewData["message"]' == "RestaurantChanged") {
+                toastr.success('Your Item Will Be Removed To Add New Item');
+            }
+            else { }
+        });
+</script> 
+}
+<div>
+    @ViewData["message"]
+ 
+  
+   @foreach (var item in Model)
+   {
+       <h3>@item.FoodCategoryName</h3>
+       <div >
+       @{
+       if (item.FoodCategoryId == 0)
+       {
+           Html.RenderAction("LoadHotDealFoodItem", "RestaurantList", new { Restaurantid = ViewBag.Restaurantid });
+           
+       }
+       else
+       {
+           Html.RenderAction("LoadFoodItem", "RestaurantList", new { id = item.FoodCategoryId, Restaurantid = ViewBag.Restaurantid });
+           }
+           }
+        </div>
+   }
+
+  
+  
+ 
+</div>

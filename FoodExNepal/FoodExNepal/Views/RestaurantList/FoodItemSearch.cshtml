@@ -1,0 +1,291 @@
+﻿@*@model IEnumerable<FoodExNepal.Models.Restaurant>*@
+@model PagedList.IPagedList<FoodExNepal.Models.Restaurant>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "FoodItemSearch";
+    Layout = "~/Views/Shared/_TwoColumnLayout.cshtml";
+}
+@using FoodExNepal.Models;
+@{
+    FoodExEntities db = new FoodExEntities();        
+ }
+<style>
+
+
+    .col-md-2, .col-md-7, .col-md-3 {
+        padding:3px;
+    }
+    .col-md-7 {
+        width:63%;
+    }
+     .col-md-2 {
+        width:20%;
+    }
+    .col-md-3 {
+        width:17%;
+    }
+
+
+    .select_your_rest_new_head {
+        background-color: #f3962e;
+        border: 1px solid #dddddd;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+        color: #fff;
+        float: left;
+        font-size: 17px;
+        font-weight: bold;
+        height: 43px;
+        margin: auto;
+        padding: 10px 10px 0;
+        width: 730px;
+    }
+
+
+    .select_your_rest_new_body {
+        background: rgba(0, 0, 0, 0) linear-gradient(to bottom, #ffffff 0%, #f4f4f4 100%) repeat scroll 0 0;
+        border: 1px solid #dddddd;
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+        float: left;
+        margin: auto;
+        min-height: 30px;
+        padding: 10px 10px 0;
+        width: 730px;
+    }
+
+
+    .chosen-single {
+    /*border: 1px solid #dddddd;
+    box-shadow: 0 0 7px rgba(0, 0, 0, 0.3);*/
+    width:94%;
+    margin: 15px 0;
+    height: 30px;
+}
+
+     .chosen-single1 {
+    /*border: 1px solid #dddddd;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);*/
+    width:100%;
+    height: 30px;
+}
+
+
+    .sort_cruisine {
+        float: left;
+        font-size: 14px;
+        margin-left: 20px;
+        width: 40%;
+    }
+
+     .sort_payment {
+        float: left;
+        font-size: 14px;
+        width: 23%;
+    }
+
+    .sort_by {
+        float: left;
+        font-size: 14px;
+        width: 33%;
+    }
+
+    .sort_title {
+    font-weight:bold;
+    font-size:14px;
+    }
+     .select_your_rest 
+    .select_your_rest_new_body 
+    .select_your_rest_new_inner
+    .sort_cruisine 
+    > div {
+    color: #000;
+    font-size: 13px;
+    font-weight: bold;
+}
+    
+</style>
+<div id="reg_form">
+<h3>Food Items - Member Restaurants</h3>
+    @using (Html.BeginForm("Index", "RestaurantList"))
+   
+            {
+
+               <div class="select_your_rest_new_head">Sort & Filter</div>
+        
+        <div class="select_your_rest_new_body">
+            <div class="sort_cruisine">
+                    <div>
+                            <span class="sort_title">Filter by Delivery Area / Cuisines</span>
+                    </div>
+                    
+                    <div class="chosen-single">
+                        @Html.TextBox("txtCuisines",null, new { value = ViewBag.Keyword ,@class="chosen-single1"})
+                            @*<select class="chosen-single1">
+                                <option value="A">A</option>
+                                <option value="A">A</option>
+                                <option value="A">A</option>
+                                <option value="A">A</option>
+                            </select>*@
+                    </div>
+
+                    <div class="chosen-single">
+                        @Html.DropDownList("RestLocation",null, string.Empty, new  { @class="chosen-single1"})
+                           @* <select class="chosen-single1">
+                                <option value="B">B</option>
+                                <option value="B">B</option>
+                                <option value="B">B</option>
+                                <option value="B">B</option>
+                            </select>*@
+                    </div>
+            </div>
+
+            <div class="sort_payment">
+                <div>
+                        <span class="sort_title">Payment Options</span>
+                </div>
+
+                <div style="margin:15px 0;">
+                   @* <input type="radio" name="rdbPayment">*@
+                    <label style="font-weight:normal;">Cash-on Delievery</label>
+                </div>
+            </div>
+
+            
+            <div class="sort_by">
+                    <div>
+                        <span class="sort_title">Sort By</span>
+                    </div>
+            
+
+                <div class="chosen-single">
+                        <select name="SortBy" class="chosen-single1">
+                            <option value="" @if (ViewBag.Sortby != "RestaurantName" && ViewBag.Sortby != "MinimumOrderAmount")
+                                             { <text>Checked</text> }></option>
+                              <option value="RestaurantName" @if(ViewBag.Sortby=="RestaurantName") { <text>Checked</text> }>Restaurant Name</option>
+                              @*<option value="Ratings">Ratings</option>*@
+                               <option value="MinimumOrderAmount" @if (ViewBag.Sortby == "MinimumOrderAmount")
+                                                                  { <text>Checked</text> }>Minimum Order Amount</option>
+                           
+                        </select>
+                 </div>
+
+                <div class="chosen-single">
+                    <input class="chosen-single1" type="text" placeholder="Quick find Restaurant" name="txtRestaurantName" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true" value=@ViewBag.Restaurant>
+                </div>
+            </div>
+
+
+      </div>
+            @*<div class="editor-label" style="width:90px">Search By</div>
+            <div class="editor-field" style="width:250px;padding-top: 6px;">
+                <input type="radio" name="rdoRestaurantFoodItem" value="Restaurant" @ViewBag.RestaurantSelected  /> Restaurant &nbsp; &nbsp;
+                <input type="radio" name="rdoRestaurantFoodItem" value="Food Items" @ViewBag.FoodItemsSelected/> Food Items
+            </div><div style="clear:both"></div>
+            <div class="editor-label" style="width:90px">Keyword</div>
+            <div class="editor-field"><input type="text" name="KeyWord" id="txtSearchRes" value="@ViewBag.Keyword" class="form-control"/></div>
+            <div class="editor-label" style="width:90px; padding-left:15px;">Location:</div>
+            <div class="editor-field">
+                @Html.DropDownList("Location",null,string.Empty,  new { @class = "form-control" })
+            </div>*@
+            <div class="editor-field" style="padding-left: 23px; padding-top: 6px;"><input type="submit" class="form-control" name="submit" value="Search" /></div>
+ 
+            }
+   <div style="clear:both"></div>
+<h5>Find restaurants of your choice from the list below.</h5>
+
+    <div>
+
+
+    @if (ViewBag.Keyword == "")
+    {
+
+        foreach (var item in Model)
+        {
+         <a href="@Url.Action("RestaurantDetail", "RestaurantList", new { id = item.RestaurantId })">
+                 <div class="r1_restcontent">
+                     <div  class="logodiv">                     
+                        <img src="~/images/restaurant/@item.RestaurantLogo" />
+                     </div>
+                     <div  class="col-md-6">   
+                        <div class="rest_Name">@Html.DisplayFor(modelItem => item.RestaurantName)</div>
+                        <div class="rest_Address"><i>@Html.DisplayFor(modelItem => item.Address)</i></div>
+                        <div class="rest_order_detail">@Html.DisplayFor(modelItem => item.CusineInfo), @Html.DisplayFor(modelItem => item.RestaurantType), @Html.DisplayFor(modelItem => item.Speciality)</div>
+                     </div>
+                        <div class="col-md-3">
+                           <div id="SC"> @if (item.IsServiceChargeApplicable == true)
+                                         { <div class="true">Service Charge</div> }
+                                         else
+                                         {
+                                             { <div class="false">Service Charge</div> }
+                                         } @if (item.IsVatApplicable == true)
+                                           {
+                                  <div class="true">VAT</div> 
+                                           }
+                                           else
+                                           {
+                                       <div class="false">VAT</div> 
+                                           }</div>
+                        </div>                      
+                </div>
+         </a>
+        <div style="height:10px; padding-bottom:10px;"></div>
+    
+        }
+
+    }
+    else
+    {
+        var foodItems = (List<FoodItem>)ViewBag.Food;
+        if (foodItems != null)
+        {
+
+            foreach (var item in foodItems)
+            {
+                
+                     <div class="r1_restcontent">
+                         <div  class="col-md-2">                     
+                            <a href="@Url.Action("RestaurantDetail", "RestaurantList", new { id = item.RestaurantId })"><img src="~/images/restaurant/@item.Restaurant.RestaurantLogo" /></a>
+                         </div>
+                         <div  class="col-md-7">   
+                            <div class="rest_Name">@Html.DisplayFor(modelItem => item.FoodItemName) [ @Html.DisplayFor(modelItem => item.Restaurant.RestaurantName) ]</div>
+                            <div class="rest_Address"><i>@Html.Raw(item.FoodDescription)</i></div>
+                            <div class="rest_order_detail">Price : Rs.@Html.DisplayFor(modelItem => item.FoodItemRate) <input id="int+@item.FoodItemId" type="text" value="1" style="width:50px"/><input type="button" id="@item.FoodItemId" value="Add" style="width:80px" class="AddCart" onclick="Addtocart(this)"/></div>  
+                                                          
+                        </div>
+                            <div class="col-md-3">
+                               <div id="SC"> @if (item.Restaurant.IsServiceChargeApplicable == true)
+                                             { <div class="true">Service Charge</div> }
+                                             else
+                                             {
+                                                 { <div class="false">Service Charge</div> }
+                                             } @if (item.Restaurant.IsVatApplicable == true)
+                                               {
+                                      <div class="true">VAT</div> 
+                                               }
+                                               else
+                                               {
+                                           <div class="false">VAT</div> 
+                                               }
+                                   <br />
+                                 </div>
+                            </div>
+                         <div class="col-md-1"> 
+                         </div>
+                          
+                    </div>
+             
+         <div style="height:10px; padding-bottom:10px;"></div>
+    
+            }
+        }
+    }
+
+
+
+         Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page,Keyword=ViewBag.Keyword,Location=ViewBag.LocationSelectedId}))
+    </div>
+
+</div>

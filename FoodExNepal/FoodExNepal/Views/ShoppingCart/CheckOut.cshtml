@@ -1,0 +1,191 @@
+﻿@model FoodExNepal.Models.Customer
+
+@{
+    ViewBag.Title = "CheckOut";
+    Layout = "~/Views/Shared/_TwoColumnLayout.cshtml";
+}
+
+
+
+
+
+<div class="templatemo-service">
+
+                <div class="breadCrums">
+    <ul>
+        <li @if(ViewBag.Bread=="Home")
+             { <text>class="selected"</text>}>
+            <span>
+               @* <a href="@Url.Action("Index","Home")">Home</a>*@Home
+            </span>
+        </li>
+        <li @if (ViewBag.Bread == "Restaurant")
+             { <text>class="selected"</text>}>
+            <span>
+                @*<a href="@Url.Action("Index","RestaurantList")" id="">Choose Restaurant</a>*@Choose Restaurant
+            </span>
+        </li>
+        <li @if (ViewBag.Bread == "Food")
+             { <text>class="selected"</text>}>
+            <span>
+               @* <a href="@Url.Action("","")" id="">Choose Item</a>*@Choose Food
+            </span>
+        </li>
+        <li @if (ViewBag.Bread == "Checkout")
+             { <text>class="selected"</text>}>
+            <span>
+                @*<a href="#" id="">Checkout</a>*@Checkout
+            </span>
+        </li>
+    </ul>
+</div>
+
+<br /> <br /> <br />
+
+            <div class="container" style="margin-left:-15px;">
+
+
+                <h3>CheckOut</h3>
+               
+                <br />
+                <div>
+                    <div class="col-md-6">
+                    
+                    
+                    @using (Html.BeginForm()){
+                        <div class="delivery_box">
+                        <div><h4>Delivery Type</h4></div>
+                     
+                  <div>
+                        <input type="radio" name="rdbcheckout" value="Delivertome" checked onchange="ShowDelivery()"/>&nbsp;Deliver to my selected Location 
+                        <div style="clear:both"></div>
+                        <input type="radio" name="rdbcheckout" value="pickitupmyself" onchange="ShowPickself()"/>&nbsp;i'll pick it up myself
+                    </div>
+                           
+                        <br />
+                    </div>
+                          
+                    <div class="delivery" id="delivery" style="display:none">
+                        
+                            <br />
+                                <div class="delivery_box">  
+                                <div><h4>Delivery Address</h4></div>
+                                                              
+                                <div class="editor-label">Full Name*</div>
+                                <div class="editor-field"><input type="text" name="txtFName"/></div>
+                            
+                        <div style="clear:both"></div>
+
+                                <div class="editor-label">Address*</div>
+                                <div class="editor-field"><input type="text" name="txtAddress"/></div>
+                                
+                        <div style="clear:both"></div>
+
+                                <div class="editor-label">Phone*</div>
+                                <div class="editor-field"><input type="text" name="txtPhone"/></div>
+                                
+                        <div style="clear:both"></div>
+
+                                 <div class="editor-label">Location*</div>
+                                <div class="editor-field" style="height:23px;">@Html.DropDownList("Location",string.Empty)</div> 
+                               <div style="clear:both"></div>                          
+                       </div>
+                       </div>
+                        <div style="clear:both"></div>
+                                
+                                
+                <div class="pickup" id="pickup" style="display:none">
+                        <br />
+                        <div class="delivery_box">
+                        <div><h4>Delivery/Take away Date and Time</h4></div>
+                                    <input type="radio" value="AsSoonAsPossible" name="rdbAsSoonAs" />As soon as possible
+                        <div style="clear:both"></div>
+                                    <input type="radio" name="rdbAsSoonAs" checked /> On date and time specified below
+                             
+                          <div style="clear:both"></div>
+                                <br />
+                                    <div class="editor-label">Date:</div> 
+                                    <div class="editor-field"><input type="text" class="datepicker" name="DeliveryDate"/></div>
+                        <div style="clear:both"></div>
+                                    <div class="editor-label">Time:</div>
+                                    <div class="editor-field"><select name="DeliveryTime">
+                                        <option value="11:30 AM">11:30 AM</option>
+                                        <option value="11:45 AM">11:45 AM</option>
+                                        <option value="12:00 PM">12:00 PM</option>
+                                        <option value="12:15 PM">12:15 PM</option>
+                                        <option value="12:30 PM">12:30 PM</option>
+                                        <option value="12:45 PM">12:45 PM</option>
+                                        <option value="01:00 PM">01:00 PM</option>
+                                        <option value="01:15 PM">01:15 PM</option>
+                                        <option value="01:30 PM">01:30 PM</option>
+                                        <option value="01:45 PM">01:45 PM</option>
+                                        <option value="02:00 PM">02:00 PM</option>
+                                        <option value="02:15 PM">02:15 PM</option>
+                                        <option value="02:30 PM">02:30 PM</option>
+                                        <option value="02:45 PM">02:45 PM</option>
+                                        <option value="03:00 PM">03:00 PM</option>
+                                        <option value="03:15 PM">03:15 PM</option>
+                                        <option value="03:30 PM">03:30 PM</option>
+                                        <option value="03:45 PM">03:45 PM</option>
+                                        <option value="04:00 PM">04:00 PM</option>
+                                        <option value="04:15 PM">04:15 PM</option>
+                                        <option value="04:30 PM">04:30 PM</option>
+                                        <option value="04:45 PM">04:45 PM</option>
+                                        <option value="05:00 PM">05:00 PM</option>
+                                        <option value="05:15 PM">05:15 PM</option>
+                                        <option value="05:30 PM">05:30 PM</option>
+                                        <option value="05:45 PM">05:45 PM</option>
+                                        <option value="06:00 PM">06:00 PM</option>
+                                        <option value="06:15 PM">06:15 PM</option>
+                                        <option value="06:30 PM">06:30 PM</option>
+                                        <option value="06:45 PM">06:45 PM</option>
+                                        <option value="07:00 PM">07:00 PM</option>
+                                        <option value="07:15 PM">07:15 PM</option>
+                                        <option value="07:30 PM">07:30 PM</option>
+                                        <option value="07:45 PM">07:45 PM</option>
+                                        <option value="08:00 PM">08:00 PM</option>
+                                        <option value="08:15 PM">08:15 PM</option>
+                                        <option value="08:30 PM">08:30 PM</option>
+                                    </select>
+                                    </div>
+                                <div style="clear:both"></div>                                                                  
+                                
+                              
+                                   @* <div class="editor-label" style="margin-top:6px;">Location*</div>
+                                    <div class="editor-field">@Html.DropDownList("Location",string.Empty)</div>
+                            <div style="clear:both"></div>*@
+                              
+                    </div>
+                    </div>
+                        <div style="clear:both"></div>
+                        <br />
+                            <div class="delivery_box">  
+                                <div><h4>Special Instruction:</h4></div>
+                                <textarea id="specialInstruction"></textarea>
+                                 <div style="clear:both"></div>
+                                <br />
+                            </div>
+                    
+                    <input type="submit" value="Continue" />
+                    
+                    }  
+                    </div>
+            </div>
+    </div>
+</div>
+@section scripts{
+    <script type="text/javascript">
+        function ShowDelivery() {
+            var div = document.getElementById('delivery');
+            var pic = document.getElementById('pickup');
+            div.style.display = "block";
+            pic.style.display = "block";
+        }
+        function ShowPickself() {
+            var div = document.getElementById('delivery');
+            var pic = document.getElementById('pickup');
+            div.style.display = "none";
+            pic.style.display = "block";
+        }
+    </script>
+}

@@ -1,0 +1,189 @@
+﻿@*<!DOCTYPE html>
+<html>
+<head>
+    <title>Mobile Foodex</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    @Styles.Render("~/Content/Mobile/css", "~/Content/jquerymobile/css")
+    @Scripts.Render("~/bundles/jquery", "~/bundles/jquerymobile")           
+   
+</head>
+<body>
+
+<div class="ui-mobile">
+    <div class="ui-header"> 
+                   
+    </div>
+    
+    <div >    
+
+        @RenderBody()
+
+    </div>
+
+    <div class="ui-footer">
+
+    </div>
+
+</div>     
+   
+
+</body>
+   
+   
+</html>*@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="author" content="www.frebsite.nl" />
+		<meta name="viewport" content="width=device-width initial-scale=1.0 maximum-scale=1.0 user-scalable=yes" />
+   
+        <style>
+.menutop
+{
+	margin:0px; list-style-type:none; padding:0;font-family:century gothic
+}
+	.menutop li
+	{
+		list-style-type:none;
+		padding:5px;
+		border-bottom:1px solid #ccc;
+		background-color:#EEEEEE;
+	}
+	.menutop li:last-child 
+{
+	/*<!--border-bottom:0px;-->*/
+}
+	.menutop a
+	{
+		text-decoration:none;
+		color:#00F;
+	}
+	.menutop li:hover
+	{
+		padding:5px;
+		background-color:#fcfcfc;
+	}
+    .btnadd {
+    background: rgba(0, 0, 0, 0) url("../../images/btnadd.jpg") no-repeat scroll 0 0;
+    border: medium none;
+    height: 30px;
+    width: 30px;
+}
+</style>     
+	<link rel="stylesheet" href="~/Content/jquery.mobile.structure-1.1.0.css" />
+	<link rel="apple-touch-icon" href="images/launch_icon_57.png" />
+	<link rel="apple-touch-icon" sizes="72x72" href="images/launch_icon_72.png" />
+	<link rel="apple-touch-icon" sizes="114x114" href="images/launch_icon_114.png" />
+	<link rel="stylesheet" href="~/Content/jquery.mobile-1.1.0.css" />
+	<link rel="stylesheet" href="~/content/mobilecustom.css" />
+        <link rel="stylesheet" href="~/content/Site.css" />
+        <link rel="stylesheet" href="~/content/PagedList.css" />
+		
+        
+		 <script type="text/javascript" src="~/Scripts/js/jquery-1.7.1.min.js"></script>
+			
+<script src="~/Scripts/jquery.mobile-1.1.0.min.js"></script>
+        	<title>@ViewBag.Title</title>
+
+		@*<link type="text/css" rel="stylesheet" href="~/Content/demo.css" />
+		<link type="text/css" rel="stylesheet" href="~/Scripts/dist/css/jquery.mmenu.all.css" />
+        		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+		<script type="text/javascript" src="~/Scripts/dist/js/jquery.mmenu.min.all.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				$('nav#menu').mmenu({
+					extensions	: [ 'effect-slide-menu', 'pageshadow' ],
+					searchfield	: true,
+					counters	: true,
+					navbar 		: {
+						title		: 'Advanced menu'
+					},
+					navbars		: [
+						{
+							position	: 'top',
+							content		: [ 'searchfield' ]
+						}, {
+							position	: 'top',
+							content		: [
+								'prev',
+								'title',
+								'close'
+							]
+						}, {
+							position	: 'bottom',
+							content		: [
+								'<a href="http://mmenu.frebsite.nl/wordpress-plugin.html" target="_blank">WordPress plugin</a>'
+							]
+						}
+					]
+				});
+			});
+		</script>*@
+	</head>
+	<body >
+		<div id="page" style="padding:10px;">
+            @Html.Partial("_ViewSwitcher")
+			<div class="header">
+				<img src="~/images/homepageimage/11logo.png" />  
+                <br />
+				@*<h4><span style="color:#f01818">FOODEX </span> <span style="color:#fdbc00">NEPAL</span></h4>*@
+			</div>
+			<div class="content">
+                <script>
+                    function show() {
+                        if (document.getElementById('benefits').style.display == 'none') {
+                            document.getElementById('benefits').style.display = 'block';
+                        }
+                        else {
+                            hide();
+                        }
+                        //return false;
+                    }
+                    function hide() {
+                        if (document.getElementById('benefits').style.display == 'block') {
+                            document.getElementById('benefits').style.display = 'none';
+                        }
+                        return false;
+                    }
+</script> 
+
+
+ <div id="opener"><a href="#1" name="1" onclick="return show();"><img src="~/images/threelines.png" width="30px"></a></div> 
+    <div id="benefits" style="display:none;">
+    <ul class="menutop">
+                               <a href="~/About"><li><a href="~/About">HOME</li></a>
+                                <a href="~/About"><li>ABOUT</li></a>
+                               <a href="~/RestaurantList"> <li>RESTAURANTS</li></a>
+                                <a href="~/HowToOrder"><li>HOW TO ORDER</li></a>
+								<a href="~/Contact"><li>CONTACT</li></a>
+                           </ul> 
+            
+    </div>
+				@RenderBody()
+
+			</div>
+             
+			@*<nav id="menu">
+				<ul>
+					<li><a href="#">Home</a></li>
+					<li><a href="#about">About us</a>
+						<ul>
+							<li><a href="#about/history">History</a></li>
+							<li><a href="#about/team">The team</a>
+								<ul>
+									<li><a href="#about/team/management">Management</a></li>
+									<li><a href="#about/team/sales">Sales</a></li>
+									<li><a href="#about/team/development">Development</a></li>
+								</ul>
+							</li>
+							<li><a href="#about/address">Our address</a></li>
+						</ul>
+					</li>
+					<li><a href="#contact">Contact</a></li>
+				</ul>
+			</nav>*@
+		</div>
+        @RenderSection("scripts", required: false)
+	</body>
+</html>
