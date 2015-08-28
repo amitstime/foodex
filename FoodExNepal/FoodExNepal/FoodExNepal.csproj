@@ -1,0 +1,745 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B5353684-D584-45E8-8C32-73C01B519CB4}</ProjectGuid>
+    <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FoodExNepal</RootNamespace>
+    <AssemblyName>FoodExNepal</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\PagedList.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Mvc.FixedDisplayModes, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.FixedDisplayModes.1.0.0\lib\net40\Microsoft.Web.Mvc.FixedDisplayModes.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Net.Http.2.0.20710.0\lib\net40\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.20710.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Net.Http.2.0.20710.0\lib\net40\System.Net.Http.WebRequest.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.4.0.20710.0\lib\net40\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.4.0.20710.0\lib\net40\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.20710.0\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.0.0\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Providers">
+      <HintPath>..\packages\Microsoft.AspNet.Providers.Core.1.2\lib\net40\System.Web.Providers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.20715.0\lib\net40\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.3.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.3.0\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\BundleMobileConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AdminUserController.cs" />
+    <Compile Include="Areas\Admin\Controllers\BannerController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CustomerUserController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DeliveryStaffController.cs" />
+    <Compile Include="Areas\Admin\Controllers\FoodCategoryController.cs" />
+    <Compile Include="Areas\Admin\Controllers\LocationController.cs" />
+    <Compile Include="Areas\Admin\Controllers\MenuController.cs" />
+    <Compile Include="Areas\Admin\Controllers\OrderListController.cs" />
+    <Compile Include="Areas\Admin\Controllers\RestaurantController.cs" />
+    <Compile Include="Areas\Admin\Controllers\WebsiteProfileController.cs" />
+    <Compile Include="Areas\RestaurantAdmin\Controllers\LoginController.cs" />
+    <Compile Include="Areas\RestaurantAdmin\RestaurantAdminAreaRegistration.cs" />
+    <Compile Include="Controllers\AboutController.cs" />
+    <Compile Include="Controllers\ContactController.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\HowToOrderController.cs" />
+    <Compile Include="Controllers\RestaurantListController.cs" />
+    <Compile Include="Controllers\RestaurantUserController.cs" />
+    <Compile Include="Controllers\ShoppingCartController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
+    <Compile Include="Controllers\ViewResturantController.cs" />
+    <Compile Include="Controllers\ViewSwitcherController.cs" />
+    <Compile Include="Controllers\Web_AdminController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AdminUser.cs">
+      <DependentUpon>FoodModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Banner.cs">
+      <DependentUpon>FoodModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Cart.cs" />
+    <Compile Include="Models\CartDetail.cs" />
+    <Compile Include="Models\CartSummary.cs" />
+    <Compile Include="Models\Customer.cs">
+      <DependentUpon>FoodModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DeliveryStaff.cs">
+      <DependentUpon>FoodModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FoodCategory.cs">
+      <DependentUpon>FoodModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FoodItem.cs">
+      <DependentUpon>FoodModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FoodModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FoodModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FoodModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FoodModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FoodModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FoodModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Location.cs">
+      <DependentUpon>FoodModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Menu.cs">
+      <DependentUpon>FoodModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Order.cs">
+      <DependentUpon>FoodModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OrderDetail.cs">
+      <DependentUpon>FoodModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Restaurant.cs">
+      <DependentUpon>FoodModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RestaurantFoodCategory.cs">
+      <DependentUpon>FoodModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Review.cs">
+      <DependentUpon>FoodModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\WebsiteProfile.cs">
+      <DependentUpon>FoodModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\admin.css" />
+    <Content Include="Content\amsoft.svg" />
+    <Content Include="Content\bootstrapTheme.css" />
+    <Content Include="Content\css\arrows.png" />
+    <Content Include="Content\css\bootstrap.css" />
+    <Content Include="Content\css\bullets.png" />
+    <Content Include="Content\css\default.css" />
+    <Content Include="Content\css\loading.gif" />
+    <Content Include="Content\css\nivo-slider.css" />
+    <Content Include="Content\css\templatemo_style.css" />
+    <Content Include="Content\custom.css" />
+    <Content Include="Content\demo.css" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\images\ajax-loader.gif" />
+    <Content Include="Content\images\ajax-loader.png" />
+    <Content Include="Content\images\icons-18-black.png" />
+    <Content Include="Content\images\icons-18-white.png" />
+    <Content Include="Content\images\icons-36-black.png" />
+    <Content Include="Content\images\icons-36-white.png" />
+    <Content Include="Content\jquery-1.9.1.min.js" />
+    <Content Include="Content\jquery.mobile-1.1.0.css" />
+    <Content Include="Content\jquery.mobile-1.1.0.min.css" />
+    <Content Include="Content\jquery.mobile.structure-1.1.0.css" />
+    <Content Include="Content\jquery.mobile.structure-1.1.0.min.css" />
+    <Content Include="Content\jquery.mobile.theme-1.1.0.css" />
+    <Content Include="Content\jquery.mobile.theme-1.1.0.min.css" />
+    <Content Include="Content\owl.carousel.css" />
+    <Content Include="Content\owl.carousel.js" />
+    <Content Include="Content\owl.theme.css" />
+    <Content Include="Content\owl1.jpg" />
+    <Content Include="Content\owl2.jpg" />
+    <Content Include="Content\owl3.jpg" />
+    <Content Include="Content\owl4.jpg" />
+    <Content Include="Content\owl5.jpg" />
+    <Content Include="Content\owl6.jpg" />
+    <Content Include="Content\owl7.jpg" />
+    <Content Include="Content\PagedList.css" />
+    <Content Include="Content\Site.Mobile.css" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\jquery-ui.css" />
+    <Content Include="Content\themes\base\jquery.ui.accordion.css" />
+    <Content Include="Content\themes\base\jquery.ui.all.css" />
+    <Content Include="Content\themes\base\jquery.ui.autocomplete.css" />
+    <Content Include="Content\themes\base\jquery.ui.base.css" />
+    <Content Include="Content\themes\base\jquery.ui.button.css" />
+    <Content Include="Content\themes\base\jquery.ui.core.css" />
+    <Content Include="Content\themes\base\jquery.ui.datepicker.css" />
+    <Content Include="Content\themes\base\jquery.ui.dialog.css" />
+    <Content Include="Content\themes\base\jquery.ui.progressbar.css" />
+    <Content Include="Content\themes\base\jquery.ui.resizable.css" />
+    <Content Include="Content\themes\base\jquery.ui.selectable.css" />
+    <Content Include="Content\themes\base\jquery.ui.slider.css" />
+    <Content Include="Content\themes\base\jquery.ui.tabs.css" />
+    <Content Include="Content\themes\base\jquery.ui.theme.css" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\minified\jquery-ui.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.accordion.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.autocomplete.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.button.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.core.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.datepicker.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.dialog.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.progressbar.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.resizable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.selectable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="Content\toastr.css" />
+    <Content Include="Content\toastr.min.css" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="images\accent.png" />
+    <Content Include="images\arr.png" />
+    <Content Include="images\at-top.jpg" />
+    <Content Include="images\back.png" />
+    <Content Include="images\back2.png" />
+    <Content Include="images\background.png" />
+    <Content Include="images\bajeko.jpg" />
+    <Content Include="images\banner\0slide2.jpg" />
+    <Content Include="images\banner\1banner-img-4.jpg" />
+    <Content Include="images\banner\2danny-doolans-food-banner.jpg" />
+    <Content Include="images\banner\3food-banner-2 copy.jpg" />
+    <Content Include="images\banner\Bacon_web_1024.jpg" />
+    <Content Include="images\banner\Burger_web_1024.jpg" />
+    <Content Include="images\bg.png" />
+    <Content Include="images\bg_breadCrums.png" />
+    <Content Include="images\bg_hilighted_breadCrums.png" />
+    <Content Include="images\blog-image-1.jpg" />
+    <Content Include="images\blog-image-2.jpg" />
+    <Content Include="images\btnadd.jpg" />
+    <Content Include="images\bullet.png" />
+    <Content Include="images\cafeswotha_offer.jpg" />
+    <Content Include="images\captcha.png" />
+    <Content Include="images\cart.gif" />
+    <Content Include="images\checkout-doublesize.png" />
+    <Content Include="images\close.png" />
+    <Content Include="images\email.png" />
+    <Content Include="images\facebook.png" />
+    <Content Include="images\false.jpg" />
+    <Content Include="images\fancybox_loading%402x.gif" />
+    <Content Include="images\fancybox_loading.gif" />
+    <Content Include="images\fancybox_overlay.png" />
+    <Content Include="images\ficon_n.png" />
+    <Content Include="images\foodex.png" />
+    <Content Include="images\foodex1.png" />
+    <Content Include="images\foods.png" />
+    <Content Include="images\header-fade.png" />
+    <Content Include="images\homepageimage\11logo.png" />
+    <Content Include="images\homepageimage\11picnew.jpg" />
+    <Content Include="images\HotDeals\7-24-2015-6-47-15-PMswotha_offer.jpg" />
+    <Content Include="images\HotDeals\7-27-2015-2-49-25-PMclsoup.jpg" />
+    <Content Include="images\HotDeals\defaulthotdeal.jpg" />
+    <Content Include="images\HotDeals\images1.jpg" />
+    <Content Include="images\HotDeals\images10.jpg" />
+    <Content Include="images\HotDeals\images11.jpg" />
+    <Content Include="images\HotDeals\images2.jpg" />
+    <Content Include="images\HotDeals\images3.jpg" />
+    <Content Include="images\HotDeals\images4.jpg" />
+    <Content Include="images\HotDeals\images5.jpg" />
+    <Content Include="images\HotDeals\images6.jpg" />
+    <Content Include="images\HotDeals\images7.jpg" />
+    <Content Include="images\HotDeals\images8.jpg" />
+    <Content Include="images\HotDeals\images9.jpg" />
+    <Content Include="images\hungry_box31.png" />
+    <Content Include="images\icon.png" />
+    <Content Include="images\icon_googlplay_n2x.png" />
+    <Content Include="images\icon_ipadApp_n2x.png" />
+    <Content Include="images\icon_iPhoneApp_n2x.png" />
+    <Content Include="images\location.png" />
+    <Content Include="images\logo.png" />
+    <Content Include="images\map.png" />
+    <Content Include="images\member1.jpg" />
+    <Content Include="images\member2.jpg" />
+    <Content Include="images\member3.jpg" />
+    <Content Include="images\member4.jpg" />
+    <Content Include="images\menu_section_bg.png" />
+    <Content Include="images\phone.png" />
+    <Content Include="images\phone1.png" />
+    <Content Include="images\picnew.jpg" />
+    <Content Include="images\quote.png" />
+    <Content Include="images\rating_new_5.png" />
+    <Content Include="images\regicon.png" />
+    <Content Include="images\restaurant\10cafeswotha_offer.jpg" />
+    <Content Include="images\restaurant\110244.jpg" />
+    <Content Include="images\restaurant\11181078_436879996387421_1724449384_n.jpg" />
+    <Content Include="images\restaurant\11t0119.jpg" />
+    <Content Include="images\restaurant\11t0182.jpg" />
+    <Content Include="images\restaurant\11t0186.png" />
+    <Content Include="images\restaurant\11t0254.jpg" />
+    <Content Include="images\restaurant\11t0268.jpg" />
+    <Content Include="images\restaurant\11t0285.jpg" />
+    <Content Include="images\restaurant\11universal.JPG" />
+    <Content Include="images\restaurant\129.jpg" />
+    <Content Include="images\restaurant\12t0177.jpg" />
+    <Content Include="images\restaurant\531.jpg" />
+    <Content Include="images\restaurant\534.jpg" />
+    <Content Include="images\restaurant\7-8-2015-1-05-19-PM0218.jpg" />
+    <Content Include="images\restaurant\7-8-2015-1-05-19-PMt0218.jpg" />
+    <Content Include="images\restaurant\7-8-2015-1-14-38-PM0218.jpg" />
+    <Content Include="images\restaurant\7-8-2015-1-14-38-PMt0218.jpg" />
+    <Content Include="images\restaurant\7-9-2015-11-57-22-AM123.jpg" />
+    <Content Include="images\restaurant\7-9-2015-12-19-44-PM33.jpg" />
+    <Content Include="images\restaurant\7-9-2015-12-25-02-PMDesert.jpg" />
+    <Content Include="images\restaurant\bajeko.jpg" />
+    <Content Include="images\restaurant\blog-image-1.jpg" />
+    <Content Include="images\restaurant\blog-image-2.jpg" />
+    <Content Include="images\restaurant\restaurant.jpg" />
+    <Content Include="images\restaurant\row-repeate.gif" />
+    <Content Include="images\search-button.png" />
+    <Content Include="images\search.png" />
+    <Content Include="images\slide.jpg" />
+    <Content Include="images\slide1.jpg" />
+    <Content Include="images\slide2.jpg" />
+    <Content Include="images\social_icon2.png" />
+    <Content Include="images\threelines.png" />
+    <Content Include="images\tick.png" />
+    <Content Include="images\true.jpg" />
+    <Content Include="images\twitter.png" />
+    <Content Include="images\twitterIcon_n.png" />
+    <Content Include="images\unchecked.gif" />
+    <Content Include="images\untick.png" />
+    <Content Include="images\Uploads\8-21-2015-1-07-52-PMmomo.jpg" />
+    <Content Include="images\Uploads\detaultFoodItem.jpg" />
+    <Content Include="images\view_menu.png" />
+    <Content Include="Areas\Admin\Views\AdminUser\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminUser\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminUser\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminUser\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminUser\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Banner\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Banner\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Banner\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Banner\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Banner\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\CustomerUser\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\CustomerUser\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\CustomerUser\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\CustomerUser\ThrashedUsers.cshtml" />
+    <Content Include="Areas\Admin\Views\DeliveryStaff\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\DeliveryStaff\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\DeliveryStaff\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\DeliveryStaff\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\DeliveryStaff\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\FoodCategory\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\FoodCategory\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\FoodCategory\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\FoodCategory\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\FoodCategory\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Location\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Location\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Location\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Location\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Location\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Menu\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Menu\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Menu\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Menu\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Menu\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\OrderList\CancelledList.cshtml" />
+    <Content Include="Areas\Admin\Views\OrderList\ConfirmedList.cshtml" />
+    <Content Include="Areas\Admin\Views\OrderList\DeliveredList.cshtml" />
+    <Content Include="Areas\Admin\Views\OrderList\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\OrderList\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\OrderList\OrderDetail.cshtml" />
+    <Content Include="Areas\Admin\Views\Restaurant\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Restaurant\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Restaurant\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Restaurant\FoodAdd.cshtml" />
+    <Content Include="Areas\Admin\Views\Restaurant\FoodCategoryAdd.cshtml" />
+    <Content Include="Areas\Admin\Views\Restaurant\FoodCategoryDelete.cshtml" />
+    <Content Include="Areas\Admin\Views\Restaurant\FoodCategoryDetails.cshtml" />
+    <Content Include="Areas\Admin\Views\Restaurant\FoodCategoryEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\Restaurant\FoodCategoryList.cshtml" />
+    <Content Include="Areas\Admin\Views\Restaurant\FoodItemAdd.cshtml" />
+    <Content Include="Areas\Admin\Views\Restaurant\FoodItemDelete.cshtml" />
+    <Content Include="Areas\Admin\Views\Restaurant\FoodItemDetails.cshtml" />
+    <Content Include="Areas\Admin\Views\Restaurant\FoodItemEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\Restaurant\FoodItemHotDeals.cshtml" />
+    <Content Include="Areas\Admin\Views\Restaurant\FoodItemList.cshtml" />
+    <Content Include="Areas\Admin\Views\Restaurant\Foodmenu.cshtml" />
+    <Content Include="Areas\Admin\Views\Restaurant\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Web.config" />
+    <Content Include="Areas\Admin\Views\WebsiteProfile\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\WebsiteProfile\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\WebsiteProfile\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\WebsiteProfile\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\WebsiteProfile\Index.cshtml" />
+    <Content Include="Content\amsoft.eot" />
+    <Content Include="Content\amsoft.ttf" />
+    <Content Include="Content\amsoft.woff" />
+    <Content Include="Content\toastr.scss" />
+    <Content Include="Content\toastr.less" />
+    <EntityDeploy Include="Models\FoodModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>FoodModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\FoodModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FoodModel.edmx</DependentUpon>
+      <LastGenOutput>FoodModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\FoodModel.edmx.diagram">
+      <DependentUpon>FoodModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\FoodModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FoodModel.edmx</DependentUpon>
+      <LastGenOutput>FoodModel.cs</LastGenOutput>
+    </Content>
+    <Content Include="Areas\Admin\Views\Restaurant\Create.cshtml" />
+    <Content Include="Areas\RestaurantAdmin\Views\Web.config" />
+    <None Include="Properties\PublishProfiles\FoodEx.pubxml" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\dist\css\addons\jquery.mmenu.autoheight.css" />
+    <Content Include="Scripts\dist\css\addons\jquery.mmenu.counters.css" />
+    <Content Include="Scripts\dist\css\addons\jquery.mmenu.dividers.css" />
+    <Content Include="Scripts\dist\css\addons\jquery.mmenu.dragopen.css" />
+    <Content Include="Scripts\dist\css\addons\jquery.mmenu.iconpanels.css" />
+    <Content Include="Scripts\dist\css\addons\jquery.mmenu.navbars.css" />
+    <Content Include="Scripts\dist\css\addons\jquery.mmenu.offcanvas.css" />
+    <Content Include="Scripts\dist\css\addons\jquery.mmenu.searchfield.css" />
+    <Content Include="Scripts\dist\css\addons\jquery.mmenu.sectionindexer.css" />
+    <Content Include="Scripts\dist\css\addons\jquery.mmenu.toggles.css" />
+    <Content Include="Scripts\dist\css\extensions\jquery.mmenu.borderstyle.css" />
+    <Content Include="Scripts\dist\css\extensions\jquery.mmenu.effects.css" />
+    <Content Include="Scripts\dist\css\extensions\jquery.mmenu.fullscreen.css" />
+    <Content Include="Scripts\dist\css\extensions\jquery.mmenu.iconbar.css" />
+    <Content Include="Scripts\dist\css\extensions\jquery.mmenu.leftsubpanel.css" />
+    <Content Include="Scripts\dist\css\extensions\jquery.mmenu.multiline.css" />
+    <Content Include="Scripts\dist\css\extensions\jquery.mmenu.pageshadow.css" />
+    <Content Include="Scripts\dist\css\extensions\jquery.mmenu.panelshadow.css" />
+    <Content Include="Scripts\dist\css\extensions\jquery.mmenu.positioning.css" />
+    <Content Include="Scripts\dist\css\extensions\jquery.mmenu.themes.css" />
+    <Content Include="Scripts\dist\css\extensions\jquery.mmenu.tileview.css" />
+    <Content Include="Scripts\dist\css\extensions\jquery.mmenu.widescreen.css" />
+    <Content Include="Scripts\dist\css\jquery.mmenu.all.css" />
+    <Content Include="Scripts\dist\css\jquery.mmenu.css" />
+    <Content Include="Scripts\dist\css\jquery.mmenu.oncanvas.css" />
+    <Content Include="Scripts\dist\js\addons\jquery.mmenu.autoheight.min.js" />
+    <Content Include="Scripts\dist\js\addons\jquery.mmenu.backbutton.min.js" />
+    <Content Include="Scripts\dist\js\addons\jquery.mmenu.counters.min.js" />
+    <Content Include="Scripts\dist\js\addons\jquery.mmenu.dividers.min.js" />
+    <Content Include="Scripts\dist\js\addons\jquery.mmenu.dragopen.min.js" />
+    <Content Include="Scripts\dist\js\addons\jquery.mmenu.fixedelements.min.js" />
+    <Content Include="Scripts\dist\js\addons\jquery.mmenu.iconpanels.min.js" />
+    <Content Include="Scripts\dist\js\addons\jquery.mmenu.navbars.min.js" />
+    <Content Include="Scripts\dist\js\addons\jquery.mmenu.offcanvas.min.js" />
+    <Content Include="Scripts\dist\js\addons\jquery.mmenu.searchfield.min.js" />
+    <Content Include="Scripts\dist\js\addons\jquery.mmenu.sectionindexer.min.js" />
+    <Content Include="Scripts\dist\js\addons\jquery.mmenu.toggles.min.js" />
+    <Content Include="Scripts\dist\js\jquery.mmenu.min.all.js" />
+    <Content Include="Scripts\dist\js\jquery.mmenu.min.js" />
+    <Content Include="Scripts\dist\js\jquery.mmenu.oncanvas.min.js" />
+    <Content Include="Scripts\dist\js_umd\addons\jquery.mmenu.autoheight.umd.js" />
+    <Content Include="Scripts\dist\js_umd\addons\jquery.mmenu.backbutton.umd.js" />
+    <Content Include="Scripts\dist\js_umd\addons\jquery.mmenu.counters.umd.js" />
+    <Content Include="Scripts\dist\js_umd\addons\jquery.mmenu.dividers.umd.js" />
+    <Content Include="Scripts\dist\js_umd\addons\jquery.mmenu.dragopen.umd.js" />
+    <Content Include="Scripts\dist\js_umd\addons\jquery.mmenu.fixedelements.umd.js" />
+    <Content Include="Scripts\dist\js_umd\addons\jquery.mmenu.iconpanels.umd.js" />
+    <Content Include="Scripts\dist\js_umd\addons\jquery.mmenu.navbars.umd.js" />
+    <Content Include="Scripts\dist\js_umd\addons\jquery.mmenu.offcanvas.umd.js" />
+    <Content Include="Scripts\dist\js_umd\addons\jquery.mmenu.searchfield.umd.js" />
+    <Content Include="Scripts\dist\js_umd\addons\jquery.mmenu.sectionindexer.umd.js" />
+    <Content Include="Scripts\dist\js_umd\addons\jquery.mmenu.toggles.umd.js" />
+    <Content Include="Scripts\dist\js_umd\jquery.mmenu.oncanvas.umd.js" />
+    <Content Include="Scripts\dist\js_umd\jquery.mmenu.umd.all.js" />
+    <Content Include="Scripts\dist\js_umd\jquery.mmenu.umd.js" />
+    <Content Include="Scripts\dist\js_umd\_inc\affix.js" />
+    <Content Include="Scripts\dist\js_umd\_inc\prefix.js" />
+    <Content Include="Scripts\jquery.mobile-1.1.0.js" />
+    <Content Include="Scripts\jquery.mobile-1.1.0.min.js" />
+    <Content Include="Scripts\jquery.toaster.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\js\bootstrap.min.js" />
+    <Content Include="Scripts\js\colorbox\colorbox.css" />
+    <Content Include="Scripts\js\colorbox\images\border.png" />
+    <Content Include="Scripts\js\colorbox\images\controls.png" />
+    <Content Include="Scripts\js\colorbox\images\loading.gif" />
+    <Content Include="Scripts\js\colorbox\images\loading_background.png" />
+    <Content Include="Scripts\js\colorbox\images\overlay.png" />
+    <Content Include="Scripts\js\colorbox\jquery.colorbox-min.js" />
+    <Content Include="Scripts\js\colorbox\jquery.colorbox.js" />
+    <Content Include="Scripts\js\jquery-1.7.1.min.js" />
+    <Content Include="Scripts\js\jquery.min.js" />
+    <Content Include="Scripts\js\jquery.nivo.slider.js" />
+    <Content Include="Scripts\js\stickUp.min.js" />
+    <Content Include="Scripts\js\templatemo_script.js" />
+    <Content Include="Scripts\knockout-2.2.0.debug.js" />
+    <Content Include="Scripts\knockout-2.2.0.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\toastr.js" />
+    <Content Include="Scripts\toastr.min.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Uploads\4aa1.jpg" />
+    <Content Include="Uploads\5aa1.jpg" />
+    <Content Include="Uploads\7-8-2015-1-42-50-PMsearch.jpg" />
+    <Content Include="Uploads\7-8-2015-1-46-03-PMsearch.jpg" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\_LoginLayout.cshtml" />
+    <Content Include="Views\Shared\_AdminLayout.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\About\Index.cshtml" />
+    <Content Include="Views\Contact\Index.cshtml" />
+    <Content Include="Views\Customer\EditAccount.cshtml" />
+    <Content Include="Views\Customer\Login.cshtml" />
+    <Content Include="Views\Customer\MyAccount.cshtml" />
+    <Content Include="Views\Customer\OrderDetails.cshtml" />
+    <Content Include="Views\Customer\OrderHistory.cshtml" />
+    <Content Include="Views\Customer\Register.cshtml" />
+    <Content Include="Views\Dashboard\Index.cshtml" />
+    <Content Include="Views\HowToOrder\Index.cshtml" />
+    <Content Include="Views\RestaurantList\FoodCategory.cshtml" />
+    <Content Include="Views\RestaurantList\FoodItemDetail.cshtml" />
+    <Content Include="Views\RestaurantList\FoodMenu.cshtml" />
+    <Content Include="Views\RestaurantList\Index.cshtml" />
+    <Content Include="Views\RestaurantList\LoadFoodItem.cshtml" />
+    <Content Include="Views\RestaurantList\LoadHotDealFoodItem.cshtml" />
+    <Content Include="Views\RestaurantList\RestaurantDetail.cshtml" />
+    <Content Include="Views\RestaurantUser\CreateCategory.cshtml" />
+    <Content Include="Views\RestaurantUser\Dashboard.cshtml" />
+    <Content Include="Views\RestaurantUser\DeleteCategory.cshtml" />
+    <Content Include="Views\RestaurantUser\DetailsCategory.cshtml" />
+    <Content Include="Views\RestaurantUser\EditCategory.cshtml" />
+    <Content Include="Views\RestaurantUser\EditRestaurant.cshtml" />
+    <Content Include="Views\RestaurantUser\Index.cshtml" />
+    <Content Include="Views\RestaurantUser\ListCategory.cshtml" />
+    <Content Include="Views\ShoppingCart\CheckOut.cshtml" />
+    <Content Include="Views\ShoppingCart\Index.cshtml" />
+    <Content Include="Views\ViewResturant\FoodMenuList.cshtml" />
+    <Content Include="Views\ViewResturant\Index.cshtml" />
+    <Content Include="Views\Web_Admin\Index.cshtml" />
+    <Content Include="Views\Home\LoadBanner.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\Home\LoadHotDeal.cshtml" />
+    <Content Include="Views\Home\LoadPopup.cshtml" />
+    <Content Include="Views\Home\LoadRecent.cshtml" />
+    <Content Include="Views\Home\LoadWelcome.cshtml" />
+    <Content Include="Views\Home\LoadWhyFoodex.cshtml" />
+    <Content Include="Views\Home\WelcomeDetails.cshtml" />
+    <Content Include="Views\Home\WhyFoodexDetails.cshtml" />
+    <Content Include="Views\Shared\_TwoColumnLayout.cshtml" />
+    <Content Include="Views\Shared\_ViewSwitcher.cshtml" />
+    <Content Include="Views\Shared\_Layout.Mobile.cshtml" />
+    <Content Include="Views\Home\Index.Mobile.cshtml" />
+    <Content Include="Views\RestaurantList\FoodMenu.Mobile.cshtml" />
+    <Content Include="Views\RestaurantList\Index.Mobile.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\RestaurantList\RestaurantDetail.Mobile.cshtml" />
+    <Content Include="Views\RestaurantList\RestaurantList.cshtml" />
+    <Content Include="Views\Shared\_LayoutTest.cshtml" />
+    <Content Include="Views\Test\Index.cshtml" />
+    <Content Include="Views\Home\FindRestaurant.cshtml" />
+    <Content Include="Views\RestaurantList\GetFoodItemList.cshtml" />
+    <Content Include="Views\RestaurantList\FoodItemSearch.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\Admin\Views\Shared\" />
+    <Folder Include="Areas\RestaurantAdmin\Models\" />
+    <Folder Include="Areas\RestaurantAdmin\Views\Shared\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>3640</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:9268/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>
